@@ -1,0 +1,482 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Cormorant+SC:wght@500&family=DM+Mono:wght@400&family=DM+Sans:wght@300;400&display=swap');
+
+:root {
+  /* Colors */
+  --glow-cream: #F4EEE4;
+  --glow-parchment: #EDE5D6;
+  --glow-mist: #FAF7F2;
+  --glow-charcoal: #1E1B18;
+  --glow-bark: #3D3530;
+  --glow-dusk: #7A7068;
+  --glow-gold: #A8845A;
+  --glow-gold-light: #C4A47A;
+  --glow-sage: #7B9176;
+  --glow-sage-mist: #D4DDD2;
+  --glow-border: rgba(168, 132, 90, 0.1);
+  --glow-border-hover: rgba(168, 132, 90, 0.3);
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-heading: 'Cormorant SC', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  /* Spacing */
+  --container-max: 1400px;
+  --section-padding: clamp(10rem, 18vw, 15rem);
+  --header-height: 100px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--glow-cream);
+  color: var(--glow-charcoal);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.85;
+  overflow-x: hidden;
+  transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: none; /* Custom cursor */
+}
+
+a, button {
+  cursor: none;
+}
+
+/* Typography Scales */
+h1, h2, h3, .display-text {
+  font-weight: 500;
+}
+
+.display-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(4.5rem, 9vw, 10rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 5vw, 5.5rem);
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+}
+
+h3 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Layout */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section {
+  padding: var(--section-padding) 0;
+  position: relative;
+}
+
+/* Custom Glow Aura Cursor */
+#cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: var(--glow-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s;
+}
+
+#cursor-ring {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--glow-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0.15;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s;
+}
+
+#cursor.hover {
+  width: 80px;
+  height: 80px;
+  background: var(--glow-gold-light);
+  opacity: 0.1;
+  mix-blend-mode: normal;
+}
+
+#cursor-label {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10001;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--glow-charcoal);
+  text-transform: uppercase;
+  transform: translate(-50%, calc(-50% + 25px));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px) scale(0.98);
+  filter: blur(10px);
+  transition: 
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Loader - Door Opening Style */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  pointer-events: none; /* Crucial: allow clicks once doors open */
+}
+
+.loader-door {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--glow-cream);
+  transition: transform 1.8s cubic-bezier(0.77, 0, 0.175, 1);
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.loader-door.left {
+  left: 0;
+  justify-content: flex-end;
+  border-right: 1px solid rgba(168, 132, 90, 0.05);
+}
+
+.loader-door.right {
+  right: 0;
+  justify-content: flex-start;
+}
+
+#loader.loaded .loader-door.left {
+  transform: translateX(-100%);
+}
+
+#loader.loaded .loader-door.right {
+  transform: translateX(100%);
+}
+
+.loader-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  text-align: center;
+  transition: opacity 0.8s ease;
+}
+
+#loader.loaded .loader-content {
+  opacity: 0;
+}
+
+#loader .logo-text {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+header.scrolled {
+  background: rgba(244, 238, 228, 0.85);
+  backdrop-filter: blur(30px);
+  height: 80px;
+  border-bottom: 1px solid var(--glow-border);
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s;
+}
+
+header.scrolled .logo {
+  transform: scale(0.92);
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--glow-charcoal);
+  font-size: 0.87rem;
+  font-weight: 300;
+  opacity: 0.55;
+  transition: opacity 0.3s;
+  position: relative;
+}
+
+nav a:hover, nav a.active {
+  opacity: 1;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--glow-gold);
+  transition: width 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  background: var(--glow-gold);
+  color: white;
+  padding: 0.55rem 1.3rem;
+  text-decoration: none;
+  font-size: 0.87rem;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.nav-cta:hover {
+  background: var(--glow-gold-light);
+  transform: translateY(-1px);
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  padding-top: var(--header-height);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.hero-content {
+  z-index: 10;
+}
+
+.hero-visual {
+  height: 100%;
+  position: relative;
+}
+
+.hero-image {
+  position: absolute;
+  right: -2%;
+  top: 5%;
+  width: 105%;
+  height: 90%;
+  object-fit: cover;
+  clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+  z-index: 3;
+  box-shadow: 0 40px 100px -20px rgba(0,0,0,0.1);
+  transition: transform 0.1s ease-out;
+}
+
+.section-num {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 120px;
+  color: rgba(168, 132, 90, 0.06);
+  left: 0;
+  top: 20%;
+  pointer-events: none;
+}
+
+/* Filosofía */
+.philosophy {
+  background: var(--glow-charcoal);
+  color: white;
+  text-align: center;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Fluid Liquid Orbs Container */
+.method-visual-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: url('#goo'); /* Applying the gooey liquid effect */
+}
+
+#method-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: blur(10px);
+}
+
+.method-label-orb {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: white;
+  background: var(--glow-gold);
+  box-shadow: 0 0 40px rgba(168, 132, 90, 0.4);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  z-index: 2;
+  text-align: center;
+  padding: 10px;
+}
+
+.method-label-orb::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: inherit;
+    filter: blur(15px);
+    opacity: 0.5;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.method-label-orb:hover {
+  transform: scale(1.15);
+  background: var(--glow-gold-light);
+  box-shadow: 0 0 60px rgba(168, 132, 90, 0.6);
+}
+
+.method-label-orb.active {
+  background: var(--glow-charcoal);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+  transform: scale(1.25);
+}
+
+.ritual-card:hover {
+  transform: translateY(-10px);
+}
+
+.ritual-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%) sepia(10%);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s;
+}
+
+.ritual-card:hover img {
+  transform: scale(1.08);
+  filter: grayscale(0%) sepia(0%);
+}
+
+/* Accordion Custom Styles */
+.accordion-header h3 {
+  transition: color 0.3s ease;
+}
+
+.accordion-item:hover .accordion-header h3 {
+  color: var(--glow-gold);
+}
+
+.accordion-header span {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-header span {
+  transform: rotate(45deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { cursor: default; }
+  #cursor, #cursor-ring, #cursor-label { display: none; }
+  .hero .container { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .display-text { font-size: 4rem; }
+}
