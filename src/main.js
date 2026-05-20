@@ -112,72 +112,70 @@ window.addEventListener("load", () => {
 document.body.style.overflow = "hidden";
 
 /* ==========================================
-   3. Custom Glow Aura Cursor — desktop only
+   3. Custom Glow Aura Cursor — CSS hides on touch/mobile
    ========================================== */
-if (!isTouchDevice) {
-	const cursor = document.getElementById("cursor");
-	const cursorRing = document.getElementById("cursor-ring");
-	const cursorLabel = document.getElementById("cursor-label");
+const cursor = document.getElementById("cursor");
+const cursorRing = document.getElementById("cursor-ring");
+const cursorLabel = document.getElementById("cursor-label");
 
-	let mouseX = 0,
-		mouseY = 0;
-	let ringX = 0,
-		ringY = 0;
+let mouseX = 0,
+	mouseY = 0;
+let ringX = 0,
+	ringY = 0;
 
-	document.addEventListener("mousemove", (e) => {
-		mouseX = e.clientX;
-		mouseY = e.clientY;
-		cursor.style.left = mouseX + "px";
-		cursor.style.top = mouseY + "px";
-	});
+document.addEventListener("mousemove", (e) => {
+	mouseX = e.clientX;
+	mouseY = e.clientY;
+	cursor.style.left = mouseX + "px";
+	cursor.style.top = mouseY + "px";
+});
 
-	function animateCursor() {
-		ringX += (mouseX - ringX) * 0.1;
-		ringY += (mouseY - ringY) * 0.1;
-		cursorRing.style.left = ringX + "px";
-		cursorRing.style.top = ringY + "px";
-		requestAnimationFrame(animateCursor);
-	}
-	animateCursor();
-
-	// Hover states
-	const interactives = document.querySelectorAll(
-		"a, button, .accordion-header, .method-label-orb",
-	);
-	interactives.forEach((el) => {
-		el.addEventListener("mouseenter", () => {
-			cursor.classList.add("hover");
-			cursorRing.style.opacity = "0.4";
-		});
-		el.addEventListener("mouseleave", () => {
-			cursor.classList.remove("hover");
-			cursorRing.style.opacity = "0.15";
-		});
-	});
-
-	const interactiveElements = document.querySelectorAll(
-		"a, button, .accordion-header, .ritual-card",
-	);
-	interactiveElements.forEach((el) => {
-		el.addEventListener("mouseenter", () => {
-			cursor.style.width = "22px";
-			cursor.style.height = "22px";
-			cursorRing.style.width = "64px";
-			cursorRing.style.height = "64px";
-			if (el.dataset.cursor) {
-				cursorLabel.textContent = el.dataset.cursor;
-				cursorLabel.style.opacity = "1";
-			}
-		});
-		el.addEventListener("mouseleave", () => {
-			cursor.style.width = "14px";
-			cursor.style.height = "14px";
-			cursorRing.style.width = "44px";
-			cursorRing.style.height = "44px";
-			cursorLabel.style.opacity = "0";
-		});
-	});
+function animateCursor() {
+	ringX += (mouseX - ringX) * 0.1;
+	ringY += (mouseY - ringY) * 0.1;
+	cursorRing.style.left = ringX + "px";
+	cursorRing.style.top = ringY + "px";
+	requestAnimationFrame(animateCursor);
 }
+animateCursor();
+
+// Hover states
+const interactives = document.querySelectorAll(
+	"a, button, .accordion-header, .method-label-orb",
+);
+interactives.forEach((el) => {
+	el.addEventListener("mouseenter", () => {
+		cursor.classList.add("hover");
+		cursorRing.style.opacity = "0.4";
+	});
+	el.addEventListener("mouseleave", () => {
+		cursor.classList.remove("hover");
+		cursorRing.style.opacity = "0.15";
+	});
+});
+
+const interactiveElements = document.querySelectorAll(
+	"a, button, .accordion-header, .ritual-card",
+);
+interactiveElements.forEach((el) => {
+	el.addEventListener("mouseenter", () => {
+		cursor.style.width = "22px";
+		cursor.style.height = "22px";
+		cursorRing.style.width = "64px";
+		cursorRing.style.height = "64px";
+		if (el.dataset.cursor) {
+			cursorLabel.textContent = el.dataset.cursor;
+			cursorLabel.style.opacity = "1";
+		}
+	});
+	el.addEventListener("mouseleave", () => {
+		cursor.style.width = "14px";
+		cursor.style.height = "14px";
+		cursorRing.style.width = "44px";
+		cursorRing.style.height = "44px";
+		cursorLabel.style.opacity = "0";
+	});
+});
 
 // 4. Scroll Reveal Logic — uses IntersectionObserver, works everywhere
 function initReveal() {
