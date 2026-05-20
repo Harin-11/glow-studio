@@ -286,7 +286,7 @@ function initMethodCanvas() {
 		// P0 → P1 with slight outward curve
 		const mx1 = (p0.x + p1.x) / 2;
 		const my1 = (p0.y + p1.y) / 2;
-		const curve1 = (size * 0.08) * Math.sin(flowPhase);
+		const curve1 = size * 0.08 * Math.sin(flowPhase);
 		ctx.quadraticCurveTo(
 			mx1 + (p1.y - p0.y) * 0.3 + curve1,
 			my1 - (p1.x - p0.x) * 0.3,
@@ -297,7 +297,7 @@ function initMethodCanvas() {
 		// P1 → P2
 		const mx2 = (p1.x + p2.x) / 2;
 		const my2 = (p1.y + p2.y) / 2;
-		const curve2 = (size * 0.08) * Math.cos(flowPhase * 0.7);
+		const curve2 = size * 0.08 * Math.cos(flowPhase * 0.7);
 		ctx.quadraticCurveTo(
 			mx2 + (p2.y - p1.y) * 0.3 + curve2,
 			my2 - (p2.x - p1.x) * 0.3,
@@ -310,7 +310,7 @@ function initMethodCanvas() {
 		const my3 = (p2.y + p0.y) / 2;
 		ctx.quadraticCurveTo(
 			mx3 + (p0.y - p2.y) * 0.3,
-			my3 - (p0.x - p2.x) * 0.3 + (size * 0.06) * Math.sin(flowPhase * 0.5),
+			my3 - (p0.x - p2.x) * 0.3 + size * 0.06 * Math.sin(flowPhase * 0.5),
 			p0.x,
 			p0.y,
 		);
@@ -320,8 +320,12 @@ function initMethodCanvas() {
 		// Gradient from active orb
 		const active = positions[methodActiveIndex];
 		const grad = ctx.createRadialGradient(
-			active.x, active.y, 0,
-			active.x, active.y, size * 0.6,
+			active.x,
+			active.y,
+			0,
+			active.x,
+			active.y,
+			size * 0.6,
 		);
 		grad.addColorStop(0, "rgba(168, 132, 90, 0.2)");
 		grad.addColorStop(0.4, "rgba(168, 132, 90, 0.08)");
@@ -437,77 +441,48 @@ window.addEventListener("scroll", () => {
 /* ==========================================
    6. Rituales Grid Generation + Carousel Dots
    ========================================== */
-function getColumnSpan(cols) {
-	if (isSmallScreen()) {
-		if (window.innerWidth <= 480) return 1;
-		return cols > 5 ? 2 : 1;
-	}
-	return cols;
-}
-
+/* ==========================================
+   6. Rituales Grid — created once, no re-init
+   ========================================== */
 const rituales = [
-	{
-		name: "Ritual Facial Profundo",
-		cat: "Rostro",
-		cols: 7,
-		img: "/assets/facial.png",
-	},
-	{
-		name: "Escultura de Cejas",
-		cat: "Rostro",
-		cols: 5,
-		img: "/assets/eyebrows.png",
-	},
-	{
-		name: "Manicure Atelier",
-		cat: "Manos",
-		cols: 4,
-		img: "/assets/manicure.png",
-	},
-	{
-		name: "Masaje Relajante",
-		cat: "Cuerpo",
-		cols: 4,
-		img: "/assets/massage.png",
-	},
-	{
-		name: "Experiencia Completa",
-		cat: "Completos",
-		cols: 4,
-		img: "/assets/hero.png",
-	},
+	{ name: "Ritual Facial Profundo", cat: "Rostro", cols: 7, img: "/assets/facial.png" },
+	{ name: "Escultura de Cejas", cat: "Rostro", cols: 5, img: "/assets/eyebrows.png" },
+	{ name: "Manicure Atelier", cat: "Manos", cols: 4, img: "/assets/manicure.png" },
+	{ name: "Masaje Relajante", cat: "Cuerpo", cols: 4, img: "/assets/massage.png" },
+	{ name: "Experiencia Completa", cat: "Completos", cols: 4, img: "/assets/hero.png" },
 ];
 
 function initRituales() {
 	const grid = document.getElementById("rituales-grid");
-	grid.innerHTML = "";
+	if (!grid) return;
 
+	// Build cards once — CSS handles layout at every breakpoint
 	rituales.forEach((rit) => {
 		const card = document.createElement("div");
-		const span = getColumnSpan(rit.cols);
-		card.style.gridColumn = `span ${span}`;
+		// Use the 12-column span (CSS overrides in carousel mode)
+		card.style.gridColumn = `span ${rit.cols}`;
 		card.className = "ritual-card reveal";
-		const cardHeight = isSmallScreen() ? "280px" : "400px";
-		const titleSize = isSmallScreen() ? "1.2rem" : "1.5rem";
-		const padding = isSmallScreen() ? "1.25rem" : "2rem";
+		// Always use desktop height — mobile carousel CSS overrides with aspect-ratio
 		card.innerHTML = `
-			<div style="position: relative; height: ${cardHeight}; overflow: hidden; background: #000;">
-				<img src="${rit.img}" alt="${rit.name}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);">
-				<div style="position: absolute; bottom: 0; left: 0; padding: ${padding}; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.8));">
+			<div style="position: relative; height: 400px; overflow: hidden; background: #000;">
+				<img src="${rit.img}" alt="${rit.name}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;">
+				<div style="position: absolute; bottom: 0; left: 0; padding: 2rem; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.8));">
 					<div class="label" style="color: var(--glow-gold); margin-bottom: 0.5rem;">${rit.cat}</div>
-					<h3 style="color: white; font-family: var(--font-heading); font-size: ${titleSize};">${rit.name}</h3>
+					<h3 style="color: white; font-family: var(--font-heading); font-size: 1.5rem;">${rit.name}</h3>
 				</div>
 			</div>
 		`;
 		grid.appendChild(card);
 	});
 
-	if (isSmallScreen()) {
-		initCarouselDots();
-	}
+	// Init dots immediately if on mobile
+	updateCarouselDots();
 }
 
-/* Carousel Dots — mobile only */
+/* Carousel Dots — show/hide and sync via matchMedia */
+let dotsInitialized = false;
+let scrollCleanup = null;
+
 function initCarouselDots() {
 	const dotsContainer = document.getElementById("rituales-dots");
 	const grid = document.getElementById("rituales-grid");
@@ -516,6 +491,12 @@ function initCarouselDots() {
 	const cards = grid.querySelectorAll(".ritual-card");
 	if (cards.length === 0) return;
 
+	// Remove old scroll listener
+	if (scrollCleanup) {
+		grid.removeEventListener("scroll", scrollCleanup);
+		scrollCleanup = null;
+	}
+
 	dotsContainer.innerHTML = "";
 
 	cards.forEach((_, i) => {
@@ -523,20 +504,19 @@ function initCarouselDots() {
 		dot.className = i === 0 ? "carousel-dot active" : "carousel-dot";
 		dot.setAttribute("aria-label", `Ir a experiencia ${i + 1}`);
 		dot.addEventListener("click", () => {
-			cards[i].scrollIntoView({
-				behavior: "smooth",
-				block: "nearest",
-				inline: "start",
-			});
+			cards[i].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
 		});
 		dotsContainer.appendChild(dot);
 	});
 
+	// Reset scroll position when entering carousel mode
+	grid.scrollLeft = 0;
+
 	let ticking = false;
-	grid.addEventListener("scroll", () => {
+	const onScroll = () => {
 		if (!ticking) {
 			window.requestAnimationFrame(() => {
-				const gap = 12; // matches gap in px
+				const gap = 12;
 				const cardWidth = cards[0]?.offsetWidth + gap || 1;
 				const activeIndex = Math.min(
 					Math.round(grid.scrollLeft / cardWidth),
@@ -549,20 +529,42 @@ function initCarouselDots() {
 			});
 			ticking = true;
 		}
-	});
+	};
+	grid.addEventListener("scroll", onScroll);
+	scrollCleanup = onScroll;
 }
+
+function updateCarouselDots() {
+	const isMobile = window.innerWidth <= 768;
+	const dotsContainer = document.getElementById("rituales-dots");
+	if (!dotsContainer) return;
+
+	if (isMobile && !dotsInitialized) {
+		initCarouselDots();
+		dotsInitialized = true;
+		dotsContainer.style.display = "flex";
+	} else if (!isMobile && dotsInitialized) {
+		dotsInitialized = false;
+		dotsContainer.style.display = "none";
+		// Clean up scroll listener
+		const grid = document.getElementById("rituales-grid");
+		if (grid && scrollCleanup) {
+			grid.removeEventListener("scroll", scrollCleanup);
+			scrollCleanup = null;
+		}
+	}
+}
+
+// Track mobile state via matchMedia (syncs with CSS breakpoint)
+const mobileMQ = window.matchMedia("(max-width: 768px)");
+mobileMQ.addEventListener("change", () => {
+	updateCarouselDots();
+});
 
 initRituales();
 
-// Re-init on resize threshold crossing
-let wasSmallScreen = isSmallScreen();
-window.addEventListener("resize", () => {
-	const nowSmall = isSmallScreen();
-	if (nowSmall !== wasSmallScreen) {
-		initRituales();
-		wasSmallScreen = nowSmall;
-	}
-});
+// Initial dots state
+updateCarouselDots();
 
 // 6. Accordion Logic — with Orb Sync
 document.querySelectorAll(".accordion-header").forEach((header, index) => {
