@@ -571,6 +571,8 @@ nav a:hover::after {
 	z-index: 2;
 	text-align: center;
 	padding: 10px;
+	/* Float offset & scale via CSS custom properties (set by JS) */
+	transform: translateX(-50%) translate(var(--float-x, 0px), var(--float-y, 0px)) scale(1);
 }
 
 .method-label-orb::before {
@@ -585,7 +587,7 @@ nav a:hover::after {
 }
 
 .method-label-orb:hover {
-	transform: scale(1.15);
+	transform: translateX(-50%) translate(var(--float-x, 0px), var(--float-y, 0px)) scale(1.15);
 	background: var(--glow-gold-light);
 	box-shadow: 0 0 60px rgba(168, 132, 90, 0.6);
 }
@@ -593,7 +595,7 @@ nav a:hover::after {
 .method-label-orb.active {
 	background: var(--glow-charcoal);
 	box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
-	transform: scale(1.25);
+	transform: translateX(-50%) translate(var(--float-x, 0px), var(--float-y, 0px)) scale(1.25);
 }
 
 .ritual-card:hover {

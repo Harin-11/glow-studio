@@ -206,6 +206,8 @@ function animateCircles() {
 }
 
 // 4. Method Canvas (Fluid Orbs & Ambient Particles)
+let methodActiveIndex = 0; // Track active orb for canvas animation
+
 function initMethodCanvas() {
 	const canvas = document.getElementById("method-canvas");
 	if (!canvas) return;
@@ -223,6 +225,7 @@ function initMethodCanvas() {
 
 	const size = Math.min(width, height);
 
+	/* --- Blobs (ambient particles) --- */
 	class Blob {
 		constructor() {
 			this.reset();
@@ -230,11 +233,10 @@ function initMethodCanvas() {
 		reset() {
 			this.x = Math.random() * width;
 			this.y = Math.random() * height;
-			// Scale blob size proportionally to container
-			this.r = Math.random() * (size * 0.1) + (size * 0.05);
+			this.r = Math.random() * (size * 0.1) + size * 0.05;
 			this.vx = (Math.random() - 0.5) * 1.2;
 			this.vy = (Math.random() - 0.5) * 1.2;
-			this.color = "rgba(168, 132, 90, 0.6)";
+			this.color = "rgba(168, 132, 90, 0.4)";
 		}
 		update() {
 			this.x += this.vx;
@@ -250,23 +252,113 @@ function initMethodCanvas() {
 		}
 	}
 
-	// More blobs on larger containers, fewer on small
 	const blobCount = Math.max(4, Math.floor(size / 50));
 	for (let i = 0; i < blobCount; i++) blobs.push(new Blob());
 
+	/* --- Get orb positions relative to canvas --- */
+	function getOrbPositions() {
+		const container = canvas.parentElement;
+		const containerRect = container.getBoundingClientRect();
+		const orbs = container.querySelectorAll(".method-label-orb");
+		return Array.from(orbs).map((orb) => {
+			const r = orb.getBoundingClientRect();
+			return {
+				x: r.left + r.width / 2 - containerRect.left,
+				y: r.top + r.height / 2 - containerRect.top,
+			};
+		});
+	}
+
+	/* --- Draw fluid connection between orbs --- */
+	let flowPhase = 0; // for pulsing animation
+
+	function drawFluidConnection(positions) {
+		if (positions.length < 3) return;
+
+		const [p0, p1, p2] = positions;
+		flowPhase += 0.02;
+
+		// Smooth curve connecting the three orbs
+		ctx.save();
+		ctx.beginPath();
+		ctx.moveTo(p0.x, p0.y);
+
+		// P0 → P1 with slight outward curve
+		const mx1 = (p0.x + p1.x) / 2;
+		const my1 = (p0.y + p1.y) / 2;
+		const curve1 = (size * 0.08) * Math.sin(flowPhase);
+		ctx.quadraticCurveTo(
+			mx1 + (p1.y - p0.y) * 0.3 + curve1,
+			my1 - (p1.x - p0.x) * 0.3,
+			p1.x,
+			p1.y,
+		);
+
+		// P1 → P2
+		const mx2 = (p1.x + p2.x) / 2;
+		const my2 = (p1.y + p2.y) / 2;
+		const curve2 = (size * 0.08) * Math.cos(flowPhase * 0.7);
+		ctx.quadraticCurveTo(
+			mx2 + (p2.y - p1.y) * 0.3 + curve2,
+			my2 - (p2.x - p1.x) * 0.3,
+			p2.x,
+			p2.y,
+		);
+
+		// P2 → P0
+		const mx3 = (p2.x + p0.x) / 2;
+		const my3 = (p2.y + p0.y) / 2;
+		ctx.quadraticCurveTo(
+			mx3 + (p0.y - p2.y) * 0.3,
+			my3 - (p0.x - p2.x) * 0.3 + (size * 0.06) * Math.sin(flowPhase * 0.5),
+			p0.x,
+			p0.y,
+		);
+
+		ctx.closePath();
+
+		// Gradient from active orb
+		const active = positions[methodActiveIndex];
+		const grad = ctx.createRadialGradient(
+			active.x, active.y, 0,
+			active.x, active.y, size * 0.6,
+		);
+		grad.addColorStop(0, "rgba(168, 132, 90, 0.2)");
+		grad.addColorStop(0.4, "rgba(168, 132, 90, 0.08)");
+		grad.addColorStop(1, "rgba(168, 132, 90, 0)");
+
+		ctx.fillStyle = grad;
+		ctx.fill();
+
+		// Thicker stroke along connections
+		ctx.strokeStyle = "rgba(168, 132, 90, 0.08)";
+		ctx.lineWidth = Math.max(6, size * 0.03);
+		ctx.stroke();
+
+		ctx.restore();
+	}
+
+	/* --- Main animation loop --- */
 	function animate() {
 		ctx.clearRect(0, 0, width, height);
+
+		// Draw fluid connection behind blobs
+		const positions = getOrbPositions();
+		drawFluidConnection(positions);
+
+		// Draw ambient blobs
 		blobs.forEach((b) => {
 			b.update();
 			b.draw();
 		});
 
-		// Sync HTML orbs with subtle float
+		// Sync HTML orbs float via CSS custom properties
 		const time = Date.now() * 0.001;
 		document.querySelectorAll(".method-label-orb").forEach((orb, i) => {
-			const ox = Math.sin(time + i) * 15;
-			const oy = Math.cos(time * 0.8 + i) * 15;
-			orb.style.transform = `translate(${ox}px, ${oy}px) ${orb.classList.contains("active") ? "scale(1.25)" : "scale(1)"}`;
+			const ox = Math.sin(time + i * 1.2) * 10;
+			const oy = Math.cos(time * 0.8 + i * 1.2) * 8;
+			orb.style.setProperty("--float-x", `${ox}px`);
+			orb.style.setProperty("--float-y", `${oy}px`);
 		});
 
 		requestAnimationFrame(animate);
@@ -274,20 +366,25 @@ function initMethodCanvas() {
 	animate();
 }
 
-// Interactive Orbs Linking to Accordion
+/* --- Unified orb activation --- */
+function setActiveOrb(index) {
+	const orbs = document.querySelectorAll(".method-label-orb");
+	orbs.forEach((o) => o.classList.remove("active"));
+	if (orbs[index]) {
+		orbs[index].classList.add("active");
+		methodActiveIndex = index;
+	}
+}
+
+/* --- Interactive Orbs Linking to Accordion --- */
 document.querySelectorAll(".method-label-orb").forEach((orb) => {
 	orb.addEventListener("click", () => {
-		const index = orb.dataset.index;
+		const index = parseInt(orb.dataset.index);
 		const accordionHeaders = document.querySelectorAll(".accordion-header");
 		if (accordionHeaders[index]) {
 			accordionHeaders[index].click();
-
-			// Highlight Orb
-			document
-				.querySelectorAll(".method-label-orb")
-				.forEach((o) => o.classList.remove("active"));
-			orb.classList.add("active");
 		}
+		setActiveOrb(index);
 	});
 });
 
@@ -483,13 +580,7 @@ document.querySelectorAll(".accordion-header").forEach((header, index) => {
 		if (!isOpen) {
 			item.classList.add("active");
 			content.style.maxHeight = content.scrollHeight + "px";
-
-			// Sync the corresponding orb
-			const orbs = document.querySelectorAll(".method-label-orb");
-			orbs.forEach((o) => o.classList.remove("active"));
-			if (orbs[index]) {
-				orbs[index].classList.add("active");
-			}
+			setActiveOrb(index);
 		}
 	});
 });
