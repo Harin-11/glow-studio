@@ -2,7 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#F4EEE4">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Glow Studio — Donde la piel vuelve a respirar</title>
     <meta name="description" content="Tratamientos de cuidado de piel y bienestar en Arequipa. Ritual Facial, Escultura de Cejas, Manicure Atelier y más.">
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -39,17 +42,27 @@
     <header id="main-header">
         <div class="container">
             <a href="#" class="logo">GLOW STUDIO</a>
-            <nav>
-                <ul>
-                    <li><a href="#rituales" class="nav-link">Rituales</a></li>
-                    <li><a href="#filosofia" class="nav-link">Nosotros</a></li>
-                    <li><a href="#metodo" class="nav-link">Método</a></li>
-                    <li><a href="#equipo" class="nav-link">Equipo</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-            </nav>
-            <a href="https://wa.me/yournumber" class="nav-cta">Tu ritual →</a>
+
+            <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-wrapper">
+                <nav>
+                    <ul>
+                        <li><a href="#rituales" class="nav-link">Rituales</a></li>
+                        <li><a href="#filosofia" class="nav-link">Nosotros</a></li>
+                        <li><a href="#metodo" class="nav-link">Método</a></li>
+                        <li><a href="#equipo" class="nav-link">Equipo</a></li>
+                        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    </ul>
+                </nav>
+                <a href="https://wa.me/yournumber" class="nav-cta">Tu ritual →</a>
+            </div>
         </div>
+        <div class="mobile-nav-overlay"></div>
     </header>
 
     <main>
@@ -105,7 +118,7 @@
 
         <!-- SECCIÓN 4 — EL MÉTODO GLOW -->
         <section id="metodo">
-            <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+            <div class="container metodo-grid">
                 <div>
                     <div class="label" style="margin-bottom: 1rem;">El Método Glow</div>
                     <h2 style="margin-bottom: 3rem;">Por qué cada decisión cuenta</h2>
@@ -157,7 +170,7 @@
                 <div class="label" style="color: var(--glow-gold); margin-bottom: 2rem;">Tu primer ritual te espera.</div>
                 <h2 class="display-text" style="color: white; margin-bottom: 3rem;">"Reserva tu momento."</h2>
                 <p style="color: rgba(255,255,255,0.6); margin-bottom: 4rem;">Sin formularios. Sin esperas. Solo escríbenos.</p>
-                <div style="display: flex; gap: 2rem; justify-content: center;">
+                <div class="cta-buttons">
                     <a href="#" class="nav-cta">WhatsApp</a>
                     <a href="#" class="nav-cta" style="background: transparent; border: 1px solid var(--glow-border);">Instagram</a>
                 </div>
@@ -167,7 +180,7 @@
 
     <footer style="background: var(--glow-charcoal); color: white; padding: 6rem 0 2rem; border-top: 1px solid rgba(255,255,255,0.06);">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 6rem;">
+            <div class="footer-grid">
                 <div>
                     <a href="#" class="logo" style="color: white;">GLOW STUDIO</a>
                     <p style="color: rgba(255,255,255,0.5); margin-top: 2rem; max-width: 300px;">Diseñando momentos de bienestar y cuidado consciente en Arequipa.</p>
@@ -205,7 +218,7 @@
                     </ul>
                 </div>
             </div>
-            <div style="padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: rgba(255,255,255,0.3); font-size: 11px;">
+            <div class="footer-bottom">
                 © 2026 Glow Studio · Arequipa · Diseñado con intención
             </div>
         </div>

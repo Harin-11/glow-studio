@@ -27,3 +27,4 @@ dist-ssr
 
 # Windows ADS metadata
 *Zone.Identifier
+.vercel
