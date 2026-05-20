@@ -846,6 +846,8 @@ nav a:hover::after {
 	/* Rituales — carousel mode */
 	#rituales-grid {
 		display: flex !important;
+		flex-direction: row;
+		align-items: flex-start;
 		overflow-x: auto;
 		overflow-y: hidden;
 		scroll-snap-type: x mandatory;
@@ -864,25 +866,40 @@ nav a:hover::after {
 		flex: 0 0 78vw;
 		scroll-snap-align: start;
 		min-width: 260px;
+		/* Kill reveal — always visible in carousel */
+		opacity: 1 !important;
+		transform: none !important;
+		filter: none !important;
+		/* Card aspect ratio defines the box */
+		position: relative;
+		aspect-ratio: 3 / 4;
 	}
 
 	#rituales-grid .ritual-card:hover {
 		transform: none;
 	}
 
+	/* Inner div fills card via absolute positioning */
+	#rituales-grid .ritual-card > div {
+		position: absolute !important;
+		inset: 0;
+		height: 100% !important;
+		width: 100%;
+	}
+
+	/* Image fills inner div */
 	#rituales-grid .ritual-card img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 		filter: grayscale(10%) sepia(5%);
+		transform: none !important;
+		transition: none !important;
 	}
 
 	#rituales-grid .ritual-card:hover img {
 		transform: none;
 		filter: grayscale(10%) sepia(5%);
-	}
-
-	/* Carousel cards — reset heights, use aspect-ratio */
-	#rituales-grid .ritual-card > div {
-		height: auto !important;
-		aspect-ratio: 3 / 4;
 	}
 
 	/* Carousel Dots */
@@ -903,7 +920,9 @@ nav a:hover::after {
 		border: none;
 		padding: 0;
 		cursor: pointer;
-		transition: opacity 0.3s, transform 0.3s;
+		transition:
+			opacity 0.3s,
+			transform 0.3s;
 	}
 
 	.carousel-dot.active {
