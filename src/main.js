@@ -445,11 +445,36 @@ window.addEventListener("scroll", () => {
    6. Rituales Grid — created once, no re-init
    ========================================== */
 const rituales = [
-	{ name: "Ritual Facial Profundo", cat: "Rostro", cols: 7, img: "/assets/facial.png" },
-	{ name: "Escultura de Cejas", cat: "Rostro", cols: 5, img: "/assets/eyebrows.png" },
-	{ name: "Manicure Atelier", cat: "Manos", cols: 4, img: "/assets/manicure.png" },
-	{ name: "Masaje Relajante", cat: "Cuerpo", cols: 4, img: "/assets/massage.png" },
-	{ name: "Experiencia Completa", cat: "Completos", cols: 4, img: "/assets/hero.png" },
+	{
+		name: "Ritual Facial Profundo",
+		cat: "Rostro",
+		cols: 7,
+		img: "/assets/facial.png",
+	},
+	{
+		name: "Escultura de Cejas",
+		cat: "Rostro",
+		cols: 5,
+		img: "/assets/eyebrows.png",
+	},
+	{
+		name: "Manicure Atelier",
+		cat: "Manos",
+		cols: 4,
+		img: "/assets/manicure.png",
+	},
+	{
+		name: "Masaje Relajante",
+		cat: "Cuerpo",
+		cols: 4,
+		img: "/assets/massage.png",
+	},
+	{
+		name: "Experiencia Completa",
+		cat: "Completos",
+		cols: 4,
+		img: "/assets/hero.png",
+	},
 ];
 
 function initRituales() {
@@ -504,7 +529,11 @@ function initCarouselDots() {
 		dot.className = i === 0 ? "carousel-dot active" : "carousel-dot";
 		dot.setAttribute("aria-label", `Ir a experiencia ${i + 1}`);
 		dot.addEventListener("click", () => {
-			cards[i].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+			cards[i].scrollIntoView({
+				behavior: "smooth",
+				block: "nearest",
+				inline: "start",
+			});
 		});
 		dotsContainer.appendChild(dot);
 	});
