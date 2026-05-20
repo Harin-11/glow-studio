@@ -533,7 +533,13 @@ nav a:hover::after {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	filter: url("#goo"); /* Applying the gooey liquid effect */
+	filter: url("#goo-desktop"); /* Stronger goo for desktop */
+}
+
+@media (max-width: 768px) {
+	.method-visual-container {
+		filter: url("#goo-mobile"); /* Lighter goo for mobile */
+	}
 }
 
 #method-canvas {

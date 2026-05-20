@@ -221,6 +221,8 @@ function initMethodCanvas() {
 	window.addEventListener("resize", resize);
 	resize();
 
+	const size = Math.min(width, height);
+
 	class Blob {
 		constructor() {
 			this.reset();
@@ -228,9 +230,10 @@ function initMethodCanvas() {
 		reset() {
 			this.x = Math.random() * width;
 			this.y = Math.random() * height;
-			this.r = Math.random() * 80 + 40;
-			this.vx = (Math.random() - 0.5) * 1.5;
-			this.vy = (Math.random() - 0.5) * 1.5;
+			// Scale blob size proportionally to container
+			this.r = Math.random() * (size * 0.1) + (size * 0.05);
+			this.vx = (Math.random() - 0.5) * 1.2;
+			this.vy = (Math.random() - 0.5) * 1.2;
 			this.color = "rgba(168, 132, 90, 0.6)";
 		}
 		update() {
@@ -247,7 +250,9 @@ function initMethodCanvas() {
 		}
 	}
 
-	for (let i = 0; i < 8; i++) blobs.push(new Blob());
+	// More blobs on larger containers, fewer on small
+	const blobCount = Math.max(4, Math.floor(size / 50));
+	for (let i = 0; i < blobCount; i++) blobs.push(new Blob());
 
 	function animate() {
 		ctx.clearRect(0, 0, width, height);
@@ -462,8 +467,8 @@ window.addEventListener("resize", () => {
 	}
 });
 
-// 6. Accordion Logic
-document.querySelectorAll(".accordion-header").forEach((header) => {
+// 6. Accordion Logic — with Orb Sync
+document.querySelectorAll(".accordion-header").forEach((header, index) => {
 	header.addEventListener("click", () => {
 		const item = header.parentElement;
 		const content = header.nextElementSibling;
@@ -478,6 +483,13 @@ document.querySelectorAll(".accordion-header").forEach((header) => {
 		if (!isOpen) {
 			item.classList.add("active");
 			content.style.maxHeight = content.scrollHeight + "px";
+
+			// Sync the corresponding orb
+			const orbs = document.querySelectorAll(".method-label-orb");
+			orbs.forEach((o) => o.classList.remove("active"));
+			if (orbs[index]) {
+				orbs[index].classList.add("active");
+			}
 		}
 	});
 });

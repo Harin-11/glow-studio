@@ -18,15 +18,27 @@
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <!-- SVG Filter for Liquid Effect -->
+    <!-- SVG Filters for Liquid Effect -->
     <svg style="visibility: hidden; position: absolute" width="0" height="0">
       <defs>
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+        <!-- Stronger goo for desktop (larger orbs, wider spacing) -->
+        <filter id="goo-desktop">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="22" result="blur" />
           <feColorMatrix
             in="blur"
             mode="matrix"
-            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 40 -15"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 45 -20"
+            result="goo"
+          />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+        </filter>
+        <!-- Lighter goo for mobile (smaller orbs, tighter spacing) -->
+        <filter id="goo-mobile">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix
+            in="blur"
+            mode="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -12"
             result="goo"
           />
           <feComposite in="SourceGraphic" in2="goo" operator="atop" />
