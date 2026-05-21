@@ -7,11 +7,6 @@
       "file": "src/counter.js"
     },
     {
-      "type": "file",
-      "name": "src/style.css",
-      "file": "src/style.css"
-    },
-    {
       "type": "export",
       "name": "Props",
       "file": "src/layouts/Layout.astro",
@@ -31,14 +26,9 @@
       "type": "file",
       "name": "src/counter.js",
       "file": "src/counter.js"
-    },
-    {
-      "type": "file",
-      "name": "src/style.css",
-      "file": "src/style.css"
     }
   ],
   "unusedDeps": [],
   "unlistedDeps": [],
-  "summary": "Found 3 issues"
+  "summary": "Found 2 issues"
 }
