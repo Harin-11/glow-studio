@@ -76,6 +76,7 @@ import CursorEffects from "../components/CursorEffects.jsx";
   // Hamburger menu
   const hamburger = document.querySelector(".hamburger");
   const overlay = document.getElementById("mobile-overlay");
+  const closeBtn = document.querySelector(".nav-close");
   const navLinks = document.querySelectorAll(".nav-link");
 
   function openMenu() {
@@ -96,6 +97,7 @@ import CursorEffects from "../components/CursorEffects.jsx";
     header?.classList.contains("menu-open") ? closeMenu() : openMenu();
   });
   overlay?.addEventListener("click", closeMenu);
+  closeBtn?.addEventListener("click", closeMenu);
   navLinks.forEach((l) => l.addEventListener("click", closeMenu));
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && header?.classList.contains("menu-open")) closeMenu();
