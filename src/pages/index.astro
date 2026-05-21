@@ -75,19 +75,19 @@ import CursorEffects from "../components/CursorEffects.jsx";
 
   // Hamburger menu
   const hamburger = document.querySelector(".hamburger");
-  const overlay = document.querySelector(".mobile-nav-overlay");
+  const overlay = document.getElementById("mobile-overlay");
   const navLinks = document.querySelectorAll(".nav-link");
 
   function openMenu() {
     header?.classList.add("menu-open");
-    overlay?.classList.add("open");
+    overlay?.classList.remove("hidden");
     document.body.classList.add("menu-open");
     hamburger?.setAttribute("aria-expanded", "true");
   }
 
   function closeMenu() {
     header?.classList.remove("menu-open");
-    overlay?.classList.remove("open");
+    overlay?.classList.add("hidden");
     document.body.classList.remove("menu-open");
     hamburger?.setAttribute("aria-expanded", "false");
   }
