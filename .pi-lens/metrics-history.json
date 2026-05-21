@@ -25,7 +25,32 @@
         }
       ],
       "trend": "stable"
+    },
+    "src/components/CursorEffects.jsx": {
+      "latest": {
+        "commit": "36a47a7",
+        "timestamp": "2026-05-21T14:55:08.061Z",
+        "mi": 40,
+        "cognitive": 4,
+        "nesting": 4,
+        "lines": 64,
+        "maxCyclomatic": 15,
+        "entropy": 5.01
+      },
+      "history": [
+        {
+          "commit": "36a47a7",
+          "timestamp": "2026-05-21T14:55:08.061Z",
+          "mi": 40,
+          "cognitive": 4,
+          "nesting": 4,
+          "lines": 64,
+          "maxCyclomatic": 15,
+          "entropy": 5.01
+        }
+      ],
+      "trend": "stable"
     }
   },
-  "capturedAt": "2026-05-21T14:49:12.491Z"
+  "capturedAt": "2026-05-21T14:55:13.134Z"
 }

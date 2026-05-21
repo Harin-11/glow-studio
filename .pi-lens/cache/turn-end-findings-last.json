@@ -1,4 +1,4 @@
 {
-  "signature": "src/components/MetodoAccordion.jsx::Unresolved from this turn — src/components/MetodoAccordion.jsx:\n🔴 STOP — 1 issue(s) must be fixed:\n  L25: Type annotations can only be used in TypeScript files.",
+  "signature": "src/components/CursorEffects.jsx::Unresolved from this turn — src/components/CursorEffects.jsx:\n🔴 STOP — 1 issue(s) must be fixed:\n  L7: 'cursorLabel' is declared but its value is never read.\n    💡 Fix: Remove the unused declaration or rename with '_' prefix if intentionally unused.",
   "sessionId": "lens-mpfl8s7i-b1377d61"
 }
