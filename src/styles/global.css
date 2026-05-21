@@ -17,14 +17,18 @@
     @apply bg-glow-gold/20 text-glow-charcoal;
   }
 
-  /* Custom cursor: visible by default, hidden on touch/mobile */
+  /* Custom cursor: hidden by default, visible on touch/mobile via override */
+  body, a, button, [role="button"] {
+    cursor: none;
+  }
+
   #cursor { display: block; }
   #cursor-ring { display: block; }
   #cursor-label { display: block; }
 
   @media (hover: none) and (pointer: coarse), (max-width: 768px) {
     body { cursor: auto; }
-    a, button { cursor: pointer; }
+    a, button, [role="button"] { cursor: pointer; }
     #cursor, #cursor-ring, #cursor-label { display: none !important; }
   }
 }
