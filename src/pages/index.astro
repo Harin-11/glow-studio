@@ -108,42 +108,10 @@ import CursorEffects from "../components/CursorEffects.jsx";
     lastW = window.innerWidth;
   });
 
-  // Carousel dots sync
-  function syncDots() {
+  // Carousel matchMedia: reset scroll on mobile
+  const mqCarousel = window.matchMedia("(max-width: 768px)");
+  mqCarousel.addEventListener("change", () => {
     const grid = document.getElementById("rituales-grid");
-    const dots = document.getElementById("rituales-dots");
-    if (!grid || !dots) return;
-    const cards = grid.querySelectorAll(".ritual-card");
-    if (!cards.length) return;
-
-    const gap = 12;
-    const cw = cards[0]?.offsetWidth + gap || 1;
-    const idx = Math.min(Math.round(grid.scrollLeft / cw), cards.length - 1);
-    dots.querySelectorAll(".carousel-dot").forEach((d, i) => d.classList.toggle("active", i === idx));
-  }
-
-  const ritualGrid = document.getElementById("rituales-grid");
-  if (ritualGrid) {
-    let ticking = false;
-    ritualGrid.addEventListener("scroll", () => {
-      if (!ticking) {
-        requestAnimationFrame(() => { syncDots(); ticking = false; });
-        ticking = true;
-      }
-    });
-  }
-
-  // matchMedia for carousel dots
-  const mq = window.matchMedia("(max-width: 768px)");
-  mq.addEventListener("change", () => {
-    const dots = document.getElementById("rituales-dots");
-    if (!dots) return;
-    if (window.innerWidth <= 768) {
-      dots.style.display = "flex";
-      const grid = document.getElementById("rituales-grid");
-      if (grid) grid.scrollLeft = 0;
-    } else {
-      dots.style.display = "none";
-    }
+    if (grid && window.innerWidth <= 768) grid.scrollLeft = 0;
   });
 </script>
