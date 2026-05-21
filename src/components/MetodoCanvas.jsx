@@ -175,15 +175,15 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 		"w-[130px] h-[130px] md:w-[100px] md:h-[100px] max-md:w-[85px] max-md:h-[85px] max-[480px]:w-[70px] max-[480px]:h-[70px] text-[10px] max-md:text-[8px] max-[480px]:text-[7px] p-2.5 max-md:p-1.5";
 
 	const orbData = [
-		{ label: "ESCUCHA", top: "22%", left: "50%", index: 0 },
-		{ label: "RITUAL", top: "58%", left: "36%", index: 1 },
-		{ label: "RESULTADO", top: "58%", left: "64%", index: 2 },
+		{ label: "ESCUCHA", top: "18%", left: "50%", index: 0 },
+		{ label: "RITUAL", top: "62%", left: "35%", index: 1 },
+		{ label: "RESULTADO", top: "62%", left: "65%", index: 2 },
 	];
 
 	return (
 		<div
 			ref={containerRef}
-			className="method-visual-container relative w-full aspect-square flex items-center justify-center goo-filter"
+			className="method-visual-container relative w-full max-w-[340px] mx-auto aspect-square flex items-center justify-center goo-filter"
 		>
 			<canvas
 				ref={canvasRef}

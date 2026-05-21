@@ -19,7 +19,7 @@ export default function MetodoContainer() {
 	}, []);
 
 	return (
-		<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+		<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
 			{/* Accordion first on mobile (order-1), left on desktop (lg:order-1) */}
 			<div className="reveal order-1">
 				<div className="label mb-4 text-glow-dusk">El Método Glow</div>
@@ -32,7 +32,7 @@ export default function MetodoContainer() {
 				/>
 			</div>
 			{/* Orbs second on mobile (order-2), right on desktop (lg:order-2) */}
-			<div className="reveal order-2 h-full flex items-center justify-center">
+			<div className="reveal order-2 h-full flex items-start justify-center pt-4 md:pt-0">
 				<MetodoCanvas activeIndex={activeIndex} onOrbClick={handleOrbClick} />
 			</div>
 		</div>
