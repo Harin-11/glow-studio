@@ -23,7 +23,7 @@ export default function MetodoContainer() {
 			{/* Accordion first on mobile (order-1), left on desktop (lg:order-1) */}
 			<div className="reveal order-1">
 				<div className="label mb-4 text-glow-dusk">El Método Glow</div>
-				<h2 className="font-heading font-medium text-[clamp(1.6rem,5vw,2rem)] md:text-[clamp(2rem,3.5vw,3.5rem)] mb-8">
+				<h2 className="font-heading font-medium text-3xl md:text-4xl lg:text-5xl mb-8">
 					Por qué cada decisión cuenta
 				</h2>
 				<MetodoAccordion
