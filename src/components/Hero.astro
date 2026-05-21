@@ -1,17 +1,17 @@
 ---
-// Hero Section — QA fix: typography scale reduction
+// Hero Section — restored original typography + mobile image
 ---
 
-<section id="home" class="hero min-h-screen pt-header flex items-center overflow-hidden relative">
+<section id="home" class="hero min-h-screen md:min-h-screen pt-header flex items-center overflow-hidden relative">
   <span class="section-num absolute font-display text-[120px] text-glow-gold/5 left-0 top-[20%] pointer-events-none max-md:text-[80px] max-md:top-[5%]">01</span>
   <div class="container max-w-container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center h-full relative">
     <div class="hero-content z-10 pt-8 md:pt-0">
-      <div class="label reveal mb-8 text-glow-dusk">GLOW STUDIO · AREQUIPA</div>
-      <!-- QA: Hero h1 scale reduced: text-5xl → md:text-6xl → lg:text-7xl + tracking-tight -->
-      <h1 class="display-text font-heading font-medium text-5xl md:text-6xl lg:text-7xl tracking-tight leading-none mb-6 reveal">
-        Donde la piel<br />vuelve a<br />respirar.
+      <div class="label reveal mb-6 md:mb-8 text-glow-dusk">GLOW STUDIO · AREQUIPA</div>
+      <!-- Restored original display-text size: clamp(4.5rem, 9vw, 10rem) -->
+      <h1 class="display-text font-heading font-medium text-[clamp(3rem,8vw,5.5rem)] md:text-[clamp(4.5rem,9vw,10rem)] leading-[1.1] -tracking-[0.02em] mb-4 md:mb-6 reveal">
+        Donde la piel<br class="hidden md:block" />vuelve a<br class="hidden md:block" />respirar<span class="md:hidden">.</span>
       </h1>
-      <p class="font-display italic text-[1.2rem] md:text-[1.3rem] lg:text-[1.5rem] mb-8 md:mb-12 text-glow-bark reveal">
+      <p class="font-display italic text-[1.2rem] md:text-[1.5rem] mb-6 md:mb-10 text-glow-bark reveal">
         Tratamientos pensados para ti. Resultados que se sienten.
       </p>
       <a href="#rituales" class="nav-cta group inline-flex items-center gap-2 bg-glow-gold text-white px-6 py-3 no-underline text-[0.87rem] transition-all duration-300 hover:bg-glow-gold-light active:scale-95 reveal">
@@ -19,8 +19,14 @@
         <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
     </div>
-    <div class="hero-visual h-full relative hidden md:block md:h-auto md:mt-0 lg:mt-0">
-      <img src="/assets/hero.webp" alt="Ambiente Glow Studio" class="hero-image absolute right-[-2%] top-[5%] w-[105%] h-[90%] object-cover z-[3] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] max-md:relative max-md:right-auto max-md:top-auto max-md:w-full max-md:h-auto max-md:aspect-[16/10] max-md:[clip-path:polygon(3%_0%,100%_0%,100%_100%,0%_100%)] max-md:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.15)]" style="clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);" />
+
+    <!-- Hero image: shown below content on mobile, side-by-side on desktop -->
+    <div class="hero-visual relative w-full mt-8 md:mt-0 md:h-full md:block">
+      <img
+        src="/assets/hero.webp"
+        alt="Ambiente Glow Studio"
+        class="w-full h-auto md:absolute md:right-[-2%] md:top-[5%] md:w-[105%] md:h-[90%] object-cover z-[3] md:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] md:[clip-path:polygon(15%_0%,100%_0%,100%_100%,0%_100%)] max-md:aspect-[16/10] max-md:object-cover max-md:rounded-sm"
+      />
     </div>
   </div>
   <div class="scroll-indicator absolute bottom-10 left-1/2 -translate-x-1/2 max-md:hidden">

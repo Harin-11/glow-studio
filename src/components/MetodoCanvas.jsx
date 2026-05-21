@@ -176,7 +176,7 @@ export default function MetodoCanvas({ activeIndex, onOrbClick }) {
 			<button
 				className="method-label-orb active absolute w-[130px] h-[130px] md:w-[100px] md:h-[100px] max-md:w-[85px] max-md:h-[85px] max-[480px]:w-[70px] max-[480px]:h-[70px] rounded-full flex items-center justify-center font-mono text-[10px] max-md:text-[8px] max-[480px]:text-[7px] tracking-[2px] max-md:tracking-[1px] text-white bg-glow-gold shadow-[0_0_40px_rgba(168,132,90,0.4)] transition-all duration-[0.8s] ease-out cursor-pointer z-[2] text-center p-2.5 max-md:p-1.5"
 				style={{
-					top: "8%",
+					top: "12%",
 					left: "50%",
 					transform:
 						"translateX(-50%) translate(var(--float-x, 0px), var(--float-y, 0px)) scale(1)",
@@ -189,8 +189,8 @@ export default function MetodoCanvas({ activeIndex, onOrbClick }) {
 			<button
 				className="method-label-orb absolute w-[130px] h-[130px] md:w-[100px] md:h-[100px] max-md:w-[85px] max-md:h-[85px] max-[480px]:w-[70px] max-[480px]:h-[70px] rounded-full flex items-center justify-center font-mono text-[10px] max-md:text-[8px] max-[480px]:text-[7px] tracking-[2px] max-md:tracking-[1px] text-white bg-glow-gold shadow-[0_0_40px_rgba(168,132,90,0.4)] transition-all duration-[0.8s] ease-out cursor-pointer z-[2] text-center p-2.5 max-md:p-1.5"
 				style={{
-					top: "38%",
-					left: "35%",
+					top: "48%",
+					left: "33%",
 					transform:
 						"translateX(-50%) translate(var(--float-x, 0px), var(--float-y, 0px)) scale(1)",
 				}}
@@ -202,8 +202,8 @@ export default function MetodoCanvas({ activeIndex, onOrbClick }) {
 			<button
 				className="method-label-orb absolute w-[130px] h-[130px] md:w-[100px] md:h-[100px] max-md:w-[85px] max-md:h-[85px] max-[480px]:w-[70px] max-[480px]:h-[70px] rounded-full flex items-center justify-center font-mono text-[10px] max-md:text-[8px] max-[480px]:text-[7px] tracking-[2px] max-md:tracking-[1px] text-white bg-glow-gold shadow-[0_0_40px_rgba(168,132,90,0.4)] transition-all duration-[0.8s] ease-out cursor-pointer z-[2] text-center p-2.5 max-md:p-1.5"
 				style={{
-					top: "38%",
-					left: "65%",
+					top: "48%",
+					left: "67%",
 					transform:
 						"translateX(-50%) translate(var(--float-x, 0px), var(--float-y, 0px)) scale(1)",
 				}}

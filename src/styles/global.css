@@ -108,9 +108,45 @@
   }
 }
 
-/* Custom scrollbar for carousel */
-.carousel::-webkit-scrollbar {
-  display: none;
+/* Rituales carousel on mobile */
+@media (max-width: 768px) {
+  #rituales-grid {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.75rem;
+    scroll-padding: 0 1rem;
+    padding: 0 0.25rem 1rem 0.25rem;
+  }
+
+  #rituales-grid .ritual-card {
+    flex: 0 0 78vw;
+    scroll-snap-align: start;
+    min-width: 260px;
+  }
+
+  #rituales-grid .ritual-card > div {
+    height: 100% !important;
+    aspect-ratio: 3 / 4;
+  }
+
+  #rituales-grid .ritual-card img {
+    filter: grayscale(10%) sepia(5%);
+  }
+
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  #rituales-grid .ritual-card {
+    flex: 0 0 85vw;
+    min-width: 220px;
+  }
 }
 
 /* Accordion grid animation */

@@ -50,7 +50,32 @@
         }
       ],
       "trend": "stable"
+    },
+    "src/components/MetodoCanvas.jsx": {
+      "latest": {
+        "commit": "761063a",
+        "timestamp": "2026-05-21T16:30:36.614Z",
+        "mi": 22.5,
+        "cognitive": 28,
+        "nesting": 5,
+        "lines": 190,
+        "maxCyclomatic": 109,
+        "entropy": 6.3
+      },
+      "history": [
+        {
+          "commit": "761063a",
+          "timestamp": "2026-05-21T16:30:36.614Z",
+          "mi": 22.5,
+          "cognitive": 28,
+          "nesting": 5,
+          "lines": 190,
+          "maxCyclomatic": 109,
+          "entropy": 6.3
+        }
+      ],
+      "trend": "stable"
     }
   },
-  "capturedAt": "2026-05-21T14:55:13.134Z"
+  "capturedAt": "2026-05-21T16:30:41.629Z"
 }
