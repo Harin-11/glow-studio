@@ -12,16 +12,10 @@
       "file": "src/style.css"
     },
     {
-      "type": "dependency",
-      "name": "lucide-react",
-      "file": "package.json",
-      "line": 21
-    },
-    {
       "type": "export",
       "name": "Props",
       "file": "src/layouts/Layout.astro",
-      "line": 2
+      "line": 3
     }
   ],
   "unusedExports": [
@@ -29,7 +23,7 @@
       "type": "export",
       "name": "Props",
       "file": "src/layouts/Layout.astro",
-      "line": 2
+      "line": 3
     }
   ],
   "unusedFiles": [
@@ -44,14 +38,7 @@
       "file": "src/style.css"
     }
   ],
-  "unusedDeps": [
-    {
-      "type": "dependency",
-      "name": "lucide-react",
-      "file": "package.json",
-      "line": 21
-    }
-  ],
+  "unusedDeps": [],
   "unlistedDeps": [],
-  "summary": "Found 4 issues"
+  "summary": "Found 3 issues"
 }

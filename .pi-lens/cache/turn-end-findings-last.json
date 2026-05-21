@@ -1,4 +1,4 @@
 {
-  "signature": "src/components/CursorEffects.jsx::Unresolved from this turn — src/components/CursorEffects.jsx:\n🔴 STOP — 1 issue(s) must be fixed:\n  L7: 'cursorLabel' is declared but its value is never read.\n    💡 Fix: Remove the unused declaration or rename with '_' prefix if intentionally unused.",
+  "signature": "src/layouts/Layout.astro::ℹ️ Advisory — no action required this turn:\n⚠️ Newly unused exports in modified files — check if callers need updating (Knip):\n  src/layouts/Layout.astro:3 — Props\n",
   "sessionId": "lens-mpfl8s7i-b1377d61"
 }

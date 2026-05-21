@@ -1,10 +1,17 @@
 ---
 import "../styles/global.css";
+
 export interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
-const { title = "Glow Studio — Donde la piel vuelve a respirar", description = "Tratamientos de cuidado de piel y bienestar en Arequipa." } = Astro.props;
+
+const {
+  title = "Glow Studio — Donde la piel vuelve a respirar",
+  description = "Tratamientos de cuidado de piel y bienestar en Arequipa. Ritual Facial, Escultura de Cejas, Manicure Atelier y más.",
+  image = "/assets/hero.webp",
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -15,12 +22,30 @@ const { title = "Glow Studio — Donde la piel vuelve a respirar", description =
     <meta name="theme-color" content="#F4EEE4" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- SVG Filters for Liquid Effect -->
-    <svg style="visibility: hidden; position: absolute" width="0" height="0">
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="es_PE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+  </head>
+  <body>
+    <!-- Skip to content link (a11y) -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999] focus:bg-glow-gold focus:text-white focus:px-4 focus:py-2 focus:rounded focus:text-sm focus:outline-none">
+      Saltar al contenido principal
+    </a>
+
+    <!-- SVG Filters for Liquid Effect (must be inside <body>) -->
+    <svg aria-hidden="true" style="visibility: hidden; position: absolute" width="0" height="0">
       <defs>
         <filter id="goo-desktop">
           <feGaussianBlur in="SourceGraphic" stdDeviation="22" result="blur" />
@@ -34,8 +59,7 @@ const { title = "Glow Studio — Donde la piel vuelve a respirar", description =
         </filter>
       </defs>
     </svg>
-  </head>
-  <body class="cursor-none">
+
     <slot />
   </body>
 </html>

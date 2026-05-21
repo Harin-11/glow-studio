@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const items = [
   {
@@ -48,33 +47,29 @@ export default function MetodoAccordion() {
               >
                 {item.title}
               </h3>
-              <motion.span
-                className="font-mono text-[1.2rem] text-glow-gold"
-                animate={{ rotate: isOpen ? 45 : 0 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              <span
+                className={`font-mono text-[1.2rem] text-glow-gold transition-transform duration-300 ease-out ${
+                  isOpen ? "rotate-45" : "rotate-0"
+                }`}
               >
                 +
-              </motion.span>
+              </span>
             </button>
 
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  key="content"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="overflow-hidden"
-                >
-                  <div className="px-4 md:px-6 pb-4 md:pb-6">
-                    <p className="text-glow-bark font-body font-light text-[0.9rem] md:text-[0.95rem] leading-relaxed">
-                      {item.content}
-                    </p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* CSS grid-rows animation: no Framer Motion needed */}
+            <div
+              className={`accordion-content-grid ${
+                isOpen ? "open" : ""
+              }`}
+            >
+              <div>
+                <div className="px-4 md:px-6 pb-4 md:pb-6">
+                  <p className="text-glow-bark font-body font-light text-[0.9rem] md:text-[0.95rem] leading-relaxed">
+                    {item.content}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         );
       })}
