@@ -2,10 +2,10 @@
 // Hero Section — balanced typography + mobile spacing
 ---
 
-<section id="home" class="hero min-h-[85vh] md:min-h-screen pt-header-mobile md:pt-header flex items-center overflow-hidden relative">
+<section id="home" class="hero min-h-[70vh] md:min-h-[85vh] pt-header-mobile md:pt-header overflow-hidden relative">
   <span class="section-num absolute font-display text-[120px] text-glow-gold/5 left-0 top-[20%] pointer-events-none max-md:text-[80px] max-md:top-[5%]">01</span>
-  <div class="container max-w-container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 h-full relative">
-    <div class="hero-content z-10 pt-8 md:pt-12 lg:pt-16">
+  <div class="container max-w-container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 relative">
+    <div class="hero-content z-10 pt-4 md:pt-8">
       <div class="label reveal mb-4 md:mb-8 text-glow-dusk">Glow Studio · Arequipa</div>
       <!-- Balanced size: between original huge and QA reduction -->
       <h1 class="display-text font-display font-light text-[clamp(2.3rem,6vw,3.5rem)] md:text-[clamp(3.5rem,6vw,6rem)] leading-[1.1] -tracking-[0.02em] mb-3 md:mb-6 reveal">
@@ -14,9 +14,11 @@
       <p class="font-display italic text-[1.1rem] md:text-[1.4rem] mb-5 md:mb-10 text-glow-bark reveal">
         Tratamientos pensados para ti. Resultados que se sienten.
       </p>
-      <a href="#rituales" class="nav-cta group inline-flex items-center gap-2 bg-glow-gold text-white px-6 py-3 no-underline text-[0.87rem] transition-all duration-300 hover:bg-glow-gold-light active:scale-95 reveal">
-        Conoce tus rituales
-        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      <a href="#rituales" class="nav-cta group inline-flex items-center gap-3 bg-glow-gold text-white px-7 py-3.5 no-underline text-[0.87rem] transition-all duration-300 hover:bg-glow-gold-light hover:shadow-lg hover:shadow-glow-gold/20 hover:-translate-y-0.5 active:scale-[0.97] reveal">
+        <span>Conoce tus rituales</span>
+        <span class="flex items-center justify-center w-5 h-5 rounded-full bg-white/20 transition-all duration-300 group-hover:bg-white/30 group-hover:scale-110">
+          <svg class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
       </a>
     </div>
 
