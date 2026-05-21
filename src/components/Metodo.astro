@@ -1,0 +1,19 @@
+---
+// Metodo Section — QA: accordion animations + circle vertical alignment
+import MetodoAccordion from "./MetodoAccordion.jsx";
+import MetodoCanvas from "./MetodoCanvas.jsx";
+---
+
+<section id="metodo" class="py-12 md:py-16 lg:py-20">
+  <div class="container max-w-container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+    <div class="reveal order-2 lg:order-1">
+      <div class="label mb-4 text-glow-dusk">El Método Glow</div>
+      <h2 class="font-heading font-medium text-[clamp(1.6rem,5vw,2rem)] md:text-[clamp(2rem,3.5vw,3.5rem)] mb-8">Por qué cada decisión cuenta</h2>
+      <MetodoAccordion client:load />
+    </div>
+    <div class="reveal order-1 lg:order-2 h-full flex items-center justify-center">
+      <!-- QA: Circles centered vertically with h-full flex items-center justify-center -->
+      <MetodoCanvas client:load />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Cormorant+SC:wght@500&family=DM+Mono:wght@400&family=DM+Sans:wght@300;400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-glow-cream text-glow-charcoal font-body font-light leading-relaxed overflow-x-hidden;
+  }
+
+  ::selection {
+    @apply bg-glow-gold/20 text-glow-charcoal;
+  }
+
+  /* Custom cursor: visible by default, hidden on touch/mobile */
+  #cursor { display: block; }
+  #cursor-ring { display: block; }
+  #cursor-label { display: block; }
+
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    body { cursor: auto; }
+    a, button { cursor: pointer; }
+    #cursor, #cursor-ring, #cursor-label { display: none !important; }
+  }
+}
+
+@layer components {
+  .label {
+    @apply font-mono text-[0.72rem] tracking-[0.18em] uppercase;
+  }
+
+  .display-text {
+    @apply font-display italic font-light leading-[1.1] -tracking-[0.02em];
+  }
+}
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px) scale(0.98);
+  filter: blur(10px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Loader - Door Opening Style */
+#loader {
+  @apply fixed inset-0 z-[9999] flex pointer-events-none;
+}
+
+.loader-door {
+  @apply absolute top-0 w-1/2 h-full bg-glow-cream;
+  transition: transform 1.8s cubic-bezier(0.77, 0, 0.175, 1);
+  pointer-events: auto;
+}
+
+.loader-door.left {
+  @apply left-0 justify-end;
+  border-right: 1px solid rgba(168, 132, 90, 0.05);
+}
+
+.loader-door.right {
+  @apply right-0 justify-start;
+}
+
+#loader.loaded .loader-door.left {
+  transform: translateX(-100%);
+}
+
+#loader.loaded .loader-door.right {
+  transform: translateX(100%);
+}
+
+.loader-content {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] text-center;
+  transition: opacity 0.8s ease;
+}
+
+#loader.loaded .loader-content {
+  opacity: 0;
+}
+
+/* Gooey filter for method orbs */
+.goo-filter {
+  filter: url('#goo-desktop');
+}
+
+@media (max-width: 768px) {
+  .goo-filter {
+    filter: url('#goo-mobile');
+  }
+}
+
+/* Custom scrollbar for carousel */
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Accordion grid animation */
+.accordion-content-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accordion-content-grid.open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-content-grid > div {
+  overflow: hidden;
+}
+
+/* Cursor hover state */
+#cursor.hover {
+  width: 80px !important;
+  height: 80px !important;
+  background: #C4A47A;
+  opacity: 0.1;
+  mix-blend-mode: normal;
+}

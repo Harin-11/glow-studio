@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "files": {
+    "src/components/MetodoAccordion.jsx": {
+      "latest": {
+        "commit": "87d0bb7",
+        "timestamp": "2026-05-21T14:49:07.491Z",
+        "mi": 37.4,
+        "cognitive": 13,
+        "nesting": 3,
+        "lines": 78,
+        "maxCyclomatic": 11,
+        "entropy": 5.19
+      },
+      "history": [
+        {
+          "commit": "87d0bb7",
+          "timestamp": "2026-05-21T14:49:07.491Z",
+          "mi": 37.4,
+          "cognitive": 13,
+          "nesting": 3,
+          "lines": 78,
+          "maxCyclomatic": 11,
+          "entropy": 5.19
+        }
+      ],
+      "trend": "stable"
+    }
+  },
+  "capturedAt": "2026-05-21T14:49:12.491Z"
+}

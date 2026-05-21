@@ -1,0 +1,149 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Philosophy from "../components/Philosophy.astro";
+import Rituales from "../components/Rituales.astro";
+import Metodo from "../components/Metodo.astro";
+import CtaSection from "../components/CtaSection.astro";
+import Footer from "../components/Footer.astro";
+import Loader from "../components/Loader.astro";
+import CursorEffects from "../components/CursorEffects.jsx";
+---
+
+<Layout>
+  <CursorEffects client:load />
+  <Loader />
+  <Header />
+  <main>
+    <Hero />
+    <Philosophy />
+    <Rituales />
+    <Metodo />
+    <CtaSection />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  // Loader
+  window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+    const loaderLine = loader?.querySelector(".loader-line");
+    if (!loader) return;
+
+    setTimeout(() => {
+      if (loaderLine) {
+        loaderLine.style.transition = "width 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
+        loaderLine.style.width = "100%";
+      }
+    }, 100);
+
+    setTimeout(() => {
+      loader.classList.add("loaded");
+      document.body.style.overflow = "auto";
+
+      setTimeout(() => initReveal(), 800);
+      setTimeout(() => { loader.style.display = "none"; }, 2000);
+    }, 1800);
+  });
+  document.body.style.overflow = "hidden";
+
+  // IntersectionObserver reveals
+  function initReveal() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  }
+
+  // Header scroll state
+  const header = document.getElementById("main-header");
+  const updateHeader = () => {
+    if (!header) return;
+    const scrolled = window.scrollY;
+    header.classList.toggle("scrolled", scrolled > 100);
+  };
+  window.addEventListener("scroll", updateHeader, { passive: true });
+
+  // Hamburger menu
+  const hamburger = document.querySelector(".hamburger");
+  const overlay = document.querySelector(".mobile-nav-overlay");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  function openMenu() {
+    header?.classList.add("menu-open");
+    overlay?.classList.add("open");
+    document.body.classList.add("menu-open");
+    hamburger?.setAttribute("aria-expanded", "true");
+  }
+
+  function closeMenu() {
+    header?.classList.remove("menu-open");
+    overlay?.classList.remove("open");
+    document.body.classList.remove("menu-open");
+    hamburger?.setAttribute("aria-expanded", "false");
+  }
+
+  hamburger?.addEventListener("click", () => {
+    header?.classList.contains("menu-open") ? closeMenu() : openMenu();
+  });
+  overlay?.addEventListener("click", closeMenu);
+  navLinks.forEach((l) => l.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && header?.classList.contains("menu-open")) closeMenu();
+  });
+
+  // Close menu on resize cross
+  let lastW = window.innerWidth;
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768 && lastW <= 768) closeMenu();
+    lastW = window.innerWidth;
+  });
+
+  // Carousel dots sync
+  function syncDots() {
+    const grid = document.getElementById("rituales-grid");
+    const dots = document.getElementById("rituales-dots");
+    if (!grid || !dots) return;
+    const cards = grid.querySelectorAll(".ritual-card");
+    if (!cards.length) return;
+
+    const gap = 12;
+    const cw = cards[0]?.offsetWidth + gap || 1;
+    const idx = Math.min(Math.round(grid.scrollLeft / cw), cards.length - 1);
+    dots.querySelectorAll(".carousel-dot").forEach((d, i) => d.classList.toggle("active", i === idx));
+  }
+
+  const ritualGrid = document.getElementById("rituales-grid");
+  if (ritualGrid) {
+    let ticking = false;
+    ritualGrid.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(() => { syncDots(); ticking = false; });
+        ticking = true;
+      }
+    });
+  }
+
+  // matchMedia for carousel dots
+  const mq = window.matchMedia("(max-width: 768px)");
+  mq.addEventListener("change", () => {
+    const dots = document.getElementById("rituales-dots");
+    if (!dots) return;
+    if (window.innerWidth <= 768) {
+      dots.style.display = "flex";
+      const grid = document.getElementById("rituales-grid");
+      if (grid) grid.scrollLeft = 0;
+    } else {
+      dots.style.display = "none";
+    }
+  });
+</script>

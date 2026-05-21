@@ -1,0 +1,65 @@
+---
+// Header component
+---
+
+<header
+  id="main-header"
+  class="fixed top-0 left-0 w-full h-header z-50 flex items-center transition-all duration-[0.6s] ease-out"
+>
+  <div class="container max-w-container mx-auto px-6 flex justify-between items-center w-full">
+    <a href="#" class="font-heading text-[1.5rem] no-underline text-inherit transition-transform duration-300">
+      GLOW STUDIO
+    </a>
+
+    <button class="hamburger hidden md:hidden flex-col justify-center items-center w-10 h-10 bg-none border-none p-2 cursor-pointer z-[102] relative" aria-label="Abrir menú" aria-expanded="false">
+      <span class="block w-6 h-[1.5px] bg-glow-charcoal rounded transition-all duration-[0.4s] ease-out"></span>
+      <span class="block w-6 h-[1.5px] bg-glow-charcoal rounded mt-[6px] transition-all duration-[0.4s] ease-out"></span>
+      <span class="block w-6 h-[1.5px] bg-glow-charcoal rounded mt-[6px] transition-all duration-[0.4s] ease-out"></span>
+    </button>
+
+    <div class="nav-wrapper flex items-center gap-8 max-md:fixed max-md:top-0 max-md:right-0 max-md:w-[85vw] max-md:max-w-[360px] max-md:h-dvh max-md:flex-col max-md:items-stretch max-md:gap-0 max-md:bg-glow-cream max-md:pt-[calc(var(--header-height-mobile,70px)+2rem)] max-md:px-8 max-md:pb-8 max-md:z-[101] max-md:translate-x-full max-md:transition-transform max-md:duration-500 max-md:ease-out max-md:shadow-[-10px_0_40px_rgba(0,0,0,0.08)]">
+      <nav>
+        <ul class="flex gap-8 list-none max-md:flex-col max-md:gap-0">
+          <li><a href="#rituales" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-55 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Rituales</a></li>
+          <li><a href="#filosofia" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-55 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Nosotros</a></li>
+          <li><a href="#metodo" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-55 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Método</a></li>
+          <li><a href="#equipo" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-55 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Equipo</a></li>
+          <li><a href="#contacto" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-55 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Contacto</a></li>
+        </ul>
+      </nav>
+      <a href="https://wa.me/yournumber" class="nav-cta bg-glow-gold text-white px-5 py-[0.55rem] no-underline text-[0.87rem] transition-colors duration-300 hover:bg-glow-gold-light max-md:block max-md:text-center max-md:mt-6 max-md:py-4 max-md:text-base">
+        Tu ritual →
+      </a>
+    </div>
+  </div>
+  <div class="mobile-nav-overlay fixed inset-0 bg-glow-charcoal/60 backdrop-blur z-40 opacity-0 transition-opacity duration-400 pointer-events-none"></div>
+</header>
+
+<style>
+  header.scrolled {
+    background: rgba(244, 238, 228, 0.85);
+    backdrop-filter: blur(30px);
+    height: 80px;
+    border-bottom: 1px solid rgba(168, 132, 90, 0.1);
+  }
+
+  header.menu-open .nav-wrapper {
+    transform: translateX(0);
+  }
+
+  header.menu-open .mobile-nav-overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+</style>

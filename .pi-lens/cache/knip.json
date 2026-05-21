@@ -1,0 +1,57 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "type": "file",
+      "name": "src/counter.js",
+      "file": "src/counter.js"
+    },
+    {
+      "type": "file",
+      "name": "src/style.css",
+      "file": "src/style.css"
+    },
+    {
+      "type": "dependency",
+      "name": "lucide-react",
+      "file": "package.json",
+      "line": 21
+    },
+    {
+      "type": "export",
+      "name": "Props",
+      "file": "src/layouts/Layout.astro",
+      "line": 2
+    }
+  ],
+  "unusedExports": [
+    {
+      "type": "export",
+      "name": "Props",
+      "file": "src/layouts/Layout.astro",
+      "line": 2
+    }
+  ],
+  "unusedFiles": [
+    {
+      "type": "file",
+      "name": "src/counter.js",
+      "file": "src/counter.js"
+    },
+    {
+      "type": "file",
+      "name": "src/style.css",
+      "file": "src/style.css"
+    }
+  ],
+  "unusedDeps": [
+    {
+      "type": "dependency",
+      "name": "lucide-react",
+      "file": "package.json",
+      "line": 21
+    }
+  ],
+  "unlistedDeps": [],
+  "summary": "Found 4 issues"
+}
