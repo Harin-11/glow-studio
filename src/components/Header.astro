@@ -13,7 +13,7 @@
 
     <!-- Hamburger + label (mobile only) -->
     <div class="flex items-center gap-3 md:hidden">
-      <span id="menu-label" class="text-[0.7rem] font-mono tracking-[0.2em] text-glow-dusk/60 transition-opacity duration-300 opacity-0">MENU</span>
+      <span id="menu-label" class="text-[0.7rem] font-mono tracking-[0.2em] text-glow-gold/70 transition-opacity duration-300 opacity-0">MENU</span>
       <button class="hamburger flex flex-col justify-center items-center w-10 h-10 bg-none border-none p-2 cursor-pointer relative" aria-label="Abrir menú" aria-expanded="false">
         <span class="block w-6 h-[1.5px] bg-glow-charcoal rounded transition-all duration-[0.4s] ease-out"></span>
         <span class="block w-6 h-[1.5px] bg-glow-charcoal rounded mt-[6px] transition-all duration-[0.4s] ease-out"></span>
@@ -58,17 +58,24 @@
   }
 
   header.menu-open {
-    background: rgba(30, 27, 24, 0.40);
-    backdrop-filter: blur(8px);
+    background: transparent;
+    backdrop-filter: none;
     border-bottom: none;
+    height: var(--header-height-mobile, 70px);
+  }
+
+  @media (min-width: 768px) {
+    header.menu-open {
+      height: var(--header-height, 100px);
+    }
   }
 
   header.menu-open .font-heading {
-    color: rgba(255, 255, 255, 0.30);
+    color: rgba(255, 255, 255, 0.45);
   }
 
   header.menu-open .hamburger span {
-    background: rgba(255, 255, 255, 0.50);
+    background: rgba(255, 255, 255, 0.55);
   }
 
   header.menu-open .nav-wrapper {

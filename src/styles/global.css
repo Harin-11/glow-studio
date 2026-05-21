@@ -178,6 +178,11 @@
   animation: pulseGlow 2s ease-in-out infinite;
 }
 
+/* Body scroll lock when mobile menu open */
+body.menu-open {
+  overflow: hidden;
+}
+
 /* Cursor hover state */
 #cursor.hover {
   width: 80px !important;

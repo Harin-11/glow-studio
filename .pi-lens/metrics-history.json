@@ -75,7 +75,57 @@
         }
       ],
       "trend": "stable"
+    },
+    "tailwind.config.mjs": {
+      "latest": {
+        "commit": "c5bfea0",
+        "timestamp": "2026-05-21T23:28:57.910Z",
+        "mi": 45.2,
+        "cognitive": 0,
+        "nesting": 0,
+        "lines": 55,
+        "maxCyclomatic": 1,
+        "entropy": 4.07
+      },
+      "history": [
+        {
+          "commit": "c5bfea0",
+          "timestamp": "2026-05-21T23:28:57.910Z",
+          "mi": 45.2,
+          "cognitive": 0,
+          "nesting": 0,
+          "lines": 55,
+          "maxCyclomatic": 1,
+          "entropy": 4.07
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/components/MetodoContainer.jsx": {
+      "latest": {
+        "commit": "c5bfea0",
+        "timestamp": "2026-05-21T23:29:58.441Z",
+        "mi": 53,
+        "cognitive": 3,
+        "nesting": 3,
+        "lines": 35,
+        "maxCyclomatic": 1,
+        "entropy": 4.75
+      },
+      "history": [
+        {
+          "commit": "c5bfea0",
+          "timestamp": "2026-05-21T23:29:58.441Z",
+          "mi": 53,
+          "cognitive": 3,
+          "nesting": 3,
+          "lines": 35,
+          "maxCyclomatic": 1,
+          "entropy": 4.75
+        }
+      ],
+      "trend": "stable"
     }
   },
-  "capturedAt": "2026-05-21T16:30:41.629Z"
+  "capturedAt": "2026-05-21T23:30:03.456Z"
 }
