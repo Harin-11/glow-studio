@@ -25,7 +25,7 @@
     <div class="nav-wrapper flex items-center gap-8 max-md:fixed max-md:top-0 max-md:right-0 max-md:w-[85vw] max-md:max-w-[360px] max-md:h-dvh max-md:flex-col max-md:items-stretch max-md:gap-0 max-md:bg-glow-cream max-md:pt-[calc(var(--header-height-mobile,70px)+2rem)] max-md:px-8 max-md:pb-8 max-md:z-60 max-md:translate-x-full max-md:transition-transform max-md:duration-500 max-md:ease-out max-md:shadow-[-10px_0_40px_rgba(0,0,0,0.08)]">
       <!-- Close button (mobile only) -->
       <button class="nav-close hidden max-md:flex absolute top-4 right-5 w-9 h-9 items-center justify-center rounded-full border border-glow-gold/40 text-glow-gold hover:bg-glow-gold/10 hover:border-glow-gold transition-colors" aria-label="Cerrar menú"> aria-label="Cerrar menú">
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6L18 18"/></svg>
       </button>
       <nav>
         <ul class="flex gap-8 list-none max-md:flex-col max-md:gap-0">
@@ -60,17 +60,17 @@
   }
 
   header.menu-open {
-    background: transparent;
-    backdrop-filter: none;
+    background: rgba(30, 27, 24, 0.40);
+    backdrop-filter: blur(8px);
     border-bottom: none;
   }
 
   header.menu-open .font-heading {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.30);
   }
 
   header.menu-open .hamburger span {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.50);
   }
 
   header.menu-open .nav-wrapper {
