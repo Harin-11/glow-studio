@@ -64,11 +64,11 @@ export default function MetodoAccordion({
 								{stepNums[i]}
 							</span>
 
-							{/* Icon */}
+							{/* Icon with pulse glow when active */}
 							<span
 								className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all duration-400 ease-out ${
 									isOpen
-										? "bg-glow-gold text-white shadow-lg shadow-glow-gold/20"
+										? "bg-glow-gold text-white shadow-lg shadow-glow-gold/30 animate-pulse-glow"
 										: "bg-glow-gold/10 text-glow-gold"
 								}`}
 							>
