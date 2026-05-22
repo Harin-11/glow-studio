@@ -191,3 +191,129 @@ body.menu-open {
   opacity: 0.1;
   mix-blend-mode: normal;
 }
+
+/* ==========================================
+   Premium Button System
+   ========================================== */
+
+/* Base glow button */
+.btn-glow {
+  @apply inline-flex items-center gap-3 bg-glow-gold text-white font-medium rounded-full
+         transition-all duration-300 ease-out
+         hover:bg-glow-gold-light
+         active:scale-[0.96] active:shadow-none;
+}
+
+/* Size variants */
+.btn-glow-sm {
+  @apply btn-glow px-5 py-2.5 text-[0.8rem];
+}
+
+.btn-glow-md {
+  @apply btn-glow px-7 py-3.5 text-[0.87rem];
+}
+
+.btn-glow-lg {
+  @apply btn-glow px-8 py-4 text-[0.87rem];
+}
+
+
+/* Glow shadow intensities */
+.btn-glow:hover {
+  box-shadow: 0 8px 32px -5px rgba(168, 132, 90, 0.4),
+              0 2px 8px -2px rgba(168, 132, 90, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-glow-sm:hover {
+  box-shadow: 0 6px 24px -4px rgba(168, 132, 90, 0.35),
+              0 2px 6px -1px rgba(168, 132, 90, 0.2);
+}
+
+/* Inner shine effect */
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 40%;
+  height: 30%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.18) 0%, transparent 100%);
+  border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.btn-glow:hover::before {
+  opacity: 1;
+}
+
+/* Outline variant */
+.btn-outline {
+  @apply inline-flex items-center gap-3 bg-transparent border border-glow-gold/35 text-white font-medium rounded-full
+         transition-all duration-300 ease-out
+         hover:border-glow-gold/60 hover:bg-white/5
+         active:scale-[0.96];
+}
+
+.btn-outline:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px -4px rgba(168, 132, 90, 0.15);
+}
+
+/* Arrow icon animation */
+.btn-arrow {
+  @apply flex items-center justify-center w-5 h-5 rounded-full bg-white/20 transition-all duration-300;
+}
+
+.btn-glow:hover .btn-arrow {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.15) translateX(2px);
+}
+
+/* Ripple click effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.btn-glow, .btn-outline {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow:active::after,
+.btn-outline:active::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255,255,255,0.15);
+  border-radius: inherit;
+  animation: ripple 0.5s ease-out;
+}
+
+/* Staggered entrance animation for button groups */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cta-buttons > *:nth-child(1) { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both; }
+.cta-buttons > *:nth-child(2) { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }

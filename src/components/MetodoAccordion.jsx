@@ -50,9 +50,10 @@ export default function MetodoAccordion({
 					<div
 						key={i}
 						className={`accordion-item relative rounded-2xl transition-all duration-500 ease-out overflow-hidden group
-							${isOpen
-								? "bg-white/70 border border-glow-gold/25 shadow-[0_0_40px_-8px_rgba(168,132,90,0.2)]"
-								: "bg-white/30 border border-transparent hover:border-glow-gold/10 hover:shadow-[0_4px_20px_-6px_rgba(168,132,90,0.08)]"
+							${
+								isOpen
+									? "bg-white/70 border border-glow-gold/25 shadow-[0_0_40px_-8px_rgba(168,132,90,0.2)]"
+									: "bg-white/30 border border-transparent hover:border-glow-gold/10 hover:shadow-[0_4px_20px_-6px_rgba(168,132,90,0.08)]"
 							}`}
 					>
 						{/* Active glow border top */}
@@ -63,19 +64,19 @@ export default function MetodoAccordion({
 									: "opacity-0 scale-x-0 group-hover:opacity-40 group-hover:scale-x-100"
 							}`}
 							style={{
-								background: "linear-gradient(90deg, #A8845A 0%, #C4A47A 50%, #A8845A 100%)",
+								background:
+									"linear-gradient(90deg, #A8845A 0%, #C4A47A 50%, #A8845A 100%)",
 							}}
 						/>
 
 						{/* Active ambient glow behind card */}
 						<div
 							className={`absolute inset-0 transition-opacity duration-700 pointer-events-none rounded-2xl ${
-								isOpen
-									? "opacity-100"
-									: "opacity-0"
+								isOpen ? "opacity-100" : "opacity-0"
 							}`}
 							style={{
-								background: "radial-gradient(ellipse 120% 80% at 50% 0%, rgba(168,132,90,0.06) 0%, transparent 70%)",
+								background:
+									"radial-gradient(ellipse 120% 80% at 50% 0%, rgba(168,132,90,0.06) 0%, transparent 70%)",
 							}}
 						/>
 
@@ -89,17 +90,16 @@ export default function MetodoAccordion({
 							<span
 								className={`accordion-icon relative w-11 h-11 md:w-12 md:h-12 rounded-2xl flex items-center justify-center shrink-0
 									transition-all duration-500 ease-out
-									${isOpen
-										? "bg-glow-gold text-white shadow-[0_0_20px_rgba(168,132,90,0.35)] scale-110"
-										: "bg-glow-gold/6 text-glow-gold group-hover:bg-glow-gold/10 group-hover:scale-105"
+									${
+										isOpen
+											? "bg-glow-gold text-white shadow-[0_0_20px_rgba(168,132,90,0.35)] scale-110"
+											: "bg-glow-gold/6 text-glow-gold group-hover:bg-glow-gold/10 group-hover:scale-105"
 									}`}
 							>
 								{/* Background pulse ring when active */}
 								<span
 									className={`absolute inset-0 rounded-2xl transition-opacity duration-500 ${
-										isOpen
-											? "opacity-100 animate-pulse-glow"
-											: "opacity-0"
+										isOpen ? "opacity-100 animate-pulse-glow" : "opacity-0"
 									}`}
 									style={{ background: "rgba(168,132,90,0.15)" }}
 								/>
@@ -131,14 +131,18 @@ export default function MetodoAccordion({
 								<div className="flex items-center gap-2 mb-1">
 									<span
 										className={`accordion-step font-mono text-[0.6rem] md:text-[0.65rem] tracking-[0.15em] transition-all duration-400 ${
-											isOpen ? "text-glow-gold translate-x-0" : "text-glow-dusk/30 translate-x-0 group-hover:translate-x-0.5"
+											isOpen
+												? "text-glow-gold translate-x-0"
+												: "text-glow-dusk/30 translate-x-0 group-hover:translate-x-0.5"
 										}`}
 									>
 										{stepNums[i]}
 									</span>
 									<span
 										className={`w-0.5 h-0.5 rounded-full transition-all duration-400 ${
-											isOpen ? "bg-glow-gold/50 scale-100" : "bg-glow-dusk/20 scale-75"
+											isOpen
+												? "bg-glow-gold/50 scale-100"
+												: "bg-glow-dusk/20 scale-75"
 										}`}
 									/>
 									<span className="font-body text-[0.65rem] md:text-[0.7rem] text-glow-dusk/35 italic transition-colors duration-400">
@@ -149,9 +153,10 @@ export default function MetodoAccordion({
 								<h3
 									className={`accordion-title font-body text-[0.95rem] md:text-[1.1rem] lg:text-[1.2rem]
 										transition-all duration-400 ease-out
-										${isOpen
-											? "font-medium text-glow-gold translate-y-0"
-											: "font-normal text-glow-charcoal group-hover:text-glow-bark"
+										${
+											isOpen
+												? "font-medium text-glow-gold translate-y-0"
+												: "font-normal text-glow-charcoal group-hover:text-glow-bark"
 										}`}
 								>
 									{item.title}
@@ -162,14 +167,17 @@ export default function MetodoAccordion({
 							<span
 								className={`accordion-toggle relative w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center shrink-0
 									transition-all duration-500 ease-out
-									${isOpen
-										? "bg-glow-gold/12 border border-glow-gold/35 rotate-[135deg] shadow-[inset_0_0_8px_rgba(168,132,90,0.15)]"
-										: "bg-transparent border border-glow-gold/20 rotate-0 group-hover:border-glow-gold/40 group-hover:bg-glow-gold/5"
+									${
+										isOpen
+											? "bg-glow-gold/12 border border-glow-gold/35 rotate-[135deg] shadow-[inset_0_0_8px_rgba(168,132,90,0.15)]"
+											: "bg-transparent border border-glow-gold/20 rotate-0 group-hover:border-glow-gold/40 group-hover:bg-glow-gold/5"
 									}`}
 							>
 								<svg
 									className={`w-3.5 h-3.5 md:w-4 md:h-4 transition-all duration-400 ease-out ${
-										isOpen ? "text-glow-gold" : "text-glow-dusk/40 group-hover:text-glow-dusk/70"
+										isOpen
+											? "text-glow-gold"
+											: "text-glow-dusk/40 group-hover:text-glow-dusk/70"
 									}`}
 									viewBox="0 0 24 24"
 									fill="none"
@@ -193,7 +201,9 @@ export default function MetodoAccordion({
 									<div className="relative">
 										<span
 											className={`accordion-quote absolute -left-2 top-0 text-glow-gold/15 font-display text-[2rem] leading-none -translate-x-full transition-all duration-500 ${
-												isOpen ? "opacity-100 -translate-x-full" : "opacity-0 -translate-x-full"
+												isOpen
+													? "opacity-100 -translate-x-full"
+													: "opacity-0 -translate-x-full"
 											}`}
 											style={{ transitionDelay: isOpen ? "100ms" : "0ms" }}
 										>
@@ -201,7 +211,9 @@ export default function MetodoAccordion({
 										</span>
 										<p
 											className={`accordion-text text-glow-bark/80 font-body font-light text-[0.9rem] md:text-[0.95rem] leading-relaxed transition-all duration-500 ${
-												isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+												isOpen
+													? "opacity-100 translate-y-0"
+													: "opacity-0 translate-y-2"
 											}`}
 											style={{ transitionDelay: isOpen ? "150ms" : "0ms" }}
 										>
@@ -214,7 +226,8 @@ export default function MetodoAccordion({
 											isOpen ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
 										}`}
 										style={{
-											background: "linear-gradient(90deg, transparent 0%, rgba(168,132,90,0.2) 30%, rgba(168,132,90,0.1) 70%, transparent 100%)",
+											background:
+												"linear-gradient(90deg, transparent 0%, rgba(168,132,90,0.2) 30%, rgba(168,132,90,0.1) 70%, transparent 100%)",
 											transitionDelay: isOpen ? "200ms" : "0ms",
 										}}
 									/>
