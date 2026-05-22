@@ -7,6 +7,17 @@
       "file": "src/counter.js"
     },
     {
+      "type": "file",
+      "name": "src/components/ui/ButtonIcons.jsx",
+      "file": "src/components/ui/ButtonIcons.jsx"
+    },
+    {
+      "type": "dependency",
+      "name": "lucide-astro",
+      "file": "package.json",
+      "line": 18
+    },
+    {
       "type": "export",
       "name": "Props",
       "file": "src/layouts/Layout.astro",
@@ -26,9 +37,21 @@
       "type": "file",
       "name": "src/counter.js",
       "file": "src/counter.js"
+    },
+    {
+      "type": "file",
+      "name": "src/components/ui/ButtonIcons.jsx",
+      "file": "src/components/ui/ButtonIcons.jsx"
     }
   ],
-  "unusedDeps": [],
+  "unusedDeps": [
+    {
+      "type": "dependency",
+      "name": "lucide-astro",
+      "file": "package.json",
+      "line": 18
+    }
+  ],
   "unlistedDeps": [],
-  "summary": "Found 2 issues"
+  "summary": "Found 4 issues"
 }
