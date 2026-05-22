@@ -183,7 +183,7 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 	return (
 		<div
 			ref={containerRef}
-			className="method-visual-container relative w-full max-w-[340px] mx-auto aspect-square flex items-center justify-center goo-filter" style={{ top: "106px", position: "relative" }}
+			className="method-visual-container relative w-full max-w-[340px] mx-auto aspect-square flex items-center justify-center goo-filter" style={{ top: "56px", position: "relative" }}
 		>
 			<canvas
 				ref={canvasRef}
