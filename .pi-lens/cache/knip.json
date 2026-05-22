@@ -18,6 +18,12 @@
       "line": 18
     },
     {
+      "type": "dependency",
+      "name": "lucide-react",
+      "file": "package.json",
+      "line": 19
+    },
+    {
       "type": "export",
       "name": "Props",
       "file": "src/layouts/Layout.astro",
@@ -50,8 +56,14 @@
       "name": "lucide-astro",
       "file": "package.json",
       "line": 18
+    },
+    {
+      "type": "dependency",
+      "name": "lucide-react",
+      "file": "package.json",
+      "line": 19
     }
   ],
   "unlistedDeps": [],
-  "summary": "Found 4 issues"
+  "summary": "Found 5 issues"
 }

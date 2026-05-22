@@ -36,11 +36,12 @@ export function GlowButton({
 	className = "",
 	...props
 }) {
-	const sizeClass = {
-		sm: "btn-glow btn-glow-sm",
-		md: "btn-glow btn-glow-md",
-		lg: "btn-glow btn-glow-lg",
-	}[size] || "btn-glow btn-glow-lg";
+	const sizeClass =
+		{
+			sm: "btn-glow btn-glow-sm",
+			md: "btn-glow btn-glow-md",
+			lg: "btn-glow btn-glow-lg",
+		}[size] || "btn-glow btn-glow-lg";
 
 	const iconMap = {
 		arrow: <ArrowRight className="w-4 h-4" strokeWidth={2.5} />,
@@ -52,11 +53,7 @@ export function GlowButton({
 	return (
 		<a href={href} className={`${sizeClass} ${className}`} {...props}>
 			{children}
-			{icon && (
-				<span className="btn-arrow">
-					{iconMap[icon]}
-				</span>
-			)}
+			{icon && <span className="btn-arrow">{iconMap[icon]}</span>}
 		</a>
 	);
 }
@@ -72,11 +69,12 @@ export function OutlineButton({
 	className = "",
 	...props
 }) {
-	const sizeClass = {
-		sm: "btn-outline btn-glow-sm",
-		md: "btn-outline btn-glow-md",
-		lg: "btn-outline btn-glow-lg",
-	}[size] || "btn-outline btn-glow-lg";
+	const sizeClass =
+		{
+			sm: "btn-outline btn-glow-sm",
+			md: "btn-outline btn-glow-md",
+			lg: "btn-outline btn-glow-lg",
+		}[size] || "btn-outline btn-glow-lg";
 
 	const iconMap = {
 		arrow: <ArrowRight className="w-4 h-4" strokeWidth={2.5} />,
@@ -88,11 +86,7 @@ export function OutlineButton({
 	return (
 		<a href={href} className={`${sizeClass} ${className}`} {...props}>
 			{children}
-			{icon && (
-				<span className="btn-arrow">
-					{iconMap[icon]}
-				</span>
-			)}
+			{icon && <span className="btn-arrow">{iconMap[icon]}</span>}
 		</a>
 	);
 }
