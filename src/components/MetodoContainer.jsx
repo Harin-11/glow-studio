@@ -32,7 +32,7 @@ export default function MetodoContainer() {
 				/>
 			</div>
 			{/* Orbs second on mobile (order-2), right on desktop (lg:order-2) */}
-			<div className="reveal order-2 h-full flex items-start justify-center pt-8 md:pt-12 lg:pt-16 xl:pt-20">
+			<div className="reveal order-2 h-full flex items-center justify-center">
 				<MetodoCanvas activeIndex={activeIndex} onOrbClick={handleOrbClick} />
 			</div>
 		</div>
