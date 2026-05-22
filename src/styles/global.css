@@ -190,13 +190,13 @@ body.menu-open {
 
 @media (max-width: 768px) {
   .method-visual-container {
-    margin-top: 30px;
+    margin-top: 15px;
   }
 }
 
 @media (max-width: 480px) {
   .method-visual-container {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 }
 
