@@ -55,11 +55,13 @@ export default function CursorEffects() {
 		<>
 			<div
 				id="cursor"
-				className="fixed w-5 h-5 bg-glow-gold rounded-full pointer-events-none z-[10000] translate-x-[-50%] translate-y-[-50%] mix-blend-difference transition-[width,height,background] duration-[0.4s] ease-out"
+				className="fixed w-6 h-6 bg-glow-gold rounded-full pointer-events-none z-[10000] translate-x-[-50%] translate-y-[-50%] transition-all duration-300"
+				style={{ opacity: 0.8 }}
 			/>
 			<div
 				id="cursor-ring"
-				className="fixed w-[60px] h-[60px] border border-glow-gold rounded-full pointer-events-none z-[9999] translate-x-[-50%] translate-y-[-50%] opacity-15 transition-[width,height,opacity] duration-[0.6s] ease-out"
+				className="fixed w-[70px] h-[70px] border-2 border-glow-gold rounded-full pointer-events-none z-[9999] translate-x-[-50%] translate-y-[-50%] transition-all duration-500"
+				style={{ opacity: 0.2 }}
 			/>
 			<div
 				id="cursor-label"
