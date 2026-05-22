@@ -7,20 +7,22 @@
   <div class="container max-w-container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 relative">
     <div class="hero-content z-10 pt-4 md:pt-8">
       <div class="label reveal mb-4 md:mb-8 text-glow-dusk">Glow Studio · Arequipa</div>
+      <!-- Balanced size: between original huge and QA reduction -->
       <h1 class="display-text font-display font-light text-[clamp(2.3rem,6vw,3.5rem)] md:text-[clamp(3.5rem,6vw,6rem)] leading-[1.1] -tracking-[0.02em] mb-3 md:mb-6 reveal">
         Donde la piel<br />vuelve a<br />respirar.
       </h1>
-      <p class="font-display italic text-[1.1rem] md:text-[1.4rem] mb-6 md:mb-14 text-glow-bark reveal">
+      <p class="font-display italic text-[1.1rem] md:text-[1.4rem] mb-5 md:mb-10 text-glow-bark reveal">
         Tratamientos pensados para ti. Resultados que se sienten.
       </p>
-      <a href="#rituales" class="nav-cta btn-glow btn-glow-lg">
+      <a href="#rituales" class="nav-cta btn-glow btn-glow-lg reveal">
         <span>Conoce tus rituales</span>
         <span class="btn-arrow">
-          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </span>
       </a>
     </div>
 
+    <!-- Hero image: shown below content on mobile, side-by-side on desktop -->
     <div class="hero-visual relative w-full mt-6 md:mt-0 md:h-full md:block">
       <img
         src="/assets/hero.webp"
@@ -28,5 +30,9 @@
         class="w-full h-auto md:absolute md:right-[-2%] md:top-[5%] md:w-[105%] md:h-[90%] object-cover z-[3] md:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] md:[clip-path:polygon(15%_0%,100%_0%,100%_100%,0%_100%)] max-md:aspect-[16/10] max-md:object-cover max-md:rounded-sm"
       />
     </div>
+  </div>
+  <div class="scroll-indicator absolute bottom-10 left-1/2 -translate-x-1/2 max-md:hidden">
+    <div class="label opacity-50 text-[9px] text-center">Scroll</div>
+    <div class="w-[1px] h-10 bg-glow-gold/30 mx-auto mt-2.5"></div>
   </div>
 </section>
