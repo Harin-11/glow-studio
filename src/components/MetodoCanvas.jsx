@@ -175,9 +175,9 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 		"w-[130px] h-[130px] md:w-[100px] md:h-[100px] max-md:w-[85px] max-md:h-[85px] max-[480px]:w-[70px] max-[480px]:h-[70px] text-[10px] max-md:text-[8px] max-[480px]:text-[7px] p-2.5 max-md:p-1.5";
 
 	const orbData = [
-		{ label: "ESCUCHA", top: "15%", left: "50%", index: 0 },
-		{ label: "RITUAL", top: "60%", left: "35%", index: 1 },
-		{ label: "RESULTADO", top: "60%", left: "65%", index: 2 },
+		{ label: "ESCUCHA", top: "25%", left: "50%", index: 0 },
+		{ label: "RITUAL", top: "70%", left: "35%", index: 1 },
+		{ label: "RESULTADO", top: "70%", left: "65%", index: 2 },
 	];
 
 	return (
