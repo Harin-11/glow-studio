@@ -114,14 +114,22 @@ const {
         document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
       }
 
-      // Header scroll state
+      // Header scroll state (Optimized using requestAnimationFrame)
       const header = document.getElementById("main-header");
+      let scrollTicking = false;
       const updateHeader = () => {
-        if (!header) return;
-        const scrolled = window.scrollY;
-        header.classList.toggle("scrolled", scrolled > 100);
+        if (header) {
+          const scrolled = window.scrollY;
+          header.classList.toggle("scrolled", scrolled > 100);
+        }
+        scrollTicking = false;
       };
-      window.addEventListener("scroll", updateHeader, { passive: true });
+      window.addEventListener("scroll", () => {
+        if (!scrollTicking && header) {
+          window.requestAnimationFrame(updateHeader);
+          scrollTicking = true;
+        }
+      }, { passive: true });
 
       // Hamburger menu
       const hamburger = document.querySelector(".hamburger");

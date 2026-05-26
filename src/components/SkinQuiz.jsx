@@ -342,7 +342,7 @@ export default function SkinQuiz() {
 									</a>
 									<button
 										onClick={resetQuiz}
-										className="btn-outline btn-glow-md w-full sm:w-auto text-center justify-center border-glow-gold/30 hover:border-glow-gold text-glow-bark hover:bg-glow-gold/5 cursor-pointer focus:outline-none"
+										className="inline-flex items-center gap-3 bg-glow-gold/10 hover:bg-glow-gold/20 border border-glow-gold/20 text-glow-gold font-medium rounded-full px-7 py-3.5 text-[0.87rem] transition-all duration-300 ease-out active:scale-[0.96] justify-center w-full sm:w-auto cursor-pointer focus:outline-none"
 									>
 										Realizar test de nuevo
 									</button>
