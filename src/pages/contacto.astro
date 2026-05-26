@@ -360,9 +360,44 @@ import Footer from "../components/Footer.astro";
         }
     }
 
-    nameInput?.addEventListener("input", validateName);
+    nameInput?.addEventListener("input", () => {
+        if (nameInput instanceof HTMLInputElement) {
+            const cursorPosition = nameInput.selectionStart;
+            const originalLength = nameInput.value.length;
+            
+            // Remove any characters that are not letters or spaces
+            nameInput.value = nameInput.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]/g, "");
+            
+            if (cursorPosition !== null) {
+                const newLength = nameInput.value.length;
+                nameInput.setSelectionRange(cursorPosition - (originalLength - newLength), cursorPosition - (originalLength - newLength));
+            }
+            validateName();
+        }
+    });
     nameInput?.addEventListener("blur", validateName);
-    emailInput?.addEventListener("input", validateEmail);
+
+    emailInput?.addEventListener("input", () => {
+        if (emailInput instanceof HTMLInputElement) {
+            const cursorPosition = emailInput.selectionStart;
+            const originalLength = emailInput.value.length;
+            
+            // Remove invalid email characters (spaces, special characters, etc.)
+            emailInput.value = emailInput.value.replace(/[^a-zA-Z0-9._%+-@]/g, "");
+
+            // Prevent multiple @ signs (keep only the first one)
+            const parts = emailInput.value.split("@");
+            if (parts.length > 2) {
+                emailInput.value = parts[0] + "@" + parts.slice(1).join("");
+            }
+
+            if (cursorPosition !== null) {
+                const newLength = emailInput.value.length;
+                emailInput.setSelectionRange(cursorPosition - (originalLength - newLength), cursorPosition - (originalLength - newLength));
+            }
+            validateEmail();
+        }
+    });
     emailInput?.addEventListener("blur", validateEmail);
 
     form?.addEventListener("submit", (e) => {
