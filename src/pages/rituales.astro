@@ -2,8 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Loader from "../components/Loader.astro";
-import CursorEffects from "../components/CursorEffects.jsx";
 
 const categories = [
   { id: "todos", name: "Todos" },
@@ -108,8 +106,6 @@ const ritualesList = [
 ---
 
 <Layout title="Rituales & Experiencias — Glow Studio" description="Explora nuestro catálogo de tratamientos faciales, diseño de cejas y pestañas, manicura atelier y masajes relajantes en Arequipa. Reserva tu momento de cuidado consciente.">
-  <CursorEffects client:load />
-  <Loader />
   <Header />
 
   <main id="main-content" class="pt-header-mobile md:pt-header bg-glow-cream overflow-hidden">

@@ -2,14 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Loader from "../components/Loader.astro";
-import CursorEffects from "../components/CursorEffects.jsx";
 import MetodoContainer from "../components/MetodoContainer.jsx";
+import SkinQuiz from "../components/SkinQuiz.jsx";
 ---
 
 <Layout title="El Método — Glow Studio" description="Conoce los pilares y fundamentos científicos de nuestro método de cuidado facial y bienestar en Glow Studio. Un diagnóstico a la medida de tu piel.">
-  <CursorEffects client:load />
-  <Loader />
   <Header />
 
   <main id="main-content" class="pt-header-mobile md:pt-header bg-glow-cream overflow-hidden">
@@ -80,6 +77,24 @@ import MetodoContainer from "../components/MetodoContainer.jsx";
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Virtual Diagnosis Section (Quiz) -->
+    <section class="py-16 md:py-24 bg-glow-mist border-t border-glow-gold/10">
+      <div class="container max-w-container mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+          <div class="label text-glow-dusk mb-4">Diagnóstico Virtual</div>
+          <h2 class="font-heading font-medium text-3xl md:text-4xl text-glow-charcoal mb-4">
+            Descubre tu Ritual Ideal
+          </h2>
+          <p class="font-body font-light text-glow-bark">
+            Responde 2 breves preguntas sobre las necesidades y el estado de tu piel para obtener una recomendación adaptada a ti.
+          </p>
+        </div>
+        <div class="reveal">
+          <SkinQuiz client:load />
         </div>
       </div>
     </section>

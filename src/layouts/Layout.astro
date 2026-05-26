@@ -66,28 +66,38 @@ const {
     <div id="mobile-overlay" class="fixed inset-0 bg-glow-charcoal/40 backdrop-blur z-40 hidden"></div>
 
     <script>
-      // Loader
-      window.addEventListener("load", () => {
-        const loader = document.getElementById("loader");
-        const loaderLine = loader?.querySelector(".loader-line");
-        if (!loader) return;
+      // Loader handling
+      const loader = document.getElementById("loader");
+      if (loader) {
+        document.body.style.overflow = "hidden";
+        window.addEventListener("load", () => {
+          const loaderLine = loader.querySelector(".loader-line");
+          setTimeout(() => {
+            if (loaderLine instanceof HTMLElement) {
+              loaderLine.style.transition = "width 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
+              loaderLine.style.width = "100%";
+            }
+          }, 100);
 
-        setTimeout(() => {
-          if (loaderLine instanceof HTMLElement) {
-            loaderLine.style.transition = "width 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
-            loaderLine.style.width = "100%";
-          }
-        }, 100);
+          setTimeout(() => {
+            loader.classList.add("loaded");
+            document.body.style.overflow = "auto";
 
-        setTimeout(() => {
-          loader.classList.add("loaded");
-          document.body.style.overflow = "auto";
-
-          setTimeout(() => initReveal(), 800);
-          setTimeout(() => { loader.style.display = "none"; }, 2000);
-        }, 1800);
-      });
-      document.body.style.overflow = "hidden";
+            setTimeout(() => initReveal(), 800);
+            setTimeout(() => { loader.style.display = "none"; }, 2000);
+          }, 1800);
+        });
+      } else {
+        document.body.style.overflow = "auto";
+        // Immediately run reveal animations if loader is not present
+        window.addEventListener("DOMContentLoaded", () => {
+          initReveal();
+        });
+        // Also call directly in case DOMContentLoaded has already fired
+        if (document.readyState === "interactive" || document.readyState === "complete") {
+          initReveal();
+        }
+      }
 
       // IntersectionObserver reveals
       function initReveal() {
