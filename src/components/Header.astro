@@ -7,8 +7,9 @@
   class="fixed top-0 left-0 w-full h-header-mobile md:h-header z-50 flex items-center transition-all duration-[0.6s] ease-out"
 >
   <div class="container max-w-container mx-auto px-6 flex justify-between items-center w-full">
-    <a href="#" class="font-heading text-[1.5rem] no-underline text-inherit transition-transform duration-300">
-      GLOW STUDIO
+    <a href="/" class="font-heading text-[1.4rem] no-underline text-inherit transition-transform duration-300 flex items-center gap-2.5">
+      <img src="/assets/logo.png" alt="Glow Studio Icon" class="w-7 h-7 object-contain rounded-full border border-glow-gold/15 transition-opacity duration-300" />
+      <span>GLOW STUDIO</span>
     </a>
 
     <!-- Hamburger + label (mobile only) -->
@@ -97,6 +98,11 @@
 
   header.menu-open .font-heading {
     color: transparent;
+  }
+
+  header.menu-open .font-heading img {
+    opacity: 0;
+    pointer-events: none;
   }
 
 
