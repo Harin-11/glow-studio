@@ -26,11 +26,37 @@
       <!-- Close button (mobile only) -->
       <button class="nav-close hidden max-md:flex absolute top-[14px] right-5 w-8 h-8 items-center justify-center rounded-full border border-glow-gold/50 text-glow-gold text-lg hover:bg-glow-gold/10 hover:border-glow-gold transition-colors" aria-label="Cerrar menú">&times;</button>
       <nav>
-        <ul class="flex gap-8 list-none max-md:flex-col max-md:gap-0">
+        <ul class="flex gap-8 list-none max-md:flex-col max-md:gap-0 items-center max-md:items-stretch">
+          <!-- Inicio with dropdown (desktop) / accordion-indent (mobile) -->
+          <li class="relative group/dropdown py-2 max-md:py-0">
+            <span class="cursor-pointer nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-60 hover:opacity-100 transition-opacity flex items-center gap-1 max-md:hidden">
+              Inicio <svg class="w-3 h-3 text-glow-gold/80 transition-transform duration-300 group-hover/dropdown:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </span>
+            <div class="hidden max-md:block">
+              <a href="/" class="nav-link text-glow-charcoal no-underline text-[1.1rem] font-medium border-b border-glow-gold/10 py-3 block">
+                Inicio
+              </a>
+              <ul class="list-none pl-4 flex flex-col gap-0 border-l border-glow-gold/10 ml-2 mt-1">
+                <li><a href="/#filosofia" class="nav-link text-glow-charcoal/70 no-underline text-[0.92rem] font-light py-2 block">Filosofía</a></li>
+                <li><a href="/#rituales" class="nav-link text-glow-charcoal/70 no-underline text-[0.92rem] font-light py-2 block">Experiencias</a></li>
+                <li><a href="/#metodo" class="nav-link text-glow-charcoal/70 no-underline text-[0.92rem] font-light py-2 block">El Método</a></li>
+                <li><a href="/#contacto" class="nav-link text-glow-charcoal/70 no-underline text-[0.92rem] font-light py-2 block">Reservas</a></li>
+              </ul>
+            </div>
+            
+            <!-- Dropdown Menu (Desktop only) -->
+            <ul class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-glow-cream/95 backdrop-blur-md border border-glow-gold/15 rounded-md py-3 shadow-[0_15px_30px_rgba(0,0,0,0.06)] list-none opacity-0 invisible translate-y-2 transition-all duration-300 group-hover/dropdown:opacity-100 group-hover/dropdown:visible group-hover/dropdown:translate-y-0 z-70 flex flex-col gap-1.5 max-md:hidden">
+              <li><a href="/" class="block px-6 py-2 text-[0.82rem] text-glow-charcoal/80 hover:text-glow-gold hover:bg-glow-gold/5 transition-all">Portada</a></li>
+              <li><a href="/#filosofia" class="block px-6 py-2 text-[0.82rem] text-glow-charcoal/80 hover:text-glow-gold hover:bg-glow-gold/5 transition-all">Filosofía</a></li>
+              <li><a href="/#rituales" class="block px-6 py-2 text-[0.82rem] text-glow-charcoal/80 hover:text-glow-gold hover:bg-glow-gold/5 transition-all">Experiencias</a></li>
+              <li><a href="/#metodo" class="block px-6 py-2 text-[0.82rem] text-glow-charcoal/80 hover:text-glow-gold hover:bg-glow-gold/5 transition-all">El Método</a></li>
+              <li><a href="/#contacto" class="block px-6 py-2 text-[0.82rem] text-glow-charcoal/80 hover:text-glow-gold hover:bg-glow-gold/5 transition-all">Reservas</a></li>
+            </ul>
+          </li>
           <li><a href="/rituales" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-60 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Rituales</a></li>
           <li><a href="/nosotros" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-60 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Nosotros</a></li>
-          <li><a href="/#metodo" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-60 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Método</a></li>
-          <li><a href="/#contacto" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-60 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Contacto</a></li>
+          <li><a href="/metodo" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-60 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Método</a></li>
+          <li><a href="/contacto" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-60 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Contacto</a></li>
         </ul>
       </nav>
       <a href="https://wa.me/51999999999" target="_blank" rel="noopener noreferrer" class="nav-cta btn-glow btn-glow-sm max-md:block max-md:text-center max-md:mt-6 max-md:py-4 max-md:text-base max-md:w-full">
