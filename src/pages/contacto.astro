@@ -64,6 +64,9 @@ import Footer from "../components/Footer.astro";
                                             placeholder="Tu nombre completo"
                                             class="w-full bg-transparent border-b border-glow-gold/25 py-3.5 text-glow-charcoal placeholder-glow-dusk/50 focus:border-glow-gold focus:outline-none transition-colors duration-300 font-body font-light text-[0.95rem]"
                                         />
+                                        <div id="name-error" class="hidden text-rose-700/90 text-[0.75rem] mt-1.5 transition-all">
+                                            El nombre debe contener solo letras y espacios (mínimo 3 caracteres).
+                                        </div>
                                     </div>
 
                                     <div class="relative">
@@ -75,6 +78,9 @@ import Footer from "../components/Footer.astro";
                                             placeholder="Tu correo electrónico"
                                             class="w-full bg-transparent border-b border-glow-gold/25 py-3.5 text-glow-charcoal placeholder-glow-dusk/50 focus:border-glow-gold focus:outline-none transition-colors duration-300 font-body font-light text-[0.95rem]"
                                         />
+                                        <div id="email-error" class="hidden text-rose-700/90 text-[0.75rem] mt-1.5 transition-all">
+                                            Ingresa un correo electrónico válido (ejemplo: nombre@correo.com).
+                                        </div>
                                     </div>
 
                                     <div class="relative">
@@ -310,12 +316,71 @@ import Footer from "../components/Footer.astro";
 </Layout>
 
 <script>
-    // Simple form handling simulation
+    // Form handling and validation
     const form = document.getElementById("contact-form");
     const successAlert = document.getElementById("form-success");
 
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const nameError = document.getElementById("name-error");
+    const emailError = document.getElementById("email-error");
+
+    const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{3,50}$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    function validateName() {
+        if (!(nameInput instanceof HTMLInputElement)) return false;
+        const value = nameInput.value.trim();
+        if (!nameRegex.test(value)) {
+            nameError?.classList.remove("hidden");
+            nameInput.classList.add("border-rose-700/50");
+            nameInput.classList.remove("border-glow-gold/25");
+            return false;
+        } else {
+            nameError?.classList.add("hidden");
+            nameInput.classList.remove("border-rose-700/50");
+            nameInput.classList.add("border-glow-gold/25");
+            return true;
+        }
+    }
+
+    function validateEmail() {
+        if (!(emailInput instanceof HTMLInputElement)) return false;
+        const value = emailInput.value.trim();
+        if (!emailRegex.test(value)) {
+            emailError?.classList.remove("hidden");
+            emailInput.classList.add("border-rose-700/50");
+            emailInput.classList.remove("border-glow-gold/25");
+            return false;
+        } else {
+            emailError?.classList.add("hidden");
+            emailInput.classList.remove("border-rose-700/50");
+            emailInput.classList.add("border-glow-gold/25");
+            return true;
+        }
+    }
+
+    nameInput?.addEventListener("input", validateName);
+    nameInput?.addEventListener("blur", validateName);
+    emailInput?.addEventListener("input", validateEmail);
+    emailInput?.addEventListener("blur", validateEmail);
+
     form?.addEventListener("submit", (e) => {
         e.preventDefault();
+
+        // Perform validations
+        const isNameValid = validateName();
+        const isEmailValid = validateEmail();
+
+        if (!isNameValid || !isEmailValid) {
+            return;
+        }
+
+        // Hide success alert in case it was showing previously
+        if (successAlert) {
+            successAlert.classList.add("hidden");
+            successAlert.classList.remove("visible");
+        }
 
         // Simulate API request
         const btn = form.querySelector("button[type='submit']");
@@ -325,8 +390,17 @@ import Footer from "../components/Footer.astro";
         }
 
         setTimeout(() => {
-            // Hide form contents smoothly or reset
+            // Reset form and styles
             form.reset();
+            if (nameInput instanceof HTMLInputElement) {
+                nameInput.classList.remove("border-rose-700/50");
+                nameInput.classList.add("border-glow-gold/25");
+            }
+            if (emailInput instanceof HTMLInputElement) {
+                emailInput.classList.remove("border-rose-700/50");
+                emailInput.classList.add("border-glow-gold/25");
+            }
+
             if (btn instanceof HTMLButtonElement) {
                 btn.disabled = false;
                 btn.innerText = "Enviar Mensaje";
