@@ -10,3 +10,13 @@
     <div class="loader-line h-[1px] bg-glow-gold mt-4 mx-auto" style="width:0"></div>
   </div>
 </div>
+
+<script is:inline>
+  if (localStorage.getItem("glow-studio-visited")) {
+    var ldr = document.getElementById("loader");
+    if (ldr) {
+      ldr.style.display = "none";
+    }
+  }
+</script>
+

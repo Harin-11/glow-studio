@@ -166,9 +166,10 @@
 }
 
 /* Body scroll lock when mobile menu open */
-body.menu-open {
-  overflow: hidden;
+body.menu-open, html.menu-open {
+  overflow: hidden !important;
 }
+
 
 /* Method canvas container offset */
 .method-visual-container {
