@@ -112,5 +112,11 @@ const rituales = [
       cards[idx].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
     });
   }
+
+  // Carousel matchMedia: reset scroll on mobile
+  const mqCarousel = window.matchMedia("(max-width: 768px)");
+  mqCarousel.addEventListener("change", () => {
+    if (grid && window.innerWidth <= 768) grid.scrollLeft = 0;
+  });
 })();
 </script>
