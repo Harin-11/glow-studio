@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Página no encontrada — Glow Studio" description="La página que buscas no existe. Regresa al inicio de Glow Studio.">
+  <Header />
+
+  <main id="main-content" class="pt-header-mobile md:pt-header bg-glow-cream overflow-hidden min-h-[80vh] flex flex-col items-center justify-center text-center px-6">
+    <span class="font-display text-[clamp(6rem,15vw,10rem)] font-light text-glow-gold/20 leading-none mb-4 select-none">404</span>
+    <h1 class="font-display italic font-light text-3xl md:text-4xl text-glow-charcoal mb-4">
+      Esta página no existe
+    </h1>
+    <p class="font-body font-light text-glow-bark max-w-md mb-10">
+      El enlace que seguiste puede estar roto o la página fue eliminada. 
+      Volvamos al inicio para encontrar tu ritual ideal.
+    </p>
+    <a href="/" class="btn-glow btn-glow-md text-center justify-center">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+      Volver al Inicio
+    </a>
+  </main>
+
+  <Footer />
+</Layout>

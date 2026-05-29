@@ -37,6 +37,47 @@ const {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
+
+    <!-- Google Fonts: preconnect + swap (faster than @import) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Cormorant+SC:wght@500&family=DM+Mono:wght@400&family=DM+Sans:wght@300;400&display=swap"
+    />
+
+    <!-- Structured Data: LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://glowstudio.pe",
+      "name": "Glow Studio",
+      "description": "Tratamientos de cuidado de piel y bienestar en Arequipa. Ritual Facial, Escultura de Cejas, Manicure Atelier y más.",
+      "url": "https://glowstudio.pe",
+      "telephone": "+51 999 999 999",
+      "email": "hola@glowstudio.pe",
+      "image": "https://glowstudio.pe/assets/hero.webp",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calle Santa Catalina 115, Cercado",
+        "addressLocality": "Arequipa",
+        "addressCountry": "PE"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "20:00"
+        }
+      ],
+      "priceRange": "S/60 - S/220",
+      "sameAs": [
+        "https://instagram.com/glowstudio.aqp",
+        "https://facebook.com/glowstudio.aqp",
+        "https://tiktok.com/@glowstudio.aqp"
+      ]
+    })} />
   </head>
   <body>
     <!-- Skip to content link (a11y) -->
