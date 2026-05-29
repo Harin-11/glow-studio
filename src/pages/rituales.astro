@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { WHATSAPP_MESSAGE } from "../constants";
 
 const categories = [
   { id: "todos", name: "Todos" },
@@ -174,7 +175,7 @@ const ritualesList = [
                   {rit.desc}
                 </p>
                 <a
-                  href={`https://wa.me/51999999999?text=Hola%20Glow%20Studio,%20quisiera%20reservar%20el%20${encodeURIComponent(rit.name)}.`}
+                  href={WHATSAPP_MESSAGE(`Hola Glow Studio, quisiera reservar el ${rit.name}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="btn-glow btn-glow-sm w-full text-center justify-center py-3 text-[0.78rem]"

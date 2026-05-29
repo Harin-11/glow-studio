@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { WHATSAPP_NUMBER } from "../constants";
 
 const questions = [
 	{
@@ -198,6 +199,9 @@ export default function SkinQuiz() {
 		);
 	};
 
+	const whatsappUrl = (text) =>
+		`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+
 	const currentQuestion = questions[step];
 
 	return (
@@ -322,9 +326,7 @@ export default function SkinQuiz() {
 								{/* Actions */}
 								<div className="flex flex-col sm:flex-row justify-center items-center gap-4">
 									<a
-										href={`https://wa.me/51999999999?text=${encodeURIComponent(
-											whatsappText,
-										)}`}
+										href={whatsappUrl(whatsappText)}
 										target="_blank"
 										rel="noopener noreferrer"
 										className="btn-glow btn-glow-md w-full sm:w-auto text-center justify-center"

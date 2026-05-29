@@ -1,5 +1,5 @@
 ---
-// Header component
+import { WHATSAPP_URL } from "../constants";
 ---
 
 <header
@@ -60,7 +60,7 @@
           <li><a href="/contacto" class="nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-60 hover:opacity-100 transition-opacity relative max-md:block max-md:py-4 max-md:text-[1.1rem] max-md:opacity-100 max-md:border-b max-md:border-glow-gold/10">Contacto</a></li>
         </ul>
       </nav>
-      <a href="https://wa.me/51999999999" target="_blank" rel="noopener noreferrer" class="nav-cta btn-glow btn-glow-sm max-md:block max-md:text-center max-md:mt-6 max-md:py-4 max-md:text-base max-md:w-full">
+      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="nav-cta btn-glow btn-glow-sm max-md:block max-md:text-center max-md:mt-6 max-md:py-4 max-md:text-base max-md:w-full">
         Tu ritual <span class="max-md:hidden btn-arrow">→</span>
       </a>
     </div>
@@ -97,17 +97,16 @@
   }
 
   header.menu-open .font-heading {
-    color: transparent;
+    color: rgba(255, 255, 255, 0.45);
   }
 
   header.menu-open .font-heading img {
-    opacity: 0;
+    opacity: 0.7;
     pointer-events: none;
   }
 
-
   header.menu-open .hamburger span {
-    background: rgba(255, 255, 255, 0.30);
+    background: rgba(255, 255, 255, 0.55);
   }
 
   header.menu-open .nav-wrapper {
