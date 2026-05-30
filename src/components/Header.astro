@@ -1,5 +1,6 @@
 ---
 import { WHATSAPP_URL } from "../constants";
+import Icon from "../components/Icon.astro";
 ---
 
 <header
@@ -8,7 +9,7 @@ import { WHATSAPP_URL } from "../constants";
 >
   <div class="container max-w-container mx-auto px-6 flex justify-between items-center w-full">
     <a href="/" class="font-heading text-[1.4rem] no-underline text-inherit transition-transform duration-300 flex items-center gap-2.5">
-      <img src="/assets/logo.png" alt="Glow Studio Icon" class="w-7 h-7 object-contain rounded-full border border-glow-gold/15 transition-opacity duration-300" />
+      <img src="/assets/logo.webp" alt="Glow Studio Icon" class="w-7 h-7 object-contain rounded-full border border-glow-gold/15 transition-opacity duration-300" />
       <span>GLOW STUDIO</span>
     </a>
 
@@ -31,7 +32,7 @@ import { WHATSAPP_URL } from "../constants";
           <!-- Inicio with dropdown (desktop) / accordion-indent (mobile) -->
           <li class="relative group/dropdown py-2 max-md:py-0">
             <span class="cursor-pointer nav-link text-glow-charcoal no-underline text-[0.87rem] font-light opacity-60 hover:opacity-100 transition-opacity flex items-center gap-1 max-md:hidden">
-              Inicio <svg class="w-3 h-3 text-glow-gold/80 transition-transform duration-300 group-hover/dropdown:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+              Inicio <Icon name="chevron-down" size={12} class="text-glow-gold/80 transition-transform duration-300 group-hover/dropdown:rotate-180" />
             </span>
             <div class="hidden max-md:block">
               <a href="/" class="nav-link text-glow-charcoal no-underline text-[1.1rem] font-medium border-b border-glow-gold/10 py-3 block">
@@ -66,7 +67,6 @@ import { WHATSAPP_URL } from "../constants";
     </div>
   </div>
 
-  <!-- Overlay: covers page content below header, blur effect -->
 </header>
 
 <style>
