@@ -64,7 +64,9 @@ const rituales = [
   // Create dots
   cards.forEach((_, i) => {
     const dot = document.createElement("button");
-    dot.className = i === 0 ? "carousel-dot active w-2 h-2 rounded-full bg-glow-gold opacity-100 transition-all duration-300" : "carousel-dot w-2 h-2 rounded-full bg-glow-gold opacity-25 hover:opacity-50 transition-all duration-300";
+    dot.className = i === 0 
+      ? "carousel-dot active relative w-2 h-2 rounded-full bg-glow-gold opacity-100 transition-all duration-300 before:content-[''] before:absolute before:-inset-3" 
+      : "carousel-dot relative w-2 h-2 rounded-full bg-glow-gold opacity-25 hover:opacity-50 transition-all duration-300 before:content-[''] before:absolute before:-inset-3";
     dot.setAttribute("aria-label", `Ir a experiencia ${i + 1}`);
     dot.addEventListener("click", () => {
       cards[i].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });

@@ -56,13 +56,21 @@ const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageURL.href} />
 
-    <!-- Google Fonts: preconnect + swap (faster than @import) -->
+    <!-- Google Fonts: preconnect + async load (non-render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Cormorant+SC:wght@500&family=DM+Mono:wght@400&family=DM+Sans:wght@300;400&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Cormorant+SC:wght@500&family=DM+Mono:wght@400&family=DM+Sans:wght@300;400&display=swap"
+      />
+    </noscript>
 
     <!-- Structured Data: LocalBusiness -->
     <script type="application/ld+json" set:html={JSON.stringify({
