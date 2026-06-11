@@ -3,8 +3,10 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 
-// Update this URL when deploying to production
-const SITE = "https://glowstudio.pe";
+// Usar el dominio de preview en Vercel para pruebas y el dominio final en producción
+const SITE = process.env.VERCEL_ENV === "production"
+	? "https://glowstudio.pe"
+	: (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://glowstudio.pe");
 
 export default defineConfig({
 	site: SITE,
