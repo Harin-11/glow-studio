@@ -3,10 +3,10 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 
-// Usar el dominio de preview en Vercel para pruebas y el dominio final en producción
-const SITE = process.env.VERCEL_ENV === "production"
-	? "https://glowstudio.pe"
-	: (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://glowstudio.pe");
+// Usar el dominio de producción configurado en Vercel, o el dominio alpha por defecto
+const SITE = process.env.VERCEL_PROJECT_PRODUCTION_URL
+	? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+	: "https://glow-studio-alpha.vercel.app";
 
 export default defineConfig({
 	site: SITE,
