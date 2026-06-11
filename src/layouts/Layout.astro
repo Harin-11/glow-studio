@@ -10,8 +10,11 @@ export interface Props {
 const {
   title = "Glow Studio — Donde la piel vuelve a respirar",
   description = "Tratamientos de cuidado de piel y bienestar en Arequipa. Ritual Facial, Escultura de Cejas, Manicure Atelier y más.",
-  image = "/assets/hero.webp",
+  image = "/assets/hero-og.webp",
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://glowstudio.pe");
+const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
 ---
 
 <!DOCTYPE html>
@@ -25,18 +28,32 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.href} />
+
+    <!-- Icons & Web App Manifest -->
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:site_name" content="Glow Studio" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={socialImageURL.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Glow Studio — Cuidado de la piel y bienestar en Arequipa" />
     <meta property="og:locale" content="es_PE" />
+
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL.href} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={socialImageURL.href} />
 
     <!-- Google Fonts: preconnect + swap (faster than @import) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
