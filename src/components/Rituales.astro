@@ -1,11 +1,18 @@
 ---
 // Rituales/Experiences
+import { Image } from "astro:assets";
+import facialImg from "../assets/facial.webp";
+import eyebrowsImg from "../assets/eyebrows.webp";
+import manicureImg from "../assets/manicure.webp";
+import massageImg from "../assets/massage.webp";
+import heroImg from "../assets/hero.webp";
+
 const rituales = [
-  { name: "Ritual Facial Profundo", cat: "Rostro", cols: 7, img: "/assets/facial.webp" },
-  { name: "Escultura de Cejas", cat: "Rostro", cols: 5, img: "/assets/eyebrows.webp" },
-  { name: "Manicure Atelier", cat: "Manos", cols: 4, img: "/assets/manicure.webp" },
-  { name: "Masaje Relajante", cat: "Cuerpo", cols: 4, img: "/assets/massage.webp" },
-  { name: "Experiencia Completa", cat: "Completos", cols: 4, img: "/assets/hero.webp" },
+  { name: "Ritual Facial Profundo", cat: "Rostro", cols: 7, img: facialImg },
+  { name: "Escultura de Cejas", cat: "Rostro", cols: 5, img: eyebrowsImg },
+  { name: "Manicure Atelier", cat: "Manos", cols: 4, img: manicureImg },
+  { name: "Masaje Relajante", cat: "Cuerpo", cols: 4, img: massageImg },
+  { name: "Experiencia Completa", cat: "Completos", cols: 4, img: heroImg },
 ];
 ---
 
@@ -18,11 +25,11 @@ const rituales = [
       {rituales.map((rit) => (
         <div class="ritual-card reveal relative overflow-hidden group snap-start" style={`grid-column: span ${rit.cols};`}>
           <div class="relative overflow-hidden bg-black h-[400px] max-md:!h-auto max-md:aspect-[3/4]">
-            <img 
+            <Image 
               src={rit.img} 
               alt={rit.name} 
-              width="600"
-              height="800"
+              width={600}
+              height={800}
               class="w-full h-full object-cover opacity-60 transition-all duration-[1.2s] ease-out group-hover:scale-105 group-hover:opacity-80" 
               loading="lazy" 
             />
