@@ -9,14 +9,14 @@ import Icon from "../components/Icon.astro";
 >
   <div class="container max-w-container mx-auto px-6 flex justify-between items-center w-full">
     <a href="/" class="font-heading text-[1.4rem] no-underline text-inherit transition-transform duration-300 flex items-center gap-2.5">
-      <img src="/assets/logo.webp" alt="Glow Studio Icon" class="w-7 h-7 object-contain rounded-full border border-glow-gold/15 transition-opacity duration-300" />
+      <img src="/assets/logo.webp" alt="Glow Studio Icon" width="28" height="28" class="w-7 h-7 object-contain rounded-full border border-glow-gold/15 transition-opacity duration-300" />
       <span>GLOW STUDIO</span>
     </a>
 
     <!-- Hamburger + label (mobile only) -->
     <div class="flex items-center gap-3 md:hidden">
       <span id="menu-label" class="text-[0.7rem] font-mono tracking-[0.2em] text-glow-gold/70 transition-opacity duration-300 opacity-0">MENU</span>
-      <button class="hamburger flex flex-col justify-center items-center w-10 h-10 bg-none border-none p-2 cursor-pointer relative" aria-label="Abrir menú" aria-expanded="false">
+      <button class="hamburger flex flex-col justify-center items-center w-10 h-10 bg-none border-none p-2 cursor-pointer relative" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav">
         <span class="block w-6 h-[1.5px] bg-glow-charcoal rounded transition-all duration-[0.4s] ease-out"></span>
         <span class="block w-6 h-[1.5px] bg-glow-charcoal rounded mt-[6px] transition-all duration-[0.4s] ease-out"></span>
         <span class="block w-6 h-[1.5px] bg-glow-charcoal rounded mt-[6px] transition-all duration-[0.4s] ease-out"></span>
@@ -24,7 +24,7 @@ import Icon from "../components/Icon.astro";
     </div>
 
     <!-- Desktop nav + mobile panel -->
-    <div class="nav-wrapper flex items-center gap-8 max-md:fixed max-md:top-0 max-md:right-0 max-md:w-[85vw] max-md:max-w-[360px] max-md:h-dvh max-md:flex-col max-md:items-stretch max-md:gap-0 max-md:bg-glow-cream max-md:pt-[calc(var(--header-height-mobile,70px)+2rem)] max-md:px-8 max-md:pb-8 max-md:z-60 max-md:translate-x-full max-md:transition-transform max-md:duration-500 max-md:ease-out max-md:shadow-[-10px_0_40px_rgba(0,0,0,0.08)] max-md:overflow-y-auto">
+    <div id="mobile-nav" class="nav-wrapper flex items-center gap-8 max-md:fixed max-md:top-0 max-md:right-0 max-md:w-[85vw] max-md:max-w-[360px] max-md:h-dvh max-md:flex-col max-md:items-stretch max-md:gap-0 max-md:bg-glow-cream max-md:pt-[calc(var(--header-height-mobile,70px)+2rem)] max-md:px-8 max-md:pb-8 max-md:z-60 max-md:translate-x-full max-md:transition-transform max-md:duration-500 max-md:ease-out max-md:shadow-[-10px_0_40px_rgba(0,0,0,0.08)] max-md:overflow-y-auto">
       <!-- Close button (mobile only) -->
       <button class="nav-close hidden max-md:flex absolute top-[14px] right-5 w-8 h-8 items-center justify-center rounded-full border border-glow-gold/50 text-glow-gold text-lg hover:bg-glow-gold/10 hover:border-glow-gold transition-colors" aria-label="Cerrar menú">&times;</button>
       <nav>

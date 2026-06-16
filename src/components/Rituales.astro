@@ -1,5 +1,12 @@
 ---
 // Rituales/Experiences
+const rituales = [
+  { name: "Ritual Facial Profundo", cat: "Rostro", cols: 7, img: "/assets/facial.webp" },
+  { name: "Escultura de Cejas", cat: "Rostro", cols: 5, img: "/assets/eyebrows.webp" },
+  { name: "Manicure Atelier", cat: "Manos", cols: 4, img: "/assets/manicure.webp" },
+  { name: "Masaje Relajante", cat: "Cuerpo", cols: 4, img: "/assets/massage.webp" },
+  { name: "Experiencia Completa", cat: "Completos", cols: 4, img: "/assets/hero.webp" },
+];
 ---
 
 <section id="rituales" class="bg-glow-mist py-12 md:py-16 lg:py-20">
@@ -7,9 +14,25 @@
     <div class="label mb-4 text-glow-dusk">Rituales</div>
     <h2 class="font-heading font-medium text-3xl md:text-4xl lg:text-5xl mb-8">Experiencias</h2>
 
-    <!-- Grid inyectado por JS -->
-    <div id="rituales-grid" class="grid grid-cols-12 gap-4 md:gap-6 mt-8">
-      <!-- Inyectado por JS -->
+    <div id="rituales-grid" class="grid grid-cols-12 gap-4 md:gap-6 mt-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+      {rituales.map((rit) => (
+        <div class="ritual-card reveal relative overflow-hidden group snap-start" style={`grid-column: span ${rit.cols};`}>
+          <div class="relative overflow-hidden bg-black h-[400px] max-md:!h-auto max-md:aspect-[3/4]">
+            <img 
+              src={rit.img} 
+              alt={rit.name} 
+              width="600"
+              height="800"
+              class="w-full h-full object-cover opacity-60 transition-all duration-[1.2s] ease-out group-hover:scale-105 group-hover:opacity-80" 
+              loading="lazy" 
+            />
+            <div class="absolute bottom-0 left-0 p-6 md:p-8 w-full bg-gradient-to-t from-black/80 to-transparent">
+              <div class="label text-glow-gold mb-2">{rit.cat}</div>
+              <h3 class="text-white font-heading font-medium text-[1.1rem] md:text-[1.3rem]">{rit.name}</h3>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
 
     <!-- Carousel controls: dots + prev/next buttons (mobile only) -->
@@ -17,7 +40,18 @@
       <button id="carousel-prev" class="carousel-btn w-10 h-10 rounded-full border border-glow-gold/30 flex items-center justify-center text-glow-gold hover:bg-glow-gold/10 transition-colors active:scale-90" aria-label="Anterior">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
       </button>
-      <div id="rituales-dots" class="flex justify-center gap-2"></div>
+      <div id="rituales-dots" class="flex justify-center gap-2">
+        {rituales.map((_, i) => (
+          <button 
+            class={`carousel-dot flex items-center justify-center w-6 h-6 transition-all duration-300 ${i === 0 ? "opacity-100" : "opacity-25"}`}
+            aria-label={`Ir a experiencia ${i + 1}`}
+            aria-current={i === 0 ? "true" : "false"}
+            data-index={i}
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-glow-gold"></span>
+          </button>
+        ))}
+      </div>
       <button id="carousel-next" class="carousel-btn w-10 h-10 rounded-full border border-glow-gold/30 flex items-center justify-center text-glow-gold hover:bg-glow-gold/10 transition-colors active:scale-90" aria-label="Siguiente">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
       </button>
@@ -26,65 +60,29 @@
 </section>
 
 <script>
-const rituales = [
-  { name: "Ritual Facial Profundo", cat: "Rostro", cols: 7, img: "/assets/facial.webp" },
-  { name: "Escultura de Cejas", cat: "Rostro", cols: 5, img: "/assets/eyebrows.webp" },
-  { name: "Manicure Atelier", cat: "Manos", cols: 4, img: "/assets/manicure.webp" },
-  { name: "Masaje Relajante", cat: "Cuerpo", cols: 4, img: "/assets/massage.webp" },
-  { name: "Experiencia Completa", cat: "Completos", cols: 4, img: "/assets/hero.webp" },
-];
-
 (function() {
   const grid = document.getElementById("rituales-grid");
-  if (!grid) return;
-
-  rituales.forEach((rit) => {
-    const card = document.createElement("div");
-    card.style.gridColumn = `span ${rit.cols}`;
-    card.className = "ritual-card reveal relative overflow-hidden group";
-    card.innerHTML = `
-      <div class="relative overflow-hidden bg-black h-[400px] max-md:!h-auto max-md:aspect-[3/4]">
-        <img src="${rit.img}" alt="${rit.name}" class="w-full h-full object-cover opacity-60 transition-all duration-[1.2s] ease-out group-hover:scale-105 group-hover:opacity-80" loading="lazy" />
-        <div class="absolute bottom-0 left-0 p-6 md:p-8 w-full bg-gradient-to-t from-black/80 to-transparent">
-          <div class="label text-glow-gold mb-2">${rit.cat}</div>
-          <h3 class="text-white font-heading font-medium text-[1.1rem] md:text-[1.3rem]">${rit.name}</h3>
-        </div>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-
-  // --- Carousel navigation ---
   const dotsContainer = document.getElementById("rituales-dots");
   const prevBtn = document.getElementById("carousel-prev");
   const nextBtn = document.getElementById("carousel-next");
-  const cards = grid.querySelectorAll(".ritual-card");
-  if (!dotsContainer || !cards.length) return;
+  if (!grid || !dotsContainer) return;
 
-  // Create dots
-  cards.forEach((_, i) => {
-    const dot = document.createElement("button");
-    dot.className = i === 0 
-      ? "carousel-dot active flex items-center justify-center w-6 h-6 opacity-100 transition-all duration-300" 
-      : "carousel-dot flex items-center justify-center w-6 h-6 opacity-25 hover:opacity-50 transition-all duration-300";
-    dot.setAttribute("aria-label", `Ir a experiencia ${i + 1}`);
-    dot.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-glow-gold"></span>';
-    dot.addEventListener("click", () => {
-      cards[i].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
-    });
-    dotsContainer.appendChild(dot);
-  });
+  const cards = grid.querySelectorAll(".ritual-card");
+  const dots = dotsContainer.querySelectorAll(".carousel-dot");
 
   // Sync dots + buttons with scroll
   let ticking = false;
   const syncCarousel = () => {
-    const gap = 12;
-    const cardWidth = cards[0]?.offsetWidth + gap || 1;
+    const gap = 16; // md:gap-6 is 24px, gap-4 is 16px
+    const cardWidth = (cards[0] as HTMLElement)?.offsetWidth + gap || 1;
     const activeIndex = Math.min(Math.round(grid.scrollLeft / cardWidth), cards.length - 1);
-    dotsContainer.querySelectorAll(".carousel-dot").forEach((d, i) => {
+    
+    dots.forEach((d, i) => {
       d.classList.toggle("opacity-100", i === activeIndex);
       d.classList.toggle("opacity-25", i !== activeIndex);
+      d.setAttribute("aria-current", i === activeIndex ? "true" : "false");
     });
+
     // Button states
     if (prevBtn) prevBtn.classList.toggle("opacity-30", activeIndex === 0);
     if (nextBtn) nextBtn.classList.toggle("opacity-30", activeIndex === cards.length - 1);
@@ -95,13 +93,20 @@ const rituales = [
       requestAnimationFrame(() => { syncCarousel(); ticking = false; });
       ticking = true;
     }
+  }, { passive: true });
+
+  // Dot clicks
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      cards[i].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+    });
   });
 
   // Prev/next buttons
   if (prevBtn) {
     prevBtn.addEventListener("click", () => {
-      const gap = 12;
-      const cw = cards[0]?.offsetWidth + gap || 1;
+      const gap = 16;
+      const cw = (cards[0] as HTMLElement)?.offsetWidth + gap || 1;
       const idx = Math.max(0, Math.round(grid.scrollLeft / cw) - 1);
       cards[idx].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
     });
@@ -109,8 +114,8 @@ const rituales = [
 
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
-      const gap = 12;
-      const cw = cards[0]?.offsetWidth + gap || 1;
+      const gap = 16;
+      const cw = (cards[0] as HTMLElement)?.offsetWidth + gap || 1;
       const idx = Math.min(cards.length - 1, Math.round(grid.scrollLeft / cw) + 1);
       cards[idx].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
     });

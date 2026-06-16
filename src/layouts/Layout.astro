@@ -28,6 +28,14 @@ const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    
+    <script is:inline>
+      // Prevent FOUC for returning users
+      if (localStorage.getItem("glow-studio-visited") === "true") {
+        document.documentElement.classList.add("visited");
+      }
+    </script>
+
     <link rel="canonical" href={canonicalURL.href} />
 
     <!-- Icons & Web App Manifest -->
@@ -104,6 +112,9 @@ const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
         "https://tiktok.com/@glowstudio.aqp"
       ]
     })} />
+    <style is:global>
+      html.visited #loader { display: none !important; }
+    </style>
   </head>
   <body>
     <!-- Skip to content link (a11y) -->

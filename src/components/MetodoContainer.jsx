@@ -7,11 +7,6 @@ export default function MetodoContainer() {
 
 	const handleOrbClick = useCallback((index) => {
 		setActiveIndex(index);
-		// Trigger accordion header click to sync
-		const accordionHeaders = document.querySelectorAll(".accordion-header");
-		if (accordionHeaders[index]) {
-			accordionHeaders[index].click();
-		}
 	}, []);
 
 	const handleAccordionChange = useCallback((index) => {
