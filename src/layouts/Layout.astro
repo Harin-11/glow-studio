@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import { Image } from "astro:assets";
+import ogImage from "../assets/hero-og.webp";
 
 export interface Props {
   title?: string;
@@ -10,11 +12,11 @@ export interface Props {
 const {
   title = "Glow Studio — Donde la piel vuelve a respirar",
   description = "Tratamientos de cuidado de piel y bienestar en Arequipa. Ritual Facial, Escultura de Cejas, Manicure Atelier y más.",
-  image = "/assets/hero-og.webp",
+  image = ogImage.src,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://glowstudio.pe");
-const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
+const canonicalURL = new URL(Astro.url.pathname, "https://glowstudio.pe");
+const socialImageURL = new URL(image, "https://glowstudio.pe");
 ---
 
 <!DOCTYPE html>
@@ -90,7 +92,7 @@ const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
       "url": "https://glowstudio.pe",
       "telephone": "+51 999 999 999",
       "email": "hola@glowstudio.pe",
-      "image": "https://glowstudio.pe/assets/hero.webp",
+      "image": `https://glowstudio.pe${ogImage.src}`,
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Calle Santa Catalina 115, Cercado",

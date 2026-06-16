@@ -4,6 +4,11 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { WHATSAPP_MESSAGE } from "../constants";
 import Icon from "../components/Icon.astro";
+import { Image } from "astro:assets";
+import heroImage from "../assets/hero.webp";
+import teamDirector from "../assets/team_director.webp";
+import teamTherapist from "../assets/team_therapist.webp";
+import teamNail from "../assets/team_nail.webp";
 ---
 
 <Layout title="Nosotros — Glow Studio" description="Conoce el alma y equipo detrás de Glow Studio en Arequipa. Un refugio de cuidado consciente y bienestar integral para tu piel.">
@@ -47,9 +52,11 @@ import Icon from "../components/Icon.astro";
           </div>
           <div class="lg:col-span-6 reveal flex justify-center">
             <div class="relative w-full max-w-[500px] aspect-[4/5] bg-glow-parchment rounded-sm overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-glow-gold/10">
-              <img
-                src="/assets/hero.webp"
+              <Image
+                src={heroImage}
                 alt="Ambiente Glow Studio Arequipa"
+                width={500}
+                height={625}
                 class="w-full h-full object-cover grayscale-[10%] sepia-[5%] hover:scale-105 transition-transform duration-[1.5s] ease-out"
                 loading="lazy"
               />
@@ -77,9 +84,11 @@ import Icon from "../components/Icon.astro";
           <!-- Team Member 1 -->
           <div class="reveal group">
             <div class="relative aspect-[3/4] bg-glow-parchment overflow-hidden rounded-sm border border-glow-gold/10 shadow-sm mb-6">
-              <img
-                src="/assets/team_director.webp"
+              <Image
+                src={teamDirector}
                 alt="Camila Vega — Directora Creativa"
+                width={400}
+                height={533}
                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103 grayscale-[5%]"
                 loading="lazy"
               />
@@ -95,9 +104,11 @@ import Icon from "../components/Icon.astro";
           <!-- Team Member 2 -->
           <div class="reveal group">
             <div class="relative aspect-[3/4] bg-glow-parchment overflow-hidden rounded-sm border border-glow-gold/10 shadow-sm mb-6">
-              <img
-                src="/assets/team_therapist.webp"
+              <Image
+                src={teamTherapist}
                 alt="Valeria Alarcón — Especialista Skincare"
+                width={400}
+                height={533}
                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103 grayscale-[5%]"
                 loading="lazy"
               />
@@ -113,9 +124,11 @@ import Icon from "../components/Icon.astro";
           <!-- Team Member 3 -->
           <div class="reveal group">
             <div class="relative aspect-[3/4] bg-glow-parchment overflow-hidden rounded-sm border border-glow-gold/10 shadow-sm mb-6">
-              <img
-                src="/assets/team_nail.webp"
+              <Image
+                src={teamNail}
                 alt="Gabriela Torres — Nail Artist Atelier"
+                width={400}
+                height={533}
                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103 grayscale-[5%]"
                 loading="lazy"
               />
