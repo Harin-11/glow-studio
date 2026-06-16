@@ -1,6 +1,8 @@
 ---
 import { WHATSAPP_URL } from "../constants";
 import Icon from "../components/Icon.astro";
+import { Image } from "astro:assets";
+import logoImage from "../assets/logo.webp";
 ---
 
 <header
@@ -9,7 +11,7 @@ import Icon from "../components/Icon.astro";
 >
   <div class="container max-w-container mx-auto px-6 flex justify-between items-center w-full">
     <a href="/" class="font-heading text-[1.4rem] no-underline text-inherit transition-transform duration-300 flex items-center gap-2.5">
-      <img src="/assets/logo.webp" alt="Glow Studio Icon" width="28" height="28" class="w-7 h-7 object-contain rounded-full border border-glow-gold/15 transition-opacity duration-300" />
+      <Image src={logoImage} alt="Glow Studio Icon" width={28} height={28} class="w-7 h-7 object-contain rounded-full border border-glow-gold/15 transition-opacity duration-300" />
       <span>GLOW STUDIO</span>
     </a>
 
