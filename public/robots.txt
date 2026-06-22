@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://glowstudio.pe/sitemap-index.xml
+Sitemap: https://glow-studio-alpha.vercel.app/sitemap-index.xml

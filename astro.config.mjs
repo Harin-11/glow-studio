@@ -11,4 +11,9 @@ const SITE = process.env.VERCEL_PROJECT_PRODUCTION_URL
 export default defineConfig({
 	site: SITE,
 	integrations: [react(), tailwind(), sitemap()],
+	compressHTML: true,
+	prefetch: {
+		prefetchAll: true,
+		defaultStrategy: "viewport",
+	},
 });

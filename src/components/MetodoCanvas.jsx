@@ -78,6 +78,11 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 			});
 		};
 
+		let cachedPositions = [];
+		const updateCachedPositions = () => {
+			cachedPositions = getOrbPositions();
+		};
+
 		const drawFluidConnection = (positions) => {
 			if (positions.length < 3) return;
 			const [p0, p1, p2] = positions;
@@ -141,8 +146,8 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 
 		const animate = () => {
 			ctx.clearRect(0, 0, width, height);
-			const positions = getOrbPositions();
-			drawFluidConnection(positions);
+			if (cachedPositions.length === 0) updateCachedPositions();
+			drawFluidConnection(cachedPositions);
 			blobs.forEach((b) => {
 				b.update();
 				b.draw();
@@ -162,9 +167,15 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 
 		animate();
 
+		const handleResize = () => {
+			resize();
+			updateCachedPositions();
+		};
+		window.addEventListener("resize", handleResize);
+
 		return () => {
 			cancelAnimationFrame(animationId);
-			window.removeEventListener("resize", resize);
+			window.removeEventListener("resize", handleResize);
 		};
 	}, []); // Never re-run — uses ref for activeIndex
 

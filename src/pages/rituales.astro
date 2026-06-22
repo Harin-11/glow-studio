@@ -4,6 +4,13 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { WHATSAPP_MESSAGE } from "../constants";
 import Icon from "../components/Icon.astro";
+import { Image } from "astro:assets";
+
+import facialImg from "../assets/facial.webp";
+import heroImg from "../assets/hero.webp";
+import eyebrowsImg from "../assets/eyebrows.webp";
+import manicureImg from "../assets/manicure.webp";
+import massageImg from "../assets/massage.webp";
 
 const categories = [
   { id: "todos", name: "Todos" },
@@ -21,7 +28,7 @@ const ritualesList = [
     categoryLabel: "Rostro",
     duration: "75 min",
     price: "S/. 150",
-    img: "/assets/facial.webp",
+    img: facialImg,
     desc: "Limpieza profunda con vapor de ozono, exfoliación ultrasónica, extracción manual minuciosa, mascarilla de arcilla rosa descongestiva y masaje facial relajante."
   },
   {
@@ -31,7 +38,7 @@ const ritualesList = [
     categoryLabel: "Rostro",
     duration: "50 min",
     price: "S/. 120",
-    img: "/assets/hero.webp",
+    img: heroImg,
     desc: "Tratamiento hidratante exprés diseñado para devolver la luminosidad y vitalidad antes de un evento. Incluye velo de colágeno y masaje drenante con esferas frías."
   },
   {
@@ -41,7 +48,7 @@ const ritualesList = [
     categoryLabel: "Rostro",
     duration: "90 min",
     price: "S/. 220",
-    img: "/assets/facial.webp",
+    img: facialImg,
     desc: "Protocolo rejuvenecedor avanzado mediante radiofrecuencia tripolar y masaje esculpido manual. Estimula la producción de colágeno y redefine el óvalo facial."
   },
   {
@@ -51,7 +58,7 @@ const ritualesList = [
     categoryLabel: "Mirada",
     duration: "45 min",
     price: "S/. 60",
-    img: "/assets/eyebrows.webp",
+    img: eyebrowsImg,
     desc: "Visagismo personalizado, depilación con cera orgánica de baja temperatura, perfilado de precisión y sombreado temporal con henna natural."
   },
   {
@@ -61,7 +68,7 @@ const ritualesList = [
     categoryLabel: "Mirada",
     duration: "60 min",
     price: "S/. 110",
-    img: "/assets/eyebrows.webp",
+    img: eyebrowsImg,
     desc: "Curvatura y teñido de pestañas naturales usando fórmulas nutritivas ricas en queratina y pantenol. Resultados visibles de 6 a 8 semanas."
   },
   {
@@ -71,7 +78,7 @@ const ritualesList = [
     categoryLabel: "Manos",
     duration: "50 min",
     price: "S/. 75",
-    img: "/assets/manicure.webp",
+    img: manicureImg,
     desc: "Manicura rusa de precisión combinada con esmaltado semipermanente de alta calidad. Incluye exfoliación suave y masaje hidratante de manos."
   },
   {
@@ -81,7 +88,7 @@ const ritualesList = [
     categoryLabel: "Manos",
     duration: "75 min",
     price: "S/. 110",
-    img: "/assets/manicure.webp",
+    img: manicureImg,
     desc: "Cuidado profundo de pies con sales aromáticas, remoción de asperezas, exfoliación de coco, mascarilla nutritiva y masaje relajante."
   },
   {
@@ -91,7 +98,7 @@ const ritualesList = [
     categoryLabel: "Cuerpo",
     duration: "60 min",
     price: "S/. 130",
-    img: "/assets/massage.webp",
+    img: massageImg,
     desc: "Terapia corporal completa con aceites esenciales de lavanda y manzanilla. Diseñado para disolver la tensión muscular y calmar el sistema nervioso."
   },
   {
@@ -101,7 +108,7 @@ const ritualesList = [
     categoryLabel: "Cuerpo",
     duration: "90 min",
     price: "S/. 190",
-    img: "/assets/massage.webp",
+    img: massageImg,
     desc: "Exfoliación con sales marinas, envoltura de lodos termales desintoxicantes y masaje de drenaje linfático corporal suave."
   }
 ];
@@ -152,9 +159,11 @@ const ritualesList = [
               data-category={rit.category}
             >
               <div class="relative aspect-[16/10] bg-glow-parchment overflow-hidden">
-                <img
+                <Image
                   src={rit.img}
                   alt={rit.name}
+                  width={600}
+                  height={375}
                   class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103 grayscale-[5%]"
                   loading="lazy"
                 />

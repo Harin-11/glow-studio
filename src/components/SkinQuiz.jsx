@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { WHATSAPP_NUMBER } from "../constants";
 
+import facialImg from "../assets/facial.webp";
+import heroImg from "../assets/hero.webp";
+import massageImg from "../assets/massage.webp";
+
 const questions = [
 	{
 		id: "goal",
@@ -59,7 +63,7 @@ const treatments = {
 		category: "Rostro",
 		duration: "90 min",
 		price: "S/. 220",
-		img: "/assets/facial.webp",
+		img: facialImg.src,
 		reason:
 			"Recomendamos este ritual porque tu piel busca firmeza y tiende a la sequedad. La combinación de radiofrecuencia y masoterapia profunda aportará volumen, definirá tus rasgos y activará la producción interna de colágeno sin descuidar la hidratación.",
 	},
@@ -68,7 +72,7 @@ const treatments = {
 		category: "Rostro",
 		duration: "90 min",
 		price: "S/. 220",
-		img: "/assets/facial.webp",
+		img: facialImg.src,
 		reason:
 			"Para una piel mixta que busca firmeza, este lifting activa la regeneración profunda a nivel celular, mejorando la densidad tisular mientras mantiene el balance de sebo mediante el masaje drenante.",
 	},
@@ -77,7 +81,7 @@ const treatments = {
 		category: "Rostro",
 		duration: "90 min",
 		price: "S/. 220",
-		img: "/assets/facial.webp",
+		img: facialImg.src,
 		reason:
 			"Combinamos la radiofrecuencia adaptada a bajas temperaturas con masoterapia neurosensorial para tonificar los tejidos sin activar reactividad en tu piel sensible.",
 	},
@@ -86,7 +90,7 @@ const treatments = {
 		category: "Rostro",
 		duration: "50 min",
 		price: "S/. 120",
-		img: "/assets/hero.webp",
+		img: heroImg.src,
 		reason:
 			"Tu piel recuperará su luz gracias a la hidratación exprés del velo de colágeno marino y un masaje nutritivo con aceites botánicos ricos en vitaminas.",
 	},
@@ -95,7 +99,7 @@ const treatments = {
 		category: "Rostro",
 		duration: "50 min",
 		price: "S/. 120",
-		img: "/assets/hero.webp",
+		img: heroImg.src,
 		reason:
 			"Para pieles mixtas, este ritual hidrata profundamente las zonas secas y aporta luminosidad uniforme sin dejar residuos grasos, equilibrando con esferas criogénicas frías.",
 	},
@@ -104,7 +108,7 @@ const treatments = {
 		category: "Rostro",
 		duration: "50 min",
 		price: "S/. 120",
-		img: "/assets/hero.webp",
+		img: heroImg.src,
 		reason:
 			"Un shot de luz para pieles sensibles. Usamos sueros hidratantes a base de manzanilla y caléndula junto con el velo descongestivo para iluminar sin irritar.",
 	},
@@ -113,7 +117,7 @@ const treatments = {
 		category: "Rostro",
 		duration: "75 min",
 		price: "S/. 150",
-		img: "/assets/facial.webp",
+		img: facialImg.src,
 		reason:
 			"Es la combinación ideal para restaurar la barrera de tu piel. La limpieza ultrasónica suave retira células muertas y el masaje de nutrición profunda devuelve los lípidos esenciales.",
 	},
@@ -122,7 +126,7 @@ const treatments = {
 		category: "Rostro",
 		duration: "75 min",
 		price: "S/. 150",
-		img: "/assets/facial.webp",
+		img: facialImg.src,
 		reason:
 			"Un tratamiento completo que exfolia y extrae impurezas de la zona T, hidratando profundamente las mejillas con mascarillas de arcillas nobles purificantes.",
 	},
@@ -131,7 +135,7 @@ const treatments = {
 		category: "Rostro",
 		duration: "75 min",
 		price: "S/. 150",
-		img: "/assets/facial.webp",
+		img: facialImg.src,
 		reason:
 			"Limpieza profunda sumamente respetuosa. Sin extracciones agresivas ni vapor caliente; en su lugar, aplicamos ozono frío y mascarillas calmantes de arcilla rosa.",
 	},
@@ -140,7 +144,7 @@ const treatments = {
 		category: "Cuerpo",
 		duration: "60 min",
 		price: "S/. 130",
-		img: "/assets/massage.webp",
+		img: massageImg.src,
 		reason:
 			"Cuando el objetivo es la calma y tu piel es seca, un masaje corporal de aromaterapia con aceites calientes de lavanda nutre tu piel de pies a cabeza mientras aquieta tu mente.",
 	},
@@ -149,7 +153,7 @@ const treatments = {
 		category: "Rostro",
 		duration: "75 min",
 		price: "S/. 150",
-		img: "/assets/facial.webp",
+		img: facialImg.src,
 		reason:
 			"Para balancear la piel mixta que necesita calma, el facial profundo limpia toxinas y descongestiona los poros, brindando frescura y alivio inmediato.",
 	},
@@ -158,7 +162,7 @@ const treatments = {
 		category: "Rostro",
 		duration: "75 min",
 		price: "S/. 150",
-		img: "/assets/facial.webp",
+		img: facialImg.src,
 		reason:
 			"Diseñado para calmar la sensibilidad extrema. Reducimos la inflamación y reforzamos la barrera cutánea con activos prebióticos y arcilla rosa reconfortante.",
 	},
@@ -192,7 +196,7 @@ export default function SkinQuiz() {
 				category: "Rostro",
 				duration: "75 min",
 				price: "S/. 150",
-				img: "/assets/facial.webp",
+				img: facialImg.src,
 				reason:
 					"Basado en tus respuestas, sugerimos nuestro facial profundo estrella para limpiar, purificar y sentar las bases de salud en tu piel.",
 			}

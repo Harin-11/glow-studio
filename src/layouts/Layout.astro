@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import { Image } from "astro:assets";
+import ogImage from "../assets/hero-og.webp";
 
 export interface Props {
   title?: string;
@@ -10,11 +12,12 @@ export interface Props {
 const {
   title = "Glow Studio — Donde la piel vuelve a respirar",
   description = "Tratamientos de cuidado de piel y bienestar en Arequipa. Ritual Facial, Escultura de Cejas, Manicure Atelier y más.",
-  image = "/assets/hero-og.webp",
+  image = ogImage.src,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://glowstudio.pe");
-const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
+const siteBase = Astro.site ?? "https://glow-studio-alpha.vercel.app";
+const canonicalURL = new URL(Astro.url.pathname, siteBase);
+const socialImageURL = new URL(image, siteBase);
 ---
 
 <!DOCTYPE html>
@@ -28,6 +31,14 @@ const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    
+    <script is:inline>
+      // Prevent FOUC for returning users
+      if (localStorage.getItem("glow-studio-visited") === "true") {
+        document.documentElement.classList.add("visited");
+      }
+    </script>
+
     <link rel="canonical" href={canonicalURL.href} />
 
     <!-- Icons & Web App Manifest -->
@@ -76,13 +87,13 @@ const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://glowstudio.pe",
+      "@id": siteBase,
       "name": "Glow Studio",
       "description": "Tratamientos de cuidado de piel y bienestar en Arequipa. Ritual Facial, Escultura de Cejas, Manicure Atelier y más.",
-      "url": "https://glowstudio.pe",
+      "url": siteBase,
       "telephone": "+51 999 999 999",
       "email": "hola@glowstudio.pe",
-      "image": "https://glowstudio.pe/assets/hero.webp",
+      "image": `${siteBase}${ogImage.src}`,
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Calle Santa Catalina 115, Cercado",
@@ -104,6 +115,9 @@ const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
         "https://tiktok.com/@glowstudio.aqp"
       ]
     })} />
+    <style is:global>
+      html.visited #loader { display: none !important; }
+    </style>
   </head>
   <body>
     <!-- Skip to content link (a11y) -->
@@ -139,23 +153,24 @@ const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
 
       if (loader && !hasVisited) {
         document.body.style.overflow = "hidden";
-        window.addEventListener("load", () => {
+        // Faster trigger: DOMContentLoaded instead of load
+        window.addEventListener("DOMContentLoaded", () => {
           const loaderLine = loader.querySelector(".loader-line");
           setTimeout(() => {
             if (loaderLine instanceof HTMLElement) {
               loaderLine.style.transition = "width 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
               loaderLine.style.width = "100%";
             }
-          }, 100);
+          }, 50);
 
           setTimeout(() => {
             loader.classList.add("loaded");
             document.body.style.overflow = "";
             localStorage.setItem("glow-studio-visited", "true");
 
-            setTimeout(() => initReveal(), 800);
-            setTimeout(() => { loader.style.display = "none"; }, 2000);
-          }, 1800);
+            setTimeout(() => initReveal(), 500);
+            setTimeout(() => { loader.style.display = "none"; }, 1500);
+          }, 1500);
         });
       } else {
         if (loader) {
@@ -163,11 +178,9 @@ const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
         }
         document.body.style.overflow = "";
         // Immediately run reveal animations if loader is not present or skipped
-        window.addEventListener("DOMContentLoaded", () => {
-          initReveal();
-        });
-        // Also call directly in case DOMContentLoaded has already fired
-        if (document.readyState === "interactive" || document.readyState === "complete") {
+        if (document.readyState === "loading") {
+          window.addEventListener("DOMContentLoaded", initReveal);
+        } else {
           initReveal();
         }
       }
@@ -179,10 +192,11 @@ const socialImageURL = new URL(image, Astro.site || "https://glowstudio.pe");
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
               }
             });
           },
-          { threshold: 0.15 }
+          { threshold: 0.1, rootMargin: "50px" }
         );
         document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
       }
