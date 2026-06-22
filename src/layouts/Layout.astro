@@ -15,8 +15,9 @@ const {
   image = ogImage.src,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, "https://glowstudio.pe");
-const socialImageURL = new URL(image, "https://glowstudio.pe");
+const siteBase = Astro.site ?? "https://glow-studio-alpha.vercel.app";
+const canonicalURL = new URL(Astro.url.pathname, siteBase);
+const socialImageURL = new URL(image, siteBase);
 ---
 
 <!DOCTYPE html>
@@ -86,13 +87,13 @@ const socialImageURL = new URL(image, "https://glowstudio.pe");
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://glowstudio.pe",
+      "@id": siteBase,
       "name": "Glow Studio",
       "description": "Tratamientos de cuidado de piel y bienestar en Arequipa. Ritual Facial, Escultura de Cejas, Manicure Atelier y más.",
-      "url": "https://glowstudio.pe",
+      "url": siteBase,
       "telephone": "+51 999 999 999",
       "email": "hola@glowstudio.pe",
-      "image": `https://glowstudio.pe${ogImage.src}`,
+      "image": `${siteBase}${ogImage.src}`,
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Calle Santa Catalina 115, Cercado",
