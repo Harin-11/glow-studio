@@ -16,8 +16,9 @@ Glow Studio utiliza una paleta de colores orgánica, premium y de bajo contraste
 | **Glow Charcoal** | `#1E1B18` | Secciones oscuras, textos principales | Sofisticación, profundidad, silencio. |
 | **Glow Bark** | `#3D3530` | Subtítulos, textos secundarios en claro | Orgánico, tierra, estabilidad. |
 | **Glow Dusk** | `#7A7068` | Etiquetas, estados desactivados | Neutralidad, sombra suave. |
-| **Glow Gold** | `#A8845A` | Acentos, botones, enlaces destacados | Calidad premium, destello, sol. |
-| **Glow Gold Light** | `#C4A47A` | Hover en botones de acento | Luminosidad, interacción activa. |
+| **Glow Gold** | `#805E3B` | Acentos primarios, botones principales (contrast ratio >= 4.5:1) | Calidad premium, destello, sol accesible. |
+| **Glow Gold Light** | `#8D6B45` | Hover en botones principales (contrast ratio >= 4.5:1) | Interacción activa, luminosidad accesible. |
+| **Glow Gold Soft** | `#A8845A` | Detalles y textos en fondos oscuros (contrast ratio >= 4.5:1) | Acento suave, destello en oscuridad. |
 | **Glow Sage** | `#7B9176` | Detalles de ingredientes o bienestar | Botánico, frescura, sanación. |
 
 ---

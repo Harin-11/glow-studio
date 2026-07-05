@@ -211,7 +211,7 @@ export default function SkinQuiz() {
 	return (
 		<div className="max-w-3xl mx-auto bg-glow-cream border border-glow-gold/15 rounded-sm p-6 md:p-10 shadow-sm relative overflow-hidden">
 			{/* Decorative grid lines */}
-			<div className="absolute inset-0 bg-[linear-gradient(to_right,#A8845A04_1px,transparent_1px),linear-gradient(to_bottom,#A8845A04_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none" />
+			<div className="absolute inset-0 bg-[linear-gradient(to_right,#805E3B04_1px,transparent_1px),linear-gradient(to_bottom,#805E3B04_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none" />
 
 			<div className="relative z-10">
 				{step < questions.length ? (

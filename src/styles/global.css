@@ -58,7 +58,7 @@
 
 .loader-door.left {
   @apply left-0 justify-end;
-  border-right: 1px solid rgba(168, 132, 90, 0.05);
+  border-right: 1px solid rgba(128, 94, 59, 0.05);
 }
 
 .loader-door.right {
@@ -152,10 +152,10 @@
 /* Pulse glow animation for accordion icons */
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(168, 132, 90, 0.3), 0 0 40px rgba(168, 132, 90, 0.1);
+    box-shadow: 0 0 20px rgba(128, 94, 59, 0.3), 0 0 40px rgba(128, 94, 59, 0.1);
   }
   50% {
-    box-shadow: 0 0 25px rgba(168, 132, 90, 0.4), 0 0 50px rgba(168, 132, 90, 0.15);
+    box-shadow: 0 0 25px rgba(128, 94, 59, 0.4), 0 0 50px rgba(128, 94, 59, 0.15);
   }
 }
 
@@ -216,14 +216,14 @@ body.menu-open, html.menu-open {
 
 /* Glow shadow intensities */
 .btn-glow:hover {
-  box-shadow: 0 8px 32px -5px rgba(168, 132, 90, 0.4),
-              0 2px 8px -2px rgba(168, 132, 90, 0.2);
+  box-shadow: 0 8px 32px -5px rgba(128, 94, 59, 0.4),
+              0 2px 8px -2px rgba(128, 94, 59, 0.2);
   transform: translateY(-2px);
 }
 
 .btn-glow-sm:hover {
-  box-shadow: 0 6px 24px -4px rgba(168, 132, 90, 0.35),
-              0 2px 6px -1px rgba(168, 132, 90, 0.2);
+  box-shadow: 0 6px 24px -4px rgba(128, 94, 59, 0.35),
+              0 2px 6px -1px rgba(128, 94, 59, 0.2);
 }
 
 /* Inner shine effect */
@@ -248,9 +248,9 @@ body.menu-open, html.menu-open {
 
 /* Outline variant */
 .btn-outline {
-  @apply inline-flex items-center gap-3 bg-transparent border border-glow-gold/35 text-white font-medium rounded-full
+  @apply inline-flex items-center gap-3 bg-transparent border border-glow-gold-soft/35 text-white font-medium rounded-full
          transition-all duration-300 ease-out
-         hover:border-glow-gold/60 hover:bg-white/5
+         hover:border-glow-gold-soft/60 hover:bg-white/5
          active:scale-[0.96];
 }
 

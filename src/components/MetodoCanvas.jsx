@@ -31,7 +31,6 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 		};
 
 		resize();
-		window.addEventListener("resize", resize);
 
 		const size = () => Math.min(width, height);
 
@@ -46,7 +45,7 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 				this.r = Math.random() * (s * 0.1) + s * 0.05;
 				this.vx = (Math.random() - 0.5) * 1.2;
 				this.vy = (Math.random() - 0.5) * 1.2;
-				this.color = "rgba(168, 132, 90, 0.4)";
+				this.color = "rgba(128, 94, 59, 0.4)";
 			}
 			update() {
 				this.x += this.vx;
@@ -132,13 +131,13 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 				active.y,
 				size() * 0.6,
 			);
-			grad.addColorStop(0, "rgba(168, 132, 90, 0.2)");
-			grad.addColorStop(0.4, "rgba(168, 132, 90, 0.08)");
-			grad.addColorStop(1, "rgba(168, 132, 90, 0)");
+			grad.addColorStop(0, "rgba(128, 94, 59, 0.2)");
+			grad.addColorStop(0.4, "rgba(128, 94, 59, 0.08)");
+			grad.addColorStop(1, "rgba(128, 94, 59, 0)");
 
 			ctx.fillStyle = grad;
 			ctx.fill();
-			ctx.strokeStyle = "rgba(168, 132, 90, 0.08)";
+			ctx.strokeStyle = "rgba(128, 94, 59, 0.08)";
 			ctx.lineWidth = Math.max(6, size() * 0.03);
 			ctx.stroke();
 			ctx.restore();
@@ -181,7 +180,7 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 
 	// Base orb classes
 	const orbBase =
-		"method-label-orb absolute rounded-full flex items-center justify-center font-mono tracking-[2px] max-md:tracking-[1px] text-white bg-glow-gold shadow-[0_0_40px_rgba(168,132,90,0.4)] transition-all duration-[0.8s] ease-out cursor-pointer z-[2] text-center";
+		"method-label-orb absolute rounded-full flex items-center justify-center font-mono tracking-[2px] max-md:tracking-[1px] text-white bg-glow-gold shadow-[0_0_40px_rgba(128, 94, 59, 0.4)] transition-all duration-[0.8s] ease-out cursor-pointer z-[2] text-center";
 	const orbSizes =
 		"w-[130px] h-[130px] md:w-[100px] md:h-[100px] max-md:w-[85px] max-md:h-[85px] max-[480px]:w-[70px] max-[480px]:h-[70px] text-[10px] max-md:text-[8px] max-[480px]:text-[7px] p-2.5 max-md:p-1.5";
 

@@ -52,8 +52,8 @@ export default function MetodoAccordion({
 						className={`accordion-item relative rounded-2xl transition-all duration-500 ease-out overflow-hidden group
 							${
 								isOpen
-									? "bg-white/70 border border-glow-gold/25 shadow-[0_0_40px_-8px_rgba(168,132,90,0.2)]"
-									: "bg-white/30 border border-transparent hover:border-glow-gold/10 hover:shadow-[0_4px_20px_-6px_rgba(168,132,90,0.08)]"
+									? "bg-white/70 border border-glow-gold/25 shadow-[0_0_40px_-8px_rgba(128,94,59,0.2)]"
+									: "bg-white/30 border border-transparent hover:border-glow-gold/10 hover:shadow-[0_4px_20px_-6px_rgba(128,94,59,0.08)]"
 							}`}
 					>
 						{/* Active glow border top */}
@@ -65,7 +65,7 @@ export default function MetodoAccordion({
 							}`}
 							style={{
 								background:
-									"linear-gradient(90deg, #A8845A 0%, #C4A47A 50%, #A8845A 100%)",
+									"linear-gradient(90deg, #805E3B 0%, #8D6B45 50%, #805E3B 100%)",
 							}}
 						/>
 
@@ -76,7 +76,7 @@ export default function MetodoAccordion({
 							}`}
 							style={{
 								background:
-									"radial-gradient(ellipse 120% 80% at 50% 0%, rgba(168,132,90,0.06) 0%, transparent 70%)",
+									"radial-gradient(ellipse 120% 80% at 50% 0%, rgba(128,94,59,0.06) 0%, transparent 70%)",
 							}}
 						/>
 
@@ -92,7 +92,7 @@ export default function MetodoAccordion({
 									transition-all duration-500 ease-out
 									${
 										isOpen
-											? "bg-glow-gold text-white shadow-[0_0_20px_rgba(168,132,90,0.35)] scale-110"
+											? "bg-glow-gold text-white shadow-[0_0_20px_rgba(128,94,59,0.35)] scale-110"
 											: "bg-glow-gold/6 text-glow-gold group-hover:bg-glow-gold/10 group-hover:scale-105"
 									}`}
 							>
@@ -101,7 +101,7 @@ export default function MetodoAccordion({
 									className={`absolute inset-0 rounded-2xl transition-opacity duration-500 ${
 										isOpen ? "opacity-100 animate-pulse-glow" : "opacity-0"
 									}`}
-									style={{ background: "rgba(168,132,90,0.15)" }}
+									style={{ background: "rgba(128,94,59,0.15)" }}
 								/>
 								<svg
 									className={`w-[18px] h-[18px] md:w-5 md:h-5 relative z-10 transition-transform duration-500 ease-out ${isOpen ? "scale-100" : "scale-90"}`}
@@ -169,7 +169,7 @@ export default function MetodoAccordion({
 									transition-all duration-500 ease-out
 									${
 										isOpen
-											? "bg-glow-gold/12 border border-glow-gold/35 rotate-[135deg] shadow-[inset_0_0_8px_rgba(168,132,90,0.15)]"
+											? "bg-glow-gold/12 border border-glow-gold/35 rotate-[135deg] shadow-[inset_0_0_8px_rgba(128,94,59,0.15)]"
 											: "bg-transparent border border-glow-gold/20 rotate-0 group-hover:border-glow-gold/40 group-hover:bg-glow-gold/5"
 									}`}
 							>

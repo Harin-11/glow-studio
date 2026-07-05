@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { WHATSAPP_MESSAGE } from "../constants";
 import Icon from "../components/Icon.astro";
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import heroImage from "../assets/hero.webp";
 import teamDirector from "../assets/team_director.webp";
 import teamTherapist from "../assets/team_therapist.webp";
@@ -52,9 +52,12 @@ import teamNail from "../assets/team_nail.webp";
           </div>
           <div class="lg:col-span-6 reveal flex justify-center">
             <div class="relative w-full max-w-[500px] aspect-[4/5] bg-glow-parchment rounded-sm overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-glow-gold/10">
-              <Image
+              <Picture
                 src={heroImage}
                 alt="Ambiente Glow Studio Arequipa"
+                formats={["avif", "webp"]}
+                widths={[250, 500, 750]}
+                sizes="(max-width: 768px) 100vw, 50vw"
                 width={500}
                 height={625}
                 class="w-full h-full object-cover grayscale-[10%] sepia-[5%] hover:scale-105 transition-transform duration-[1.5s] ease-out"
@@ -84,9 +87,12 @@ import teamNail from "../assets/team_nail.webp";
           <!-- Team Member 1 -->
           <div class="reveal group">
             <div class="relative aspect-[3/4] bg-glow-parchment overflow-hidden rounded-sm border border-glow-gold/10 shadow-sm mb-6">
-              <Image
+              <Picture
                 src={teamDirector}
                 alt="Camila Vega — Directora Creativa"
+                formats={["avif", "webp"]}
+                widths={[200, 400, 600]}
+                sizes="(max-width: 768px) 100vw, 33vw"
                 width={400}
                 height={533}
                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103 grayscale-[5%]"
@@ -104,9 +110,12 @@ import teamNail from "../assets/team_nail.webp";
           <!-- Team Member 2 -->
           <div class="reveal group">
             <div class="relative aspect-[3/4] bg-glow-parchment overflow-hidden rounded-sm border border-glow-gold/10 shadow-sm mb-6">
-              <Image
+              <Picture
                 src={teamTherapist}
                 alt="Valeria Alarcón — Especialista Skincare"
+                formats={["avif", "webp"]}
+                widths={[200, 400, 600]}
+                sizes="(max-width: 768px) 100vw, 33vw"
                 width={400}
                 height={533}
                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103 grayscale-[5%]"
@@ -124,9 +133,12 @@ import teamNail from "../assets/team_nail.webp";
           <!-- Team Member 3 -->
           <div class="reveal group">
             <div class="relative aspect-[3/4] bg-glow-parchment overflow-hidden rounded-sm border border-glow-gold/10 shadow-sm mb-6">
-              <Image
+              <Picture
                 src={teamNail}
                 alt="Gabriela Torres — Nail Artist Atelier"
+                formats={["avif", "webp"]}
+                widths={[200, 400, 600]}
+                sizes="(max-width: 768px) 100vw, 33vw"
                 width={400}
                 height={533}
                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103 grayscale-[5%]"
@@ -183,7 +195,7 @@ import teamNail from "../assets/team_nail.webp";
     <!-- Call to Action Section -->
     <section class="bg-glow-charcoal text-white text-center py-16 md:py-20 lg:py-24">
       <div class="container max-w-container mx-auto px-6 reveal">
-        <div class="label text-glow-gold mb-6">Tu camino de bienestar inicia aquí</div>
+        <div class="label text-glow-gold-soft mb-6">Tu camino de bienestar inicia aquí</div>
         <h2 class="font-display italic font-light text-4xl md:text-5xl leading-[1.1] text-white mb-6">&ldquo;Regálate el momento.&rdquo;</h2>
         <p class="text-white/60 font-body font-light mb-8 max-w-md mx-auto">
           ¿Lista para experimentar el cuidado consciente? Contáctanos para asesorarte sobre tu primer ritual.

@@ -1,6 +1,6 @@
 ---
 // Rituales/Experiences
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import facialImg from "../assets/facial.webp";
 import eyebrowsImg from "../assets/eyebrows.webp";
 import manicureImg from "../assets/manicure.webp";
@@ -25,9 +25,12 @@ const rituales = [
       {rituales.map((rit) => (
         <div class="ritual-card reveal relative overflow-hidden group snap-start" style={`grid-column: span ${rit.cols};`}>
           <div class="relative overflow-hidden bg-black h-[400px] max-md:!h-auto max-md:aspect-[3/4]">
-            <Image 
+            <Picture 
               src={rit.img} 
               alt={rit.name} 
+              formats={["avif", "webp"]}
+              widths={[300, 600, 900]}
+              sizes="(max-width: 768px) 100vw, 50vw"
               width={600}
               height={800}
               class="w-full h-full object-cover opacity-60 transition-all duration-[1.2s] ease-out group-hover:scale-105 group-hover:opacity-80" 
@@ -77,11 +80,18 @@ const rituales = [
   const cards = grid.querySelectorAll(".ritual-card");
   const dots = dotsContainer.querySelectorAll(".carousel-dot");
 
+  // Cache card width to avoid reading offsetWidth on scroll/click events
+  let cardWidth = 0;
+  const updateCardWidth = () => {
+    const gap = 16; // md:gap-6 is 24px, gap-4 is 16px
+    cardWidth = (cards[0] as HTMLElement)?.offsetWidth + gap || 1;
+  };
+  updateCardWidth();
+  window.addEventListener("resize", updateCardWidth, { passive: true });
+
   // Sync dots + buttons with scroll
   let ticking = false;
   const syncCarousel = () => {
-    const gap = 16; // md:gap-6 is 24px, gap-4 is 16px
-    const cardWidth = (cards[0] as HTMLElement)?.offsetWidth + gap || 1;
     const activeIndex = Math.min(Math.round(grid.scrollLeft / cardWidth), cards.length - 1);
     
     dots.forEach((d, i) => {
@@ -112,18 +122,14 @@ const rituales = [
   // Prev/next buttons
   if (prevBtn) {
     prevBtn.addEventListener("click", () => {
-      const gap = 16;
-      const cw = (cards[0] as HTMLElement)?.offsetWidth + gap || 1;
-      const idx = Math.max(0, Math.round(grid.scrollLeft / cw) - 1);
+      const idx = Math.max(0, Math.round(grid.scrollLeft / cardWidth) - 1);
       cards[idx].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
     });
   }
 
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
-      const gap = 16;
-      const cw = (cards[0] as HTMLElement)?.offsetWidth + gap || 1;
-      const idx = Math.min(cards.length - 1, Math.round(grid.scrollLeft / cw) + 1);
+      const idx = Math.min(cards.length - 1, Math.round(grid.scrollLeft / cardWidth) + 1);
       cards[idx].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
     });
   }

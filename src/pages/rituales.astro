@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { WHATSAPP_MESSAGE } from "../constants";
 import Icon from "../components/Icon.astro";
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 
 import facialImg from "../assets/facial.webp";
 import heroImg from "../assets/hero.webp";
@@ -159,9 +159,12 @@ const ritualesList = [
               data-category={rit.category}
             >
               <div class="relative aspect-[16/10] bg-glow-parchment overflow-hidden">
-                <Image
+                <Picture
                   src={rit.img}
                   alt={rit.name}
+                  formats={["avif", "webp"]}
+                  widths={[300, 600, 900]}
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   width={600}
                   height={375}
                   class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103 grayscale-[5%]"
@@ -205,19 +208,19 @@ const ritualesList = [
       <div class="container max-w-container mx-auto px-6 reveal">
         <div class="bg-glow-charcoal text-white rounded-sm p-8 md:p-12 lg:p-16 relative overflow-hidden">
           <div class="relative z-10 max-w-2xl">
-            <div class="label text-glow-gold mb-4">Protocolo de Atención</div>
+            <div class="label text-glow-gold-soft mb-4">Protocolo de Atención</div>
             <h2 class="font-heading font-medium text-2xl md:text-3xl mb-6">¿Cómo prepararte para tu ritual?</h2>
             <ul class="space-y-4 font-body font-light text-[0.9rem] text-white/70">
               <li class="flex gap-3 items-start">
-                <span class="text-glow-gold font-mono">•</span>
+                <span class="text-glow-gold-soft font-mono">•</span>
                 <span>Llega 10 minutos antes de tu cita para relajarte en nuestra sala de espera y tomar una infusión botánica de bienvenida.</span>
               </li>
               <li class="flex gap-3 items-start">
-                <span class="text-glow-gold font-mono">•</span>
+                <span class="text-glow-gold-soft font-mono">•</span>
                 <span>Te sugerimos venir con ropa cómoda y sin maquillaje si tu tratamiento es facial.</span>
               </li>
               <li class="flex gap-3 items-start">
-                <span class="text-glow-gold font-mono">•</span>
+                <span class="text-glow-gold-soft font-mono">•</span>
                 <span>Por favor infórmanos con anticipación si estás embarazada o tienes alergias dermatológicas activas.</span>
               </li>
             </ul>
