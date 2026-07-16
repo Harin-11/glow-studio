@@ -299,6 +299,8 @@ export default function SkinQuiz() {
 										<img
 											src={rec.img}
 											alt={rec.name}
+											loading="lazy"
+											decoding="async"
 											className="w-full h-full object-cover grayscale-[10%] sepia-[5%]"
 										/>
 									</div>
