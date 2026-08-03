@@ -32,17 +32,22 @@
 .reveal {
   opacity: 0;
   transform: translateY(60px) scale(0.98);
-  filter: blur(10px);
   transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity, filter;
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
-  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Loader - Door Opening Style */
@@ -52,8 +57,8 @@
 
 .loader-door {
   @apply absolute top-0 w-1/2 h-full bg-glow-cream;
-  transition: transform 1.8s cubic-bezier(0.77, 0, 0.175, 1);
-  pointer-events: auto;
+  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  pointer-events: none;
 }
 
 .loader-door.left {
@@ -75,11 +80,18 @@
 
 .loader-content {
   @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] text-center;
-  transition: opacity 0.8s ease;
+  transition: opacity 0.4s ease;
 }
 
 #loader.loaded .loader-content {
   opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-door,
+  .loader-content {
+    transition: none;
+  }
 }
 
 /* Gooey filter for method orbs */

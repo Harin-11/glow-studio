@@ -140,42 +140,43 @@ const socialImageURL = new URL(image, siteBase);
     <div id="mobile-overlay" class="fixed inset-0 bg-glow-charcoal/40 backdrop-blur z-40 hidden"></div>
 
     <script>
-      // Loader handling
       const loader = document.getElementById("loader");
       const hasVisited = localStorage.getItem("glow-studio-visited");
 
-      if (loader && !hasVisited) {
-        document.body.style.overflow = "hidden";
-        // Faster trigger: DOMContentLoaded instead of load
-        window.addEventListener("DOMContentLoaded", () => {
-          const loaderLine = loader.querySelector(".loader-line");
-          setTimeout(() => {
-            if (loaderLine instanceof HTMLElement) {
-              loaderLine.style.transition = "width 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
-              loaderLine.style.width = "100%";
-            }
-          }, 50);
-
-          setTimeout(() => {
-            loader.classList.add("loaded");
-            document.body.style.overflow = "";
-            localStorage.setItem("glow-studio-visited", "true");
-
-            setTimeout(() => initReveal(), 500);
-            setTimeout(() => { loader.style.display = "none"; }, 1500);
-          }, 1500);
-        });
-      } else {
-        if (loader) {
-          loader.style.display = "none";
-        }
-        document.body.style.overflow = "";
-        // Immediately run reveal animations if loader is not present or skipped
+      const onDomReady = (callback) => {
         if (document.readyState === "loading") {
-          window.addEventListener("DOMContentLoaded", initReveal);
+          window.addEventListener("DOMContentLoaded", callback, { once: true });
         } else {
-          initReveal();
+          callback();
         }
+      };
+
+      function initLoader() {
+        if (!loader) return;
+
+        if (hasVisited) {
+          loader.style.display = "none";
+          return;
+        }
+
+        const loaderLine = loader.querySelector(".loader-line");
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const revealDelay = prefersReducedMotion ? 0 : 250;
+        const hideDelay = prefersReducedMotion ? 0 : 900;
+        setTimeout(() => {
+          if (loaderLine instanceof HTMLElement) {
+            loaderLine.style.transition = prefersReducedMotion
+              ? "none"
+              : "width 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
+            loaderLine.style.width = "100%";
+          }
+        }, 50);
+
+        setTimeout(() => {
+          loader.classList.add("loaded");
+          localStorage.setItem("glow-studio-visited", "true");
+          setTimeout(() => { loader.style.display = "none"; }, hideDelay);
+        }, revealDelay);
       }
 
       // IntersectionObserver reveals
@@ -193,6 +194,11 @@ const socialImageURL = new URL(image, siteBase);
         );
         document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
       }
+
+      onDomReady(() => {
+        initReveal();
+        initLoader();
+      });
 
       // Header scroll state (Optimized using requestAnimationFrame and state cache)
       const header = document.getElementById("main-header");

@@ -4,10 +4,12 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 	const canvasRef = useRef(null);
 	const containerRef = useRef(null);
 	const activeRef = useRef(activeIndex);
+	const renderFrameRef = useRef(null);
 
 	// Keep ref in sync without restarting canvas
 	useEffect(() => {
 		activeRef.current = activeIndex;
+		renderFrameRef.current?.();
 	}, [activeIndex]);
 
 	// Canvas animation — runs once, never restarts
@@ -20,8 +22,16 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 		let width,
 			height,
 			blobs = [];
-		let animationId;
+		let animationId = null;
 		let flowPhase = 0;
+		const supportsIntersectionObserver = "IntersectionObserver" in window;
+		let isIntersecting = !supportsIntersectionObserver;
+		let isDocumentVisible = document.visibilityState !== "hidden";
+		let reducedMotion = false;
+		let cachedPositions = [];
+		let cachedGradient = null;
+		let cachedGradientKey = "";
+		let lastActiveIndex = activeRef.current;
 
 		const resize = () => {
 			if (!canvas) return;
@@ -65,10 +75,13 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 		const blobCount = Math.max(4, Math.floor(s / 50));
 		for (let i = 0; i < blobCount; i++) blobs.push(new Blob());
 
+		const orbElements = Array.from(
+			container.querySelectorAll(".method-label-orb"),
+		);
+
 		const getOrbPositions = () => {
 			const containerRect = container.getBoundingClientRect();
-			const orbs = container.querySelectorAll(".method-label-orb");
-			return Array.from(orbs).map((orb) => {
+			return orbElements.map((orb) => {
 				const r = orb.getBoundingClientRect();
 				return {
 					x: r.left + r.width / 2 - containerRect.left,
@@ -77,15 +90,54 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 			});
 		};
 
-		let cachedPositions = [];
+		const invalidateGradient = () => {
+			cachedGradient = null;
+			cachedGradientKey = "";
+		};
+
 		const updateCachedPositions = () => {
 			cachedPositions = getOrbPositions();
+			invalidateGradient();
+		};
+
+		const getGradient = (positions) => {
+			if (positions.length < 3) return null;
+
+			const currentActive = activeRef.current;
+			const active = positions[currentActive] || positions[0];
+			const gradientKey = [
+				currentActive,
+				width,
+				height,
+				active.x,
+				active.y,
+				size(),
+			].join(":");
+
+			if (cachedGradient && cachedGradientKey === gradientKey) {
+				return cachedGradient;
+			}
+
+			const gradient = ctx.createRadialGradient(
+				active.x,
+				active.y,
+				0,
+				active.x,
+				active.y,
+				size() * 0.6,
+			);
+			gradient.addColorStop(0, "rgba(128, 94, 59, 0.2)");
+			gradient.addColorStop(0.4, "rgba(128, 94, 59, 0.08)");
+			gradient.addColorStop(1, "rgba(128, 94, 59, 0)");
+			cachedGradient = gradient;
+			cachedGradientKey = gradientKey;
+
+			return gradient;
 		};
 
 		const drawFluidConnection = (positions) => {
 			if (positions.length < 3) return;
 			const [p0, p1, p2] = positions;
-			const currentActive = activeRef.current;
 			flowPhase += 0.02;
 
 			ctx.save();
@@ -122,20 +174,7 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 			);
 			ctx.closePath();
 
-			const active = positions[currentActive] || positions[0];
-			const grad = ctx.createRadialGradient(
-				active.x,
-				active.y,
-				0,
-				active.x,
-				active.y,
-				size() * 0.6,
-			);
-			grad.addColorStop(0, "rgba(128, 94, 59, 0.2)");
-			grad.addColorStop(0.4, "rgba(128, 94, 59, 0.08)");
-			grad.addColorStop(1, "rgba(128, 94, 59, 0)");
-
-			ctx.fillStyle = grad;
+			ctx.fillStyle = getGradient(positions);
 			ctx.fill();
 			ctx.strokeStyle = "rgba(128, 94, 59, 0.08)";
 			ctx.lineWidth = Math.max(6, size() * 0.03);
@@ -143,37 +182,118 @@ export default function MetodoCanvas({ activeIndex = 0, onOrbClick }) {
 			ctx.restore();
 		};
 
-		const animate = () => {
+		const drawFrame = (advanceAnimation = true) => {
+			const currentActive = activeRef.current;
+			if (currentActive !== lastActiveIndex) {
+				updateCachedPositions();
+				lastActiveIndex = currentActive;
+			}
+
 			ctx.clearRect(0, 0, width, height);
 			if (cachedPositions.length === 0) updateCachedPositions();
 			drawFluidConnection(cachedPositions);
 			blobs.forEach((b) => {
-				b.update();
+				if (advanceAnimation) b.update();
 				b.draw();
 			});
 
 			// Sync orb float — reads active state from DOM rather than React
-			const time = Date.now() * 0.001;
-			container.querySelectorAll(".method-label-orb").forEach((orb, i) => {
+			const time = advanceAnimation ? Date.now() * 0.001 : 0;
+			orbElements.forEach((orb, i) => {
 				const ox = Math.sin(time + i * 1.2) * 6;
 				const oy = Math.cos(time * 0.8 + i * 1.2) * 5;
 				orb.style.setProperty("--float-x", `${ox}px`);
 				orb.style.setProperty("--float-y", `${oy}px`);
 			});
 
+		};
+
+		const canAnimate = () =>
+			!reducedMotion && isIntersecting && isDocumentVisible;
+
+		const stopAnimation = () => {
+			if (animationId !== null) {
+				cancelAnimationFrame(animationId);
+				animationId = null;
+			}
+		};
+
+		const animate = () => {
+			animationId = null;
+			if (!canAnimate()) return;
+
+			drawFrame();
 			animationId = requestAnimationFrame(animate);
 		};
 
-		animate();
+		const startAnimation = () => {
+			if (canAnimate() && animationId === null) animate();
+		};
+
+		const renderStaticFrame = () => {
+			if (reducedMotion) drawFrame(false);
+		};
+		renderFrameRef.current = renderStaticFrame;
+
+		const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+		const handleMotionPreferenceChange = (event) => {
+			reducedMotion = event.matches;
+			stopAnimation();
+			if (reducedMotion) renderStaticFrame();
+			else startAnimation();
+		};
+		reducedMotion = mediaQuery.matches;
+
+		const intersectionObserver =
+			supportsIntersectionObserver
+				? new IntersectionObserver(([entry]) => {
+						isIntersecting = entry.isIntersecting;
+						if (isIntersecting) {
+							if (reducedMotion) renderStaticFrame();
+							else startAnimation();
+						} else {
+							stopAnimation();
+						}
+					})
+				: null;
+		intersectionObserver?.observe(container);
+
+		const handleVisibilityChange = () => {
+			isDocumentVisible = document.visibilityState !== "hidden";
+			if (isDocumentVisible) {
+				if (reducedMotion) renderStaticFrame();
+				else startAnimation();
+			} else {
+				stopAnimation();
+			}
+		};
+
+		if (mediaQuery.addEventListener) {
+			mediaQuery.addEventListener("change", handleMotionPreferenceChange);
+		} else {
+			mediaQuery.addListener(handleMotionPreferenceChange);
+		}
+		document.addEventListener("visibilitychange", handleVisibilityChange);
+		if (reducedMotion) renderStaticFrame();
+		else startAnimation();
 
 		const handleResize = () => {
 			resize();
 			updateCachedPositions();
+			if (reducedMotion) renderStaticFrame();
 		};
 		window.addEventListener("resize", handleResize);
 
 		return () => {
-			cancelAnimationFrame(animationId);
+			stopAnimation();
+			renderFrameRef.current = null;
+			intersectionObserver?.disconnect();
+			document.removeEventListener("visibilitychange", handleVisibilityChange);
+			if (mediaQuery.removeEventListener) {
+				mediaQuery.removeEventListener("change", handleMotionPreferenceChange);
+			} else {
+				mediaQuery.removeListener(handleMotionPreferenceChange);
+			}
 			window.removeEventListener("resize", handleResize);
 		};
 	}, []); // Never re-run — uses ref for activeIndex
