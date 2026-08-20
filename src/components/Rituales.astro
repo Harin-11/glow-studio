@@ -48,7 +48,7 @@ const rituales = [
 
     <!-- Carousel controls: dots + prev/next buttons (mobile only) -->
     <div class="carousel-controls hidden max-md:flex items-center justify-center gap-4 mt-4 pb-2">
-      <button id="carousel-prev" class="carousel-btn w-10 h-10 rounded-full border border-glow-gold/30 flex items-center justify-center text-glow-gold hover:bg-glow-gold/10 transition-colors active:scale-90" aria-label="Anterior">
+      <button id="carousel-prev" class="carousel-btn w-10 h-10 rounded-full border border-glow-gold/30 flex items-center justify-center text-glow-gold hover:bg-glow-gold/10 transition-colors active:scale-90 opacity-30" aria-label="Anterior" aria-disabled="true">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
       </button>
       <div id="rituales-dots" class="flex justify-center gap-2">
@@ -63,7 +63,7 @@ const rituales = [
           </button>
         ))}
       </div>
-      <button id="carousel-next" class="carousel-btn w-10 h-10 rounded-full border border-glow-gold/30 flex items-center justify-center text-glow-gold hover:bg-glow-gold/10 transition-colors active:scale-90" aria-label="Siguiente">
+      <button id="carousel-next" class="carousel-btn w-10 h-10 rounded-full border border-glow-gold/30 flex items-center justify-center text-glow-gold hover:bg-glow-gold/10 transition-colors active:scale-90" aria-label="Siguiente" aria-disabled="false">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
       </button>
     </div>
@@ -102,9 +102,19 @@ const rituales = [
     });
 
     // Button states
-    if (prevBtn) prevBtn.classList.toggle("opacity-30", activeIndex === 0);
-    if (nextBtn) nextBtn.classList.toggle("opacity-30", activeIndex === cards.length - 1);
+    if (prevBtn) {
+      const isPrevDisabled = activeIndex === 0;
+      prevBtn.classList.toggle("opacity-30", isPrevDisabled);
+      prevBtn.setAttribute("aria-disabled", isPrevDisabled ? "true" : "false");
+    }
+    if (nextBtn) {
+      const isNextDisabled = activeIndex === cards.length - 1;
+      nextBtn.classList.toggle("opacity-30", isNextDisabled);
+      nextBtn.setAttribute("aria-disabled", isNextDisabled ? "true" : "false");
+    }
   };
+
+  syncCarousel();
 
   grid.addEventListener("scroll", () => {
     if (!ticking) {

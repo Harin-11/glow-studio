@@ -247,6 +247,7 @@ export default function SkinQuiz() {
 								<button
 									key={opt.value}
 									onClick={() => handleOptionSelect(currentQuestion.id, opt.value)}
+									aria-pressed={answers[currentQuestion.id] === opt.value}
 									className="group text-left p-5 border border-glow-gold/20 hover:border-glow-gold bg-glow-mist/30 hover:bg-glow-mist rounded-sm transition-all duration-300 cursor-pointer focus:outline-none focus:ring-1 focus:ring-glow-gold/45"
 								>
 									<div className="flex justify-between items-center mb-1.5">
@@ -299,6 +300,8 @@ export default function SkinQuiz() {
 										<img
 											src={rec.img}
 											alt={rec.name}
+											width={400}
+											height={300}
 											loading="lazy"
 											decoding="async"
 											className="w-full h-full object-cover grayscale-[10%] sepia-[5%]"

@@ -32,25 +32,9 @@ export default {
 				"header-mobile": "70px",
 			},
 			animation: {
-				"fade-in": "fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-				"slide-up": "slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-				"door-open": "doorOpen 1.8s cubic-bezier(0.77, 0, 0.175, 1) forwards",
 				"pulse-glow": "pulseGlow 2s ease-in-out infinite",
 			},
 			keyframes: {
-				fadeIn: {
-					to: { opacity: "1" },
-				},
-				slideUp: {
-					to: {
-						opacity: "1",
-						transform: "translateY(0) scale(1)",
-						filter: "blur(0)",
-					},
-				},
-				doorOpen: {
-					to: { transform: "translateX(-100%)" },
-				},
 				pulseGlow: {
 					"0%, 100%": { opacity: "0.5", transform: "scale(1)" },
 					"50%": { opacity: "1", transform: "scale(1.1)" },

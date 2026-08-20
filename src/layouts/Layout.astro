@@ -1,13 +1,13 @@
 ---
 import "../styles/global.css";
-import "@fontsource/cormorant-garamond/300.css";
-import "@fontsource/cormorant-garamond/300-italic.css";
-import "@fontsource/cormorant-garamond/700.css";
-import "@fontsource/cormorant-garamond/700-italic.css";
-import "@fontsource/cormorant-sc/500.css";
-import "@fontsource/dm-mono/400.css";
-import "@fontsource/dm-sans/300.css";
-import "@fontsource/dm-sans/400.css";
+import "@fontsource/cormorant-garamond/latin-300.css";
+import "@fontsource/cormorant-garamond/latin-300-italic.css";
+import "@fontsource/cormorant-garamond/latin-700.css";
+import "@fontsource/cormorant-garamond/latin-700-italic.css";
+import "@fontsource/cormorant-sc/latin-500.css";
+import "@fontsource/dm-mono/latin-400.css";
+import "@fontsource/dm-sans/latin-300.css";
+import "@fontsource/dm-sans/latin-400.css";
 import ogImage from "../assets/hero-og.webp";
 
 export interface Props {
@@ -198,75 +198,6 @@ const socialImageURL = new URL(image, siteBase);
       onDomReady(() => {
         initReveal();
         initLoader();
-      });
-
-      // Header scroll state (Optimized using requestAnimationFrame and state cache)
-      const header = document.getElementById("main-header");
-      let scrollTicking = false;
-      let isScrolled = false;
-      const updateHeader = () => {
-        if (header) {
-          const scrolled = window.scrollY;
-          const shouldScroll = scrolled > 100;
-          if (shouldScroll !== isScrolled) {
-            isScrolled = shouldScroll;
-            header.classList.toggle("scrolled", isScrolled);
-          }
-        }
-        scrollTicking = false;
-      };
-      window.addEventListener("scroll", () => {
-        if (!scrollTicking && header) {
-          window.requestAnimationFrame(updateHeader);
-          scrollTicking = true;
-        }
-      }, { passive: true });
-
-      // Run initially in case page loaded scrolled down
-      if (header) {
-        updateHeader();
-      }
-
-      // Hamburger menu
-      const hamburger = document.querySelector(".hamburger");
-      const overlay = document.getElementById("mobile-overlay");
-      const closeBtn = document.querySelector(".nav-close");
-      const navLinks = document.querySelectorAll(".nav-link");
-
-      function openMenu() {
-        header?.classList.add("menu-open");
-        overlay?.classList.remove("hidden");
-        document.body.classList.add("menu-open");
-        document.documentElement.classList.add("menu-open");
-        document.body.style.overflow = "hidden";
-        document.documentElement.style.overflow = "hidden";
-        hamburger?.setAttribute("aria-expanded", "true");
-      }
-
-      function cancelMenu() {
-        header?.classList.remove("menu-open");
-        overlay?.classList.add("hidden");
-        document.body.classList.remove("menu-open");
-        document.documentElement.classList.remove("menu-open");
-        document.body.style.overflow = "";
-        document.documentElement.style.overflow = "";
-        hamburger?.setAttribute("aria-expanded", "false");
-      }
-
-      hamburger?.addEventListener("click", () => {
-        header?.classList.contains("menu-open") ? cancelMenu() : openMenu();
-      });
-      overlay?.addEventListener("click", cancelMenu);
-      closeBtn?.addEventListener("click", cancelMenu);
-      navLinks.forEach((l) => l.addEventListener("click", cancelMenu));
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && header?.classList.contains("menu-open")) cancelMenu();
-      });
-
-      // Close menu on transition from mobile to desktop
-      const mq = window.matchMedia("(max-width: 768px)");
-      mq.addEventListener("change", (e) => {
-        if (!e.matches) cancelMenu();
       });
     </script>
   </body>
