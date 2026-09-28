@@ -1,30 +1,37 @@
-# Glow Studio
+# glow-studio
 
 > Estudio interactivo y portafolio web construido con Astro, Tailwind CSS y prácticas modernas de diseño responsivo.
 
 ---
 
-## ✨ Características
+## Características
 
 - Rendimiento optimizado y arquitectura de islas con Astro.
-- Estilos y componentes ui expresivos con Tailwind CSS.
-- Preparado para depliegue directo en Vercel.
-
+- Estilos y componentes UI expresivos con Tailwind CSS.
+- Preparado para despliegue directo en Vercel.
 
 ---
 
-
-## 🛠 Tecnologías
+## Tecnologías
 
 - Astro (v6+)
 - Tailwind CSS
 - TypeScript / JavaScript
-- Vercel (Deployment)
+- Vercel
 
 ---
 
-## 🚀 Ejecución local
+## Ejecución local
 
-1. Instalar dependencias: `pnpm install`
-2. Iniciar el servidor de desarrollo: `pnpm run dev`
-3. Construir para producción: `pnpm run build`
+1. Instalar dependencias:
+   ```bash
+   pnpm install
+   ```
+2. Iniciar el servidor de desarrollo:
+   ```bash
+   pnpm run dev
+   ```
+3. Construir para producción:
+   ```bash
+   pnpm run build
+   ```
